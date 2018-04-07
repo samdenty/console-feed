@@ -1,12 +1,14 @@
 {
-  "name": "my-app",
+  "name": "console-feed",
   "version": "0.1.0",
   "private": true,
   "main": "src/index.tsx",
   "dependencies": {
     "@types/circular-json": "^0.4.0",
+    "@types/classnames": "^2.2.3",
     "@types/jss": "^9.5.2",
     "circular-json": "^0.5.1",
+    "classnames": "^2.2.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-inspector": "^2.2.2",

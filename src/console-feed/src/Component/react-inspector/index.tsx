@@ -13,6 +13,7 @@ import {
   // @ts-ignore
 } from 'react-inspector'
 import { Theme, Variants } from '../../../definitions/Component'
+import * as classNames from 'classnames'
 
 interface Props {
   theme: Theme
@@ -24,15 +25,29 @@ const styles = (theme: Theme) =>
   ({
     root: {
       '& li': {
-        backgroundColor: 'transparent !important',
-        '& div:hover': {
-          backgroundColor: 'rgba(255, 220, 158, .1) !important'
-        }
+        backgroundColor: 'transparent !important'
+      }
+    },
+    dom: {
+      '& div:hover': {
+        backgroundColor: 'rgba(255, 220, 158, .05) !important',
+        borderRadius: '2px'
       }
     },
     inlineHTML: {
       '& > li': {
         display: 'inline-block'
+      }
+    },
+    proto: {
+      '& > span > span:nth-child(1)': {
+        opacity: 0.6
+      }
+    },
+    promise: {
+      fontStyle: 'italic',
+      '& span': {
+        opacity: 0.6
       }
     }
   } as Styles)
@@ -43,10 +58,16 @@ class CustomInspector extends React.PureComponent<Props, any> {
   }
 
   render() {
+    const dom = this.props.data instanceof HTMLElement
     const { classes } = this.props
+
     return (
-      <span className={classes.root}>
-        {this.props.data instanceof HTMLElement ? (
+      <span
+        className={classNames({
+          [classes.root]: true,
+          [classes.dom]: dom
+        })}>
+        {dom ? (
           <DOMInspector {...this.props} theme={this.state.theme} />
         ) : (
           <Inspector
@@ -78,25 +99,56 @@ class CustomInspector extends React.PureComponent<Props, any> {
 
   nodeRenderer(props: any) {
     const { classes } = this.props
+    let proto = false
     let { depth, name, data, isNonenumerable } = props
 
     // Root
     if (depth === 0) {
-      return <ObjectRootLabel name={name} data={data} />
+      if (data instanceof Object && !(data instanceof Array)) {
+        const constructor = data.constructor.name
+        data = Object.assign({}, data)
+        delete data.__protoname__
+        // Re-define constructor
+        if (data.constructor.name !== constructor) {
+          Object.defineProperty(data, 'constructor', {
+            value: {
+              name: constructor,
+              __overridden__: true
+            },
+            writable: false
+          })
+        }
+      }
+      return data.constructor.name === 'Promise' ? (
+        <span className={classes.promise}>
+          Promise {`{`}
+          <span>{`<pending>`}</span>
+          {`}`}
+        </span>
+      ) : (
+        <ObjectRootLabel name={name} data={data} />
+      )
     }
 
     // Subobject
     if (name === '__protoname__') {
       name = '__proto__'
+      proto = true
     }
     return data instanceof HTMLElement ? (
-      <span className={classes.inlineHTML}>
+      <span className={classNames(classes.inlineHTML, classes.dom)}>
         <ObjectName name={name} />
         <span>: </span>
         <DOMInspector data={data} theme={this.state.theme} />
       </span>
     ) : (
-      <ObjectLabel name={name} data={data} isNonenumerable={isNonenumerable} />
+      <span className={proto ? classes.proto : ''}>
+        <ObjectLabel
+          name={name}
+          data={data}
+          isNonenumerable={isNonenumerable}
+        />
+      </span>
     )
   }
 }

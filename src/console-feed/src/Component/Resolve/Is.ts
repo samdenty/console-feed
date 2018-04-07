@@ -1,17 +1,17 @@
-type Types = 'Array' | 'HTMLElement' | 'Function' | 'ValueType' | 'Undefined'
+type Types = 'Array' | 'HTMLElement' | 'Function' | 'Undefined' | 'Object'
 
 export default function Is(type: Types, obj: any): boolean | null {
-  const proto = obj ? obj.__protoname__ : ''
+  const proto = obj ? obj.__protoname__ : null
 
   switch (type) {
     case 'Undefined': {
       return proto === 'undefined'
     }
-    case 'ValueType': {
-      return /^string|boolean|number$/.test(typeof obj) || obj === null
-    }
     case 'Array': {
       return Array.isArray(obj)
+    }
+    case 'Object': {
+      return obj instanceof Object && proto !== null
     }
     case 'Function': {
       return proto === 'Function'

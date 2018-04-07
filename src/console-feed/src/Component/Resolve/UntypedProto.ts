@@ -18,15 +18,8 @@ function TypeCheck(data: any) {
   if (Is('Function', data)) return TFunction(data)
   // HTMLElement
   if (Is('HTMLElement', data)) return THTML(data)
-
-  // // Object
-  // const prototype = Object.getPrototypeOf(data)
-  // if (prototype && prototype.constructor && prototype.constructor.name) {
-  //   return {
-  //     ...data,
-  //     __protoname__: prototype.constructor.name
-  //   }
-  // }
+  // Object
+  if (Is('Object', data)) return TObject(data)
   return data
 }
 
@@ -66,4 +59,18 @@ function THTML(data: any) {
   } catch (e) {
     return data
   }
+}
+
+// Resolve an Object
+function TObject(data: any) {
+  Object.defineProperty(data, 'constructor', {
+    value: {
+      name: data.__protoname__,
+      __overridden__: true
+    },
+    writable: false
+  })
+
+  console.log(data.constructor.name)
+  return data
 }

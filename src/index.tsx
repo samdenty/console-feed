@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Hook, Console } from './react-console/src'
+import { Hook, Console } from './console-feed/src'
 
 const iframe = document.getElementsByTagName('iframe')[0].contentWindow
 
@@ -22,7 +22,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: '#242424' }}>
         <Console logs={this.state.logs} variant="dark" />
       </div>
     )
