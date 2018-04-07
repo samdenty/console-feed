@@ -1,0 +1,29 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.tsx",
+  "dependencies": {
+    "@types/circular-json": "^0.4.0",
+    "@types/jss": "^9.5.2",
+    "circular-json": "^0.5.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-inspector": "^2.2.2",
+    "react-jss": "^8.4.0",
+    "react-scripts-ts": "^2.13.0"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.3",
+    "@types/node": "^9.4.6",
+    "@types/react": "16.0.38",
+    "@types/react-dom": "16.0.4",
+    "typescript": "^2.7.2"
+  }
+}
