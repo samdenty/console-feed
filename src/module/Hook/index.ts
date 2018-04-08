@@ -8,7 +8,7 @@ import {
 import Methods from '../definitions/Methods'
 import Parse from '../Parse'
 import Unhook from '../Unhook'
-import { Encode } from '../Transforms'
+import { Encode } from '../Transform'
 
 /**
  * Hook a console constructor and forward messages to a callback

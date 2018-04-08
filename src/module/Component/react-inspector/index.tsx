@@ -12,6 +12,8 @@ import {
   chromeLight
   // @ts-ignore
 } from 'react-inspector'
+// @ts-ignore
+import ObjectPreview from 'react-inspector/lib/object-inspector/ObjectPreview'
 import { Theme, Variants } from '../../definitions/Component'
 import * as classNames from 'classnames'
 
@@ -107,21 +109,19 @@ class CustomInspector extends React.PureComponent<Props, any> {
     if (depth === 0) {
       const constructor =
         data && data.constructor ? data.constructor.name : null
-      if (data instanceof Object && !(data instanceof Array)) {
-        data = Object.assign({}, data)
-        delete data.__protoname__
-        // Override constructor
-        if (data.constructor.name !== constructor) {
-          Object.defineProperty(data, 'constructor', {
-            value: {
-              name: constructor,
-              __overridden__: true
-            },
-            writable: false
-          })
-        }
-      }
-      return constructor === 'Promise' ? (
+
+      return constructor === 'Function' ? (
+        <span className="function" style={{ fontStyle: 'italic' }}>
+          <ObjectPreview data={data} />
+          <span className="bracket">{` {`}</span>
+          <span
+            className="function-body"
+            style={{ color: 'rgb(181, 181, 181)' }}>
+            {data.body}
+          </span>
+          <span className="bracket">{`}`}</span>
+        </span>
+      ) : constructor === 'Promise' ? (
         <span className={classes.promise}>
           Promise {`{`}
           <span>{`<pending>`}</span>
