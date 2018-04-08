@@ -7,7 +7,6 @@ import formatMessageString from './format-message'
 function formatMessage(args: any[]): string {
   const formattedResult = document.createElement('span')
 
-  console.log(args[0], args.slice(1))
   formatMessageString(args[0], args.slice(1), formattedResult)
 
   return formattedResult.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br />')

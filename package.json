@@ -1,10 +1,9 @@
 {
   "name": "console-feed",
-  "version": "2.0.1",
+  "version": "2.2.0",
   "private": false,
   "main": "dist/index.js",
-  "description":
-    "A React component that displays console logs from the current page, an iframe or transported across a server",
+  "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
   "keywords": [
     "devtools",
     "inspector",
@@ -52,10 +51,10 @@
     "@types/react": "16.0.38",
     "@types/react-dom": "16.0.4",
     "immutability-helper": "^2.6.6",
-    "react-scripts-ts": "^2.13.0",
-    "typescript": "^2.7.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-scripts-ts": "^2.13.0",
+    "typescript": "^2.7.2"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
