@@ -14,6 +14,6 @@ export function Encode<T>(data: any): T {
 }
 
 export function Decode<T>(data: any): T {
-  console.log('decoding')
+  // console.log('decoding')
   return replicator.decode(JSON.stringify(data))
 }

@@ -15,11 +15,13 @@ import {
 // @ts-ignore
 import ObjectPreview from 'react-inspector/lib/object-inspector/ObjectPreview'
 import { Theme, Variants } from '../../definitions/Component'
+import { Methods } from '../../definitions/Methods'
 import * as classNames from 'classnames'
 
 interface Props {
   theme: Theme
   data: any
+  method: Methods
   classes: any
 }
 
@@ -61,8 +63,9 @@ class CustomInspector extends React.PureComponent<Props, any> {
   }
 
   render() {
-    const dom = this.props.data instanceof HTMLElement
-    const { classes } = this.props
+    const { classes, data, method } = this.props
+    const dom = data instanceof HTMLElement
+    const table = method === 'table'
 
     return (
       <span
@@ -70,7 +73,9 @@ class CustomInspector extends React.PureComponent<Props, any> {
           [classes.root]: true,
           [classes.dom]: dom
         })}>
-        {dom ? (
+        {table ? (
+          <Inspector {...this.props} theme={this.state.theme} table />
+        ) : dom ? (
           <DOMInspector {...this.props} theme={this.state.theme} />
         ) : (
           <Inspector

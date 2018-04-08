@@ -41,9 +41,7 @@ const styles = {
     width: 10,
     height: 18,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: '50% 50%'
-  },
-  logIcon: {
+    backgroundPosition: '50% 50%',
     backgroundImage: `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABaSURBVChTY6AtmDx5cvnUqVP1oFzsoL+/XwCo8DEQv584caIVVBg7mDBhghxQ4Y2+vr6vU6ZM8YAKYwdA00SB+CxQ8S+g4jCoMCYgSiFRVpPkGaAiHMHDwAAA5Ko+F4/l6+MAAAAASUVORK5CYII=')`
   },
   warnIcon: {
@@ -104,6 +102,7 @@ class Node extends React.PureComponent<NodeProps, any> {
   getNode() {
     let { log, classes } = this.props
 
+    // Chrome formatting
     if (
       log.data.length > 0 &&
       typeof log.data[0] === 'string' &&
@@ -132,8 +131,9 @@ class Node extends React.PureComponent<NodeProps, any> {
       ))
     }
 
+    // Normal inspector
     return log.data.map((message: any, i: number) => (
-      <Inspector data={message} key={i} />
+      <Inspector data={message} key={i} method={log.method} />
     ))
   }
 }
