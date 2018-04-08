@@ -3,7 +3,6 @@ import { NodeProps } from '../definitions/Component'
 import Inspector from './react-inspector'
 
 import formatMessage from './devtools-parser'
-import { Resolve } from './Resolve'
 
 import * as classNames from 'classnames'
 // @ts-ignore
@@ -104,11 +103,6 @@ class Node extends React.PureComponent<NodeProps, any> {
 
   getNode() {
     let { log, classes } = this.props
-
-    // Resolve descended types etc.
-    if (!log.resolved) {
-      log = Resolve(log)
-    }
 
     if (
       log.data.length > 0 &&

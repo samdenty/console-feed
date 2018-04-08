@@ -105,8 +105,9 @@ class CustomInspector extends React.PureComponent<Props, any> {
 
     // Root
     if (depth === 0) {
+      const constructor =
+        data && data.constructor ? data.constructor.name : null
       if (data instanceof Object && !(data instanceof Array)) {
-        const constructor = data.constructor.name
         data = Object.assign({}, data)
         delete data.__protoname__
         // Override constructor
@@ -120,7 +121,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
           })
         }
       }
-      return data.constructor.name === 'Promise' ? (
+      return constructor === 'Promise' ? (
         <span className={classes.promise}>
           Promise {`{`}
           <span>{`<pending>`}</span>

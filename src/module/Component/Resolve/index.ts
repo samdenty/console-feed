@@ -1,9 +1,9 @@
 import { Message } from '../../definitions/Component'
-import { UntypedProto } from './UntypedProto'
+import { Decode } from '../../Transforms'
 
 export function Resolve(log: Message): Message {
   // Resolve references
-  log.data = UntypedProto(log.data)
+  log.data = Decode(log.data)
 
   return {
     ...log,

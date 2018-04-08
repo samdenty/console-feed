@@ -4,15 +4,13 @@
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
-    "@types/circular-json": "^0.4.0",
-    "circular-json": "^0.5.1",
     "classnames": "^2.2.5",
-    "clone": "^1.0.4",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-inspector": "^2.2.2",
-    "react-jss": "^8.4.0"
+    "react-jss": "^8.4.0",
+    "replicator": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -21,7 +19,6 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
-    "@types/clone": "^0.1.30",
     "@types/jss": "^9.5.2",
     "@types/node": "^9.4.6",
     "@types/react": "16.0.38",

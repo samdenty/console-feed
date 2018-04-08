@@ -2,12 +2,13 @@ import {
   HookedConsole,
   Callback,
   Storage,
-  Methods as ConsoleMethods
+  Methods as ConsoleMethods,
+  Message
 } from '../definitions/Console'
 import Methods from '../definitions/Methods'
 import Parse from '../Parse'
 import Unhook from '../Unhook'
-import * as clone from 'clone'
+import { Encode } from '../Transforms'
 
 /**
  * Hook a console constructor and forward messages to a callback
@@ -34,9 +35,13 @@ export default function Hook(console: Console, callback: Callback) {
     TargetConsole[method] = function() {
       // Pass back to native method
       NativeMethod.apply(this, arguments)
+
       // Parse arguments and send to transport
-      const parsed = Parse(method as ConsoleMethods, [].slice.call(arguments))
-      if (parsed) callback(parsed, TargetConsole)
+      const args = [].slice.call(arguments)
+      setTimeout(() => {
+        const parsed = Encode(Parse(method as ConsoleMethods, args)) as Message
+        if (parsed) callback(parsed, TargetConsole)
+      })
     }
 
     // Store native methods

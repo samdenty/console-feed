@@ -1,9 +1,6 @@
 import { Methods } from '../definitions/Console'
 import { Payload } from '../definitions/Payload'
-import { TypedProto } from './TypedProto'
 import GUID from './GuidGenerator'
-import Decycle from '../Cycler/Decycle'
-import { stringify } from 'circular-json'
 
 /**
  * Parses a console log and converts it to a special Log object
@@ -14,6 +11,7 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
   // If the method params were empty, return false
   if (data.length === 0) return false
 
+  // Create an ID
   const id = GUID()
   // Parse the methods
   switch (method) {
@@ -27,7 +25,7 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     case 'error': {
       const errors = data.map((error) => {
         try {
-          return error.stack || error
+          return error.message || error
         } catch (e) {
           return error
         }
@@ -41,17 +39,10 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     default: {
-      try {
-        // Attempt to Decycle data whilst retaining constructors
-        data = Decycle(data)
-      } catch (e) {
-        // Fallback decycle (constructors are lost)
-        data = JSON.parse(stringify(data))
-      }
       return {
         method,
         id,
-        data: TypedProto(data)
+        data
       }
     }
   }
