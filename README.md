@@ -17,7 +17,7 @@ npm install console-feed
 
 ## Basic usage
 
-![CodeSandbox](https://codesandbox.io/s/rl7pk9w2ym)
+[CodeSandbox](https://codesandbox.io/s/rl7pk9w2ym)
 
 ```js
 import React from 'react'
@@ -55,3 +55,7 @@ class App extends React.Component {
 ### `variant?: 'light' | 'dark'`
 
 Sets the font color for the component. Default - `light`
+
+### `style?: Styles`
+
+Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/module/definitions/Styles.d.ts)

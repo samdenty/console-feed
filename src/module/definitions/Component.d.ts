@@ -1,9 +1,11 @@
 import { Payload } from './Payload'
+import { Styles } from './Styles'
 
 export type Variants = 'light' | 'dark'
 
 export interface Theme {
   variant: Variants
+  styles: Styles
 }
 
 interface Message extends Payload {
@@ -13,6 +15,7 @@ interface Message extends Payload {
 export interface Props {
   logs: Message[]
   variant?: Variants
+  styles?: Styles
 }
 
 export interface NodeProps {

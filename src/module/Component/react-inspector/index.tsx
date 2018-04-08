@@ -89,19 +89,20 @@ class CustomInspector extends React.PureComponent<Props, any> {
   }
 
   componentWillMount() {
-    this.setTheme(this.props.theme.variant)
+    this.setTheme(this.props.theme)
   }
 
-  setTheme = (variant: Variants) => {
-    const theme = variant === 'dark' ? chromeDark : chromeLight
+  setTheme = (theme: Theme) => {
+    const styles = theme.variant === 'dark' ? chromeDark : chromeLight
     this.setState({
-      theme: { ...theme, ...{ ARROW_FONT_SIZE: 9 } }
+      theme: { ...styles, ...theme.styles }
     })
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.theme.variant !== this.props.theme.variant) {
-      this.setTheme(nextProps.theme.variant)
+    // Add proper check
+    if (nextProps.theme !== this.props.theme) {
+      this.setTheme(nextProps.theme)
     }
   }
 

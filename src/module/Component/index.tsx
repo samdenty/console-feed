@@ -8,7 +8,8 @@ class Console extends React.PureComponent<Props, any> {
   render() {
     const logs = this.props.logs || []
     const theme: Theme = {
-      variant: this.props.variant || 'light'
+      variant: this.props.variant || 'light',
+      styles: this.props.styles || { ARROW_FONT_SIZE: 9 }
     }
 
     return (
