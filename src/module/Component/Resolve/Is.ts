@@ -1,4 +1,4 @@
-type Types = 'Array' | 'HTMLElement' | 'Function' | 'Undefined' | 'Object'
+type Types = 'Array' | 'String' | 'HTMLElement' | 'Function' | 'Undefined' | 'Object'
 
 export default function Is(type: Types, obj: any): boolean | null {
   const proto = obj ? obj.__protoname__ : null
@@ -6,6 +6,9 @@ export default function Is(type: Types, obj: any): boolean | null {
   switch (type) {
     case 'Undefined': {
       return proto === 'undefined'
+    }
+    case 'String': {
+      return typeof obj === 'string'
     }
     case 'Array': {
       return Array.isArray(obj)

@@ -2,7 +2,7 @@ import { Methods } from '../definitions/Console'
 import { Payload } from '../definitions/Payload'
 import { TypedProto } from './TypedProto'
 import GUID from './GuidGenerator'
-import * as CircularJSON from 'circular-json'
+import Decycle from '../Cycler/Decycle'
 
 /**
  * Parses a console log and converts it to a special Log object
@@ -36,10 +36,11 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     default: {
+      console.log(data, Decycle(data))
       return {
         method,
         id,
-        data: JSON.parse(CircularJSON.stringify(TypedProto(data)))
+        data: TypedProto(Decycle(data))
       }
     }
   }

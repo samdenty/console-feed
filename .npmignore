@@ -1,5 +1,6 @@
-build
-public
-src
-tsconfig.json
-tslint.json
+/build
+/public
+/src
+/tsconfig.json
+/tslint.json
+!/dist

@@ -1,4 +1,3 @@
-import * as CircularJSON from 'circular-json'
 import { Message } from '../../definitions/Component'
 import { UntypedProto } from './UntypedProto'
 

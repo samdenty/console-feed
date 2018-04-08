@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { render } from 'react-dom'
+import update from 'immutability-helper'
 import { Hook, Console } from './module'
 
-const iframe = document.getElementsByTagName('iframe')[0].contentWindow
+const iframe = document.createElement('iframe')
+iframe.src = './iframe.html'
+document.body.appendChild(iframe)
 
 class App extends React.Component {
   state = {
@@ -10,14 +13,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      Hook(iframe.console, (log) => {
-        console.log('proxy =>', log)
-        this.setState({
-          logs: [...this.state.logs, log]
-        })
-      })
-    }, 500)
+    Hook(iframe.contentWindow.console, (log) => {
+      // console.log('proxy =>', log)
+      this.setState((state) => update(state, { logs: { $push: [log] } }))
+    })
   }
 
   render() {
