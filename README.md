@@ -62,9 +62,9 @@ Defines the custom styles to use on the component - see [`Styles.d.ts`](https://
 
 ## Stuff to note
 
-When using the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. All the Circular references etc. have been already handled for you.
+When using the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. All the Circular references have already been handled for you.
 
-In order to restore a log back to it's "faked" original state, you need to use the `Decode()` method.
+In order to restore a log back to format compatible with the `<Console>` component, you need to use the `Decode()` method.
 
 ### For example:
 
