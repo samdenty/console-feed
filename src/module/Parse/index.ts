@@ -36,11 +36,17 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     default: {
-      console.log(data, Decycle(data))
+      for (let i in data) {
+        try {
+          data[i] = Decycle(data[i])
+        } catch (e) {
+          data[i] = [`Unable to display message, open DevTools to read it's contents 🙁`]
+        }
+      }
       return {
         method,
         id,
-        data: TypedProto(Decycle(data))
+        data: TypedProto(data)
       }
     }
   }
