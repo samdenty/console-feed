@@ -59,3 +59,22 @@ Sets the font color for the component. Default - `light`
 ### `style?: Styles`
 
 Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/module/definitions/Styles.d.ts)
+
+## Stuff to note
+
+When using the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. All the Circular references etc. have been already handled for you.
+
+In order to restore a log back to it's "faked" original state, you need to use the `Decode()` method.
+
+### For example:
+
+```js
+Hook(window.console, (log) => {
+  const parsed = Decode(log)
+  const json = JSON.stringify(log)
+
+  const original = Decode(JSON.parse(json))
+
+  // parsed === original
+})
+```
