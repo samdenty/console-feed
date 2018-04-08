@@ -71,6 +71,11 @@ function TObject(data: any) {
     writable: false
   })
 
-  console.log(data.constructor.name)
+  for (let key of Object.keys(data)) {
+    if (key !== '__protoname__') {
+      data[key] = TypeCheck(data[key])
+    }
+  }
+
   return data
 }

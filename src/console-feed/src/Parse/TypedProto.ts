@@ -20,15 +20,11 @@ function TypeCheck(data: any) {
   if (Is('Function', data)) return TFunction(data)
   // HTMLElement
   if (Is('HTMLElement', data)) return THTML(data)
-
   // Object
-  const prototype = Object.getPrototypeOf(data)
-  if (prototype && prototype.constructor && prototype.constructor.name) {
-    return {
-      ...data,
-      __protoname__: prototype.constructor.name
-    }
-  }
+  console.log(data, Is('Object', data))
+  if (Is('Object', data)) return TObject(data)
+
+
   return data
 }
 
@@ -39,9 +35,26 @@ function TArray(data: any[]) {
   return data
 }
 
+function TObject(data: any) {
+  const prototype = Object.getPrototypeOf(data)
+  if (prototype && prototype.constructor && prototype.constructor.name) {
+    data = {
+      ...data,
+      __protoname__: prototype.constructor.name
+    }
+  }
+  for (let key of Object.keys(data)) {
+    if (key !== '__protoname__') {
+      data[key] = TypeCheck(data[key])
+    }
+  }
+  return data
+}
+
 function TFunction(data: Function) {
   return {
     __fn__: data.name,
+    __fnContents: data.toString(),
     __protoname__: Object.getPrototypeOf(data).constructor.name
   }
 }

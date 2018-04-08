@@ -1,4 +1,4 @@
-type Types = 'Array' | 'HTMLElement' | 'Function' | 'ValueType' | 'Undefined'
+type Types = 'Array' | 'Object' | 'HTMLElement' | 'Function' | 'ValueType' | 'Undefined'
 
 export default function Is(type: Types, obj: any): boolean | null {
   switch (type) {
@@ -10,6 +10,9 @@ export default function Is(type: Types, obj: any): boolean | null {
     }
     case 'Array': {
       return Array.isArray(obj)
+    }
+    case 'Object': {
+      return typeof obj === 'object' && obj !== null
     }
     case 'Function': {
       return typeof obj === 'function'

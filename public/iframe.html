@@ -3,7 +3,14 @@
   <script>
     const promise = new Promise(() => { })
     setTimeout(() => {
-      console.debug([promise])
+      console.log({
+        hello: () => {
+          console.log("hello");
+        },
+        hello2: () => {
+          console.log("hello2");
+        }
+      });
     }, 1500)
   </script>
 </body>

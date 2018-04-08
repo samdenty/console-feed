@@ -108,7 +108,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
         const constructor = data.constructor.name
         data = Object.assign({}, data)
         delete data.__protoname__
-        // Re-define constructor
+        // Override constructor
         if (data.constructor.name !== constructor) {
           Object.defineProperty(data, 'constructor', {
             value: {
