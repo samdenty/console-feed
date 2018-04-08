@@ -1,7 +1,7 @@
 {
   "name": "console-feed",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.1",
+  "private": false,
   "main": "dist/index.js",
   "dependencies": {
     "@types/circular-json": "^0.4.0",
@@ -16,6 +16,9 @@
     "react-inspector": "^2.2.2",
     "react-jss": "^8.4.0",
     "react-scripts-ts": "^2.13.0"
+  },
+  "directories": {
+    "lib": "dist"
   },
   "scripts": {
     "start": "react-scripts-ts start",
