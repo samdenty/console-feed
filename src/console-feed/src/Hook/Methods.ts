@@ -4,10 +4,10 @@ const methods = [
   'info',
   'warn',
   'error',
-  'table',
+  // 'table',
   'clear',
-  'time',
-  'timeEnd'
+  // 'time',
+  // 'timeEnd'
 ]
 
 export default methods
@@ -18,7 +18,7 @@ export type Methods =
   | 'info'
   | 'warn'
   | 'error'
-  | 'table'
+  // | 'table'
   | 'clear'
-  | 'time'
-  | 'timeEnd'
+  // | 'time'
+  // | 'timeEnd'

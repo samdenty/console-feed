@@ -17,4 +17,5 @@ export interface Props {
 
 export interface NodeProps {
   log: Message
+  classes: any
 }

@@ -3,14 +3,19 @@
   <script>
     const promise = new Promise(() => { })
     setTimeout(() => {
-      console.log({
-        hello: () => {
-          console.log("hello");
-        },
-        hello2: () => {
-          console.log("hello2");
-        }
-      });
+      console.error(`Superlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong string`)
+      console.warn(1)
+      console.error(1)
+      for (let i = 0; i < 5; i++) {
+        console.warn({
+          promise: promise,
+          function: function FunctionName() {
+            console.log("hello2");
+          },
+          html: document.body
+        });
+
+      }
     }, 1500)
   </script>
 </body>

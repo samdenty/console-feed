@@ -21,7 +21,6 @@ function TypeCheck(data: any) {
   // HTMLElement
   if (Is('HTMLElement', data)) return THTML(data)
   // Object
-  console.log(data, Is('Object', data))
   if (Is('Object', data)) return TObject(data)
 
 
