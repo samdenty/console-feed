@@ -1,6 +1,6 @@
 {
   "name": "console-feed",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
@@ -11,9 +11,6 @@
     "react-dom": "^16.2.0",
     "react-inspector": "^2.2.2",
     "react-jss": "^8.4.0"
-  },
-  "directories": {
-    "lib": "dist"
   },
   "scripts": {
     "start": "react-scripts-ts start",
