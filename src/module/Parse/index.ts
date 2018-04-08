@@ -3,6 +3,7 @@ import { Payload } from '../definitions/Payload'
 import { TypedProto } from './TypedProto'
 import GUID from './GuidGenerator'
 import Decycle from '../Cycler/Decycle'
+import { stringify } from 'circular-json'
 
 /**
  * Parses a console log and converts it to a special Log object
@@ -24,9 +25,13 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     case 'error': {
-      const errors = data.map(
-        (error) => (error instanceof Error ? 'Error: ' + error.message : error)
-      )
+      const errors = data.map((error) => {
+        try {
+          return error.stack || error
+        } catch (e) {
+          return error
+        }
+      })
 
       return {
         method,
@@ -36,12 +41,12 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     default: {
-      for (let i in data) {
-        try {
-          data[i] = Decycle(data[i])
-        } catch (e) {
-          data[i] = [`Unable to display message, open DevTools to read it's contents 🙁`]
-        }
+      try {
+        // Attempt to Decycle data whilst retaining constructors
+        data = Decycle(data)
+      } catch (e) {
+        // Fallback decycle (constructors are lost)
+        data = JSON.parse(stringify(data))
       }
       return {
         method,

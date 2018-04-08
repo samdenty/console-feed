@@ -7,23 +7,33 @@
       this.circular = this;
     }
     setTimeout(() => {
-      console.warn([{
-        promise: new Promise(()=>{}),
-        circular: new Foo(),
-        window
-      }])
-      // console.error(`Superlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong stringSuperlong string`)
-      // console.warn(1)
-      // console.log('asd', 'uu')
-      // for (let i = 0; i < 5; i++) {
-      //   console.warn({
-      //     promise: promise,
-      //     function: function FunctionName() {
-      //       console.log("hello2");
-      //     },
-      //     html: document.body
-      //   });
-      // }
+
+      console.log(window)
+      console.log([1, 2, 3])
+      console.log('mixed types', 1, 2)
+      console.log('inline', 'text')
+      console.log({ an: 'object' })
+      console.log(new Promise(() => { }))
+      console.log([[[['recursive', new Promise(() => { })]]]])
+
+      console.log('HTML elements =>', document.body)
+      console.log('Named functions', [function myFunc() { }])
+
+      console.log('Nested', {
+        promise: new Promise(() => { }),
+        html: document.body
+      })
+
+      console.log(false, '', 0)
+      console.warn('Warning', 'etc.')
+      console.info('Info')
+      console.debug('Debug message')
+
+      try {
+        nonExistentFunc()
+      } catch (e) {
+        console.error(e)
+      }
     }, 1500)
   </script>
 </body>
