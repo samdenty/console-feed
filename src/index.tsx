@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Hook, Console } from './console-feed/src'
+import { Hook, Console } from './module'
 
 const iframe = document.getElementsByTagName('iframe')[0].contentWindow
 
@@ -12,7 +12,7 @@ class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       Hook(iframe.console, (log) => {
-        console.warn(log)
+        console.log('proxy =>', log)
         this.setState({
           logs: [...this.state.logs, log]
         })

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { NodeProps } from '../../definitions/Component'
+import { NodeProps } from '../definitions/Component'
 import Inspector from './react-inspector'
 
 import formatMessage from './devtools-parser'

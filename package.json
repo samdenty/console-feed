@@ -2,7 +2,7 @@
   "name": "console-feed",
   "version": "0.1.0",
   "private": true,
-  "main": "src/index.tsx",
+  "main": "dist/index.js",
   "dependencies": {
     "@types/circular-json": "^0.4.0",
     "@types/classnames": "^2.2.3",
@@ -20,8 +20,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "prepublish": "tsc"
   },
   "devDependencies": {
     "@types/jest": "^22.1.3",

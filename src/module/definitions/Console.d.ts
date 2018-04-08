@@ -1,4 +1,4 @@
-import { Methods } from '../src/Hook/Methods'
+import { Methods } from './Methods'
 
 export interface Storage {
   NativeMethods: {

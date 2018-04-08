@@ -1,4 +1,4 @@
-import { HookedConsole } from '../../definitions/Console'
+import { HookedConsole } from '../definitions/Console'
 
 /**
  * Unhook a console constructor and restore back the Native methods

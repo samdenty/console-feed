@@ -12,7 +12,7 @@ import {
   chromeLight
   // @ts-ignore
 } from 'react-inspector'
-import { Theme, Variants } from '../../../definitions/Component'
+import { Theme, Variants } from '../../definitions/Component'
 import * as classNames from 'classnames'
 
 interface Props {

@@ -1,5 +1,5 @@
-import { Methods } from '../../definitions/Console'
-import { Payload } from '../../definitions/Payload'
+import { Methods } from '../definitions/Console'
+import { Payload } from '../definitions/Payload'
 import { TypedProto } from './TypedProto'
 import GUID from './GuidGenerator'
 import * as CircularJSON from 'circular-json'

@@ -3,8 +3,8 @@ import {
   Callback,
   Storage,
   Methods as ConsoleMethods
-} from '../../definitions/Console'
-import Methods from './Methods'
+} from '../definitions/Console'
+import Methods from '../definitions/Methods'
 import Parse from '../Parse'
 import Unhook from '../Unhook'
 import * as clone from 'clone'
