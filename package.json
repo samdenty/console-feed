@@ -1,21 +1,16 @@
 {
   "name": "console-feed",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
-    "@types/circular-json": "^0.4.0",
-    "@types/classnames": "^2.2.3",
-    "@types/clone": "^0.1.30",
-    "@types/jss": "^9.5.2",
     "circular-json": "^0.5.1",
     "classnames": "^2.2.5",
     "clone": "^1.0.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-inspector": "^2.2.2",
-    "react-jss": "^8.4.0",
-    "react-scripts-ts": "^2.13.0"
+    "react-jss": "^8.4.0"
   },
   "directories": {
     "lib": "dist"
@@ -26,10 +21,14 @@
     "prepublish": "tsc"
   },
   "devDependencies": {
-    "@types/jest": "^22.1.3",
+    "@types/circular-json": "^0.4.0",
+    "@types/classnames": "^2.2.3",
+    "@types/clone": "^0.1.30",
+    "@types/jss": "^9.5.2",
     "@types/node": "^9.4.6",
     "@types/react": "16.0.38",
     "@types/react-dom": "16.0.4",
+    "react-scripts-ts": "^2.13.0",
     "typescript": "^2.7.2"
   }
 }
