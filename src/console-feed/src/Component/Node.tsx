@@ -14,7 +14,7 @@ const styles = {
   row: {
     position: 'relative',
     display: 'flex',
-    color: '#fff',
+    color: 'rgba(255,255,255,0.9)',
     borderTop: '1px solid rgba(255, 255, 255, 0.07)',
     borderBottom: '1px solid rgba(255, 255, 255, 0.07)',
     marginTop: -1,
@@ -29,12 +29,12 @@ const styles = {
   warn: {
     backgroundColor: '#332b00',
     color: '#ffdc9e',
-    borderColor: '#650',
-    marginTop: -1
+    borderColor: '#650'
   },
   error: {
     backgroundColor: '#290000',
-    borderColor: '#5b0000'
+    borderColor: '#5b0000',
+    color: '#ff8080'
   },
 
   // Icons
@@ -43,6 +43,9 @@ const styles = {
     height: 18,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '50% 50%'
+  },
+  logIcon: {
+    backgroundImage: `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABaSURBVChTY6AtmDx5cvnUqVP1oFzsoL+/XwCo8DEQv584caIVVBg7mDBhghxQ4Y2+vr6vU6ZM8YAKYwdA00SB+CxQ8S+g4jCoMCYgSiFRVpPkGaAiHMHDwAAA5Ko+F4/l6+MAAAAASUVORK5CYII=')`
   },
   warnIcon: {
     backgroundImage: `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACkSURBVChTbY7BCoJQFERn0Q/3BX1JuxQjsSCXiV8gtCgxhCIrKIRIqKDVzXl5w5cNHBjm6eGinXiAXu5inY2xYm/mbpIh+vcFhLA3sx0athNUhymEsP+10lAEEA17x8o/9wFuNGnYuVlWve0SQl7P0sBu3aq2R1Q/1JzSkYGd29eqNv2wjdnUuvNRciC/N+qe+7gidbA8zyHkOINsvA/sumcOkjcabcBmw2+mMgAAAABJRU5ErkJggg==')`
@@ -64,6 +67,10 @@ const styles = {
     flex: 'auto',
     display: 'flex',
     width: 'calc(100% - 15px)'
+  },
+  inlineMessage: {
+    whiteSpace: 'pre-wrap',
+    paddingRight: 10
   }
 } as Styles
 
@@ -96,7 +103,7 @@ class Node extends React.PureComponent<NodeProps, any> {
   }
 
   getNode() {
-    let { log } = this.props
+    let { log, classes } = this.props
 
     // Resolve descended types etc.
     if (!log.resolved) {
@@ -115,6 +122,20 @@ class Node extends React.PureComponent<NodeProps, any> {
           }}
         />
       )
+    }
+
+    // If every message is a string, don't show quotes
+    if (log.data.every((message) => typeof message === 'string')) {
+      return log.data.map((message: any, i: number) => (
+        <span
+          key={i}
+          className={classNames({
+            [classes.inlineMessage]: true,
+            'inline-text': true
+          })}>
+          {message}
+        </span>
+      ))
     }
 
     return log.data.map((message: any, i: number) => (

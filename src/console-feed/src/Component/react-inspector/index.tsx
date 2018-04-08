@@ -24,6 +24,7 @@ interface Props {
 const styles = (theme: Theme) =>
   ({
     root: {
+      paddingRight: 10,
       '& li': {
         backgroundColor: 'transparent !important'
       }
