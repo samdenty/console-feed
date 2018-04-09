@@ -52,6 +52,10 @@ class App extends React.Component {
 
 ## Props
 
+### `logs: Log[]`
+
+An array consisting of Log objects. Required
+
 ### `variant?: 'light' | 'dark'`
 
 Sets the font color for the component. Default - `light`
@@ -60,7 +64,22 @@ Sets the font color for the component. Default - `light`
 
 Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/module/definitions/Styles.d.ts)
 
-## Stuff to note
+## `Log` object
+
+A log object consists of the following:
+
+```ts
+type Logs = Log[]
+
+interface Log {
+  // The log method
+  method: 'log' | 'warn' | 'error' | 'info' | 'debug' | 'command' | 'result'
+  // The arguments passed to console API
+  data: any[]
+}
+```
+
+## Serialization
 
 When using the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. All the Circular references have already been handled for you.
 
@@ -69,6 +88,8 @@ In order to restore a log back to format compatible with the `<Console>` compone
 ### For example:
 
 ```js
+import { Hook, Decode } from 'console-feed'
+
 Hook(window.console, (log) => {
   const parsed = Decode(log)
   const json = JSON.stringify(log)
