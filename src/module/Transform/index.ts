@@ -1,11 +1,10 @@
 import HTML from './HTML'
 import Function from './Function'
-import Object from './Object'
 
 const transforms = [HTML, Function]
 
 // ReplicatorJS
-const Replicator = require('replicator')
+import Replicator from './replicator'
 const replicator = new Replicator()
 replicator.addTransforms(transforms)
 

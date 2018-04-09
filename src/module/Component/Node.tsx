@@ -45,6 +45,11 @@ const styles = (theme: Theme) =>
       color: theme.styles.LOG_ERROR_COLOR || '#ff8080',
       marginBottom: 1
     },
+    debug: {
+      backgroundColor: theme.styles.LOG_DEBUG_BACKGROUND || '',
+      borderColor: theme.styles.LOG_DEBUG_BORDER || '',
+      color: theme.styles.LOG_DEBUG_COLOR || '#4D88FF'
+    },
 
     // Icons
     icon: {
@@ -63,6 +68,11 @@ const styles = (theme: Theme) =>
       backgroundImage:
         theme.styles.LOG_RESULT_ICON ||
         `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABpSURBVChTY6A92LNnj96uXbvKoVzsYMeOHVbbt29/D1T4eP/+/QJQYVSwe/duD6CCr0B8A8iWgwqjAqBk2NatW38B6bPbtm0TBYkBFbsA+c9ANFgRCBCtEASAAoSthgGiPAMD2IOHgQEA521bM7uG52wAAAAASUVORK5CYII=)`
+    },
+    debugIcon: {
+      backgroundImage:
+        theme.styles.LOG_DEBUG_ICON ||
+        `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 459 459'%3e%3cpath fill='%234D88FF' d='M433.5 127.5h-71.4a177.7 177.7 0 0 0-45.9-51L357 35.7 321.3 0l-56.1 56.1c-10.2-2.6-23-5.1-35.7-5.1s-25.5 2.5-35.7 5.1L137.7 0 102 35.7l40.8 40.8a177.7 177.7 0 0 0-45.9 51H25.5v51H79c-2.5 7.7-2.5 17.9-2.5 25.5v25.5h-51v51h51V306a88 88 0 0 0 2.5 25.5H25.5v51h71.4A152.2 152.2 0 0 0 229.5 459c56.1 0 107.1-30.6 132.6-76.5h71.4v-51H380c2.5-7.7 2.5-17.9 2.5-25.5v-25.5h51v-51h-51V204c0-7.7 0-17.9-2.5-25.5h53.5v-51zm-153 204h-102v-51h102v51zm0-102h-102v-51h102v51z'/%3e%3c/svg%3e")`
     },
     warnIcon: {
       backgroundImage:

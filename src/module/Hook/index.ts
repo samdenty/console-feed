@@ -38,6 +38,8 @@ export default function Hook(console: Console, callback: Callback) {
 
       // Parse arguments and send to transport
       const args = [].slice.call(arguments)
+
+      // setTimeout to prevent lag
       setTimeout(() => {
         const parsed = Encode(Parse(method as ConsoleMethods, args)) as Message
         if (parsed) callback(parsed, TargetConsole)

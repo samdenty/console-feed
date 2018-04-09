@@ -142,10 +142,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
     }
 
     // Subobject
-    if (name === '__protoname__') {
-      name = '__proto__'
-      proto = true
-    }
+    if (name === 'constructor') proto = true
     return data instanceof HTMLElement ? (
       <span className={classNames(classes.inlineHTML, classes.dom)}>
         <ObjectName name={name} />
@@ -155,8 +152,8 @@ class CustomInspector extends React.PureComponent<Props, any> {
     ) : (
       <span className={proto ? classes.proto : ''}>
         <ObjectLabel
-          name={name}
-          data={data}
+          name={proto ? '__proto__' : name}
+          data={proto ? data.name : data}
           isNonenumerable={isNonenumerable}
         />
       </span>

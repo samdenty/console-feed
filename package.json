@@ -1,6 +1,6 @@
 {
   "name": "console-feed",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "private": false,
   "main": "dist/index.js",
   "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
@@ -36,8 +36,7 @@
     "classnames": "^2.2.5",
     "lodash": "^4.17.5",
     "react-inspector": "^2.2.2",
-    "react-jss": "^8.4.0",
-    "replicator": "^1.0.1"
+    "react-jss": "^8.4.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",

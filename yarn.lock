@@ -6077,10 +6077,6 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-replicator@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/replicator/-/replicator-1.0.1.tgz#8b382b4ebb871cdbb98e2306ff352ae409d484a9"
-
 request-promise-core@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/request-promise-core/-/request-promise-core-1.1.1.tgz#3eee00b2c5aa83239cfb04c5700da36f81cd08b6"
