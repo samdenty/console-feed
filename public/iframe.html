@@ -7,18 +7,17 @@
       this.circular = this;
     }
     setTimeout(() => {
-      console.log(`Console %c formatting`, 'color: red; font-size: 50px')
-      console.table([1, 2, 3])
-      console.log(window)
-      console.log(function a() { console.log(1) })
-      console.log([1, 2, 3])
-      console.log('mixed types', 1, 2)
+      console.log(`Console %c formatting`, 'color: red')
+      console.table('Basic array', [1, 2, 3])
+      console.log('Window', window)
+      console.log('Function with body', function a() { console.log(1) })
+      console.log('Mixed types', 1, 2)
       console.log('inline', 'text')
-      console.log({ an: 'object' })
-      console.log(new Promise(() => { }))
-      console.log([[[['recursive', new Promise(() => { })]]]])
+      console.log('Basic object', { an: 'object' })
+      console.log('Promise object', new Promise(() => { }))
+      console.log('Recursive object with promise', [[[['recursive', new Promise(() => { })]]]])
 
-      console.log('HTML elements =>', document.body)
+      console.log('HTML element', document.body)
       console.log('Named functions', [function myFunc() { }])
 
       console.log('Nested', {
@@ -26,10 +25,10 @@
         html: document.body
       })
 
-      console.log(false, '', 0, null, undefined)
-      console.warn('Warning', 'etc.')
-      console.info('Info')
-      console.debug('Debug message')
+      console.log('Falsey types', false, '', 0, null, undefined)
+      console.warn('Warning', 'message')
+      console.info('Info', 'message')
+      console.debug('Debug', 'message')
 
       try {
         nonExistentFunc()

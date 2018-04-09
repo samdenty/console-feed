@@ -16,7 +16,6 @@ export type Methods = Methods
 export interface Message {
   method: Methods
   data?: any[]
-  // types:
 }
 
 export type Callback = (message: Message, console: HookedConsole) => void

@@ -1,6 +1,6 @@
-import { Methods } from '../definitions/Console'
-import { Payload } from '../definitions/Payload'
-import GUID from './GuidGenerator'
+import { Methods } from '../../definitions/Console'
+import { Payload } from '../../definitions/Payload'
+import GUID from './GUID'
 
 /**
  * Parses a console log and converts it to a special Log object
@@ -23,7 +23,7 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     case 'error': {
       const errors = data.map((error) => {
         try {
-          return error.message || error
+          return error.stack || error
         } catch (e) {
           return error
         }

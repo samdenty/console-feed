@@ -8,7 +8,7 @@ export interface Theme {
   styles: Styles
 }
 
-interface Message extends Payload {
+export interface Message extends Payload {
   data: any[]
 }
 

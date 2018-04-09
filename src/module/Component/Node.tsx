@@ -2,12 +2,13 @@ import * as React from 'react'
 import { NodeProps, Theme } from '../definitions/Component'
 import Inspector from './react-inspector'
 
-import formatMessage from './devtools-parser'
-
 import * as classNames from 'classnames'
 // @ts-ignore
 import withStyles from 'react-jss'
 import { Styles } from 'jss'
+
+import Formatted from './message-parsers/Formatted'
+import InlineMessage from './message-parsers/Inline'
 
 const styles = (theme: Theme) =>
   ({
@@ -28,6 +29,7 @@ const styles = (theme: Theme) =>
         fontFamily:
           theme.styles.BASE_FONT_FAMILY ||
           'Consolas, Lucida Console, Courier New, monospace',
+        whiteSpace: 'pre-wrap',
         fontSize: theme.styles.BASE_FONT_SIZE || '12px'
       }
     },
@@ -80,10 +82,6 @@ const styles = (theme: Theme) =>
       flex: 'auto',
       display: 'flex',
       width: 'calc(100% - 15px)'
-    },
-    inlineMessage: {
-      whiteSpace: 'pre-wrap',
-      paddingRight: 10
     }
   } as Styles)
 
@@ -124,27 +122,12 @@ class Node extends React.PureComponent<NodeProps, any> {
       typeof log.data[0] === 'string' &&
       log.data[0].indexOf('%') > -1
     ) {
-      return (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: formatMessage(log.data || [])
-          }}
-        />
-      )
+      return <Formatted data={log.data} />
     }
 
-    // If every message is a string, don't show quotes
+    // If every message is a string
     if (log.data.every((message) => typeof message === 'string')) {
-      return log.data.map((message: any, i: number) => (
-        <span
-          key={i}
-          className={classNames({
-            [classes.inlineMessage]: true,
-            'inline-text': true
-          })}>
-          {message}
-        </span>
-      ))
+      return <InlineMessage log={log} />
     }
 
     // Normal inspector

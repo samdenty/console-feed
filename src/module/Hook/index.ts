@@ -6,7 +6,7 @@ import {
   Message
 } from '../definitions/Console'
 import Methods from '../definitions/Methods'
-import Parse from '../Parse'
+import Parse from './parse'
 import Unhook from '../Unhook'
 import { Encode } from '../Transform'
 
