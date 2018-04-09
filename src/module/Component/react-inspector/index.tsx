@@ -74,7 +74,10 @@ class CustomInspector extends React.PureComponent<Props, any> {
           [classes.dom]: dom
         })}>
         {table ? (
-          <Inspector {...this.props} theme={this.state.theme} table />
+          <span>
+            <Inspector {...this.props} theme={this.state.theme} table />
+            <Inspector {...this.props} theme={this.state.theme} />
+          </span>
         ) : dom ? (
           <DOMInspector {...this.props} theme={this.state.theme} />
         ) : (

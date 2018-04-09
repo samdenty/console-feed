@@ -9,25 +9,29 @@ document.body.appendChild(iframe)
 
 class App extends React.Component {
   state = {
-    logs: []
+    logs: [
+      {
+        method: 'result',
+        data: ['Result']
+      },
+      {
+        method: 'command',
+        data: ['Command']
+      }
+    ] as any[]
   }
 
   componentDidMount() {
     Hook(iframe.contentWindow.console, (log) => {
       const decoded = Decode(log)
-      this.setState((state) =>
-        update(state, { logs: { $push: [decoded] } })
-      )
+      this.setState((state) => update(state, { logs: { $push: [decoded] } }))
     })
   }
 
   render() {
     return (
       <div style={{ backgroundColor: '#242424' }}>
-        <Console
-          logs={this.state.logs}
-          variant="dark"
-        />
+        <Console logs={this.state.logs} variant="dark" />
       </div>
     )
   }

@@ -15,6 +15,16 @@ export interface Styles {
   LOG_INFO_BACKGROUND?: string
   LOG_INFO_BORDER?: string
 
+  LOG_COMMAND_COLOR?: string
+  LOG_COMMAND_ICON?: string
+  LOG_COMMAND_BACKGROUND?: string
+  LOG_COMMAND_BORDER?: string
+
+  LOG_RESULT_COLOR?: string
+  LOG_RESULT_ICON?: string
+  LOG_RESULT_BACKGROUND?: string
+  LOG_RESULT_BORDER?: string
+
   LOG_WARN_COLOR?: string
   LOG_WARN_ICON?: string
   LOG_WARN_BACKGROUND?: string
@@ -70,4 +80,6 @@ export interface Styles {
   TABLE_SORT_ICON_COLOR?: any
   TABLE_DATA_BACKGROUND_IMAGE?: any
   TABLE_DATA_BACKGROUND_SIZE?: any
+
+  [style: string]: any
 }
