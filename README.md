@@ -1,11 +1,11 @@
 # console-feed
 
 [![npm version](https://img.shields.io/npm/v/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
-[![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
+[![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)[![Demo](https://img.shields.io/badge/CodeSandbox-Demo-yellow.svg)](https://codesandbox.io/s/rl7pk9w2ym)
 
 A React component that displays console logs from the current page, an iframe or transported across a server.
 
-![](https://user-images.githubusercontent.com/13242392/38472186-fd099c5a-3b73-11e8-957e-b42d0dbd4d63.png)
+![Demo](https://user-images.githubusercontent.com/13242392/38513414-1bc32870-3c26-11e8-9a8f-0989d2142b1c.png)
 
 ## Install
 
