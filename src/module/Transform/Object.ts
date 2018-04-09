@@ -3,7 +3,7 @@ interface Storage {
 }
 
 /**
- * Serialize a HTML element into JSON
+ * Serialize an Object into JSON
  */
 export default {
   type: 'Object',

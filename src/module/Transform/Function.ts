@@ -5,7 +5,7 @@ interface Storage {
 }
 
 /**
- * Serialize a HTML element into JSON
+ * Serialize a function into JSON
  */
 export default {
   type: 'Function',

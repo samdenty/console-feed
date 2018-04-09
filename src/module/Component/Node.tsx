@@ -34,12 +34,14 @@ const styles = (theme: Theme) =>
     warn: {
       backgroundColor: theme.styles.LOG_WARN_BACKGROUND || '#332b00',
       color: theme.styles.LOG_WARN_COLOR || '#ffdc9e',
-      borderColor: theme.styles.LOG_WARN_BORDER || '#650'
+      borderColor: theme.styles.LOG_WARN_BORDER || '#650',
+      marginBottom: 1
     },
     error: {
       backgroundColor: theme.styles.LOG_ERROR_BACKGROUND || '#290000',
       borderColor: theme.styles.LOG_ERROR_BORDER || '#5b0000',
-      color: theme.styles.LOG_ERROR_COLOR || '#ff8080'
+      color: theme.styles.LOG_ERROR_COLOR || '#ff8080',
+      marginBottom: 1
     },
 
     // Icons

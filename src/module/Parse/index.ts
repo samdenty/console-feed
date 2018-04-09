@@ -8,11 +8,9 @@ import GUID from './GuidGenerator'
  * @argument data The arguments passed to the console method
  */
 export default function Parse(method: Methods, data: any[]): Payload | false {
-  // If the method params were empty, return false
-  if (data.length === 0) return false
-
   // Create an ID
   const id = GUID()
+
   // Parse the methods
   switch (method) {
     case 'clear': {
