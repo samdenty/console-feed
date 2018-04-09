@@ -120,20 +120,16 @@ class CustomInspector extends React.PureComponent<Props, any> {
         data && data.constructor ? data.constructor.name : null
 
       return constructor === 'Function' ? (
-        <span className="function" style={{ fontStyle: 'italic' }}>
+        <span style={{ fontStyle: 'italic' }}>
           <ObjectPreview data={data} />
-          <span className="bracket">{` {`}</span>
-          <span
-            className="function-body"
-            style={{ color: 'rgb(181, 181, 181)' }}>
-            {data.body}
-          </span>
-          <span className="bracket">{`}`}</span>
+          {` {`}
+          <span style={{ color: 'rgb(181, 181, 181)' }}>{data.body}</span>
+          {`}`}
         </span>
       ) : constructor === 'Promise' ? (
-        <span className={classes.promise}>
+        <span style={{ fontStyle: 'italic' }}>
           Promise {`{`}
-          <span>{`<pending>`}</span>
+          <span style={{ opacity: 0.6 }}>{`<pending>`}</span>
           {`}`}
         </span>
       ) : (
@@ -152,7 +148,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
     ) : (
       <span className={proto ? classes.proto : ''}>
         <ObjectLabel
-          name={proto ? '__proto__' : name}
+          name={proto ? '<constructor>' : name}
           data={proto ? data.name : data}
           isNonenumerable={isNonenumerable}
         />

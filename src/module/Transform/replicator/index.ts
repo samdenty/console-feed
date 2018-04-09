@@ -102,14 +102,12 @@ class EncodingTransformer {
       }
     }
 
-    return obj.constructor.name !== 'Object'
-      ? {
-          ...result,
-          constructor: {
-            name: obj.constructor.name
-          }
-        }
-      : result
+    const { name } = obj.constructor
+    if (name !== 'Object') {
+      result.constructor = { name }
+    }
+
+    return result
   }
 
   _handleObject(obj: any, parent: any, key: any) {

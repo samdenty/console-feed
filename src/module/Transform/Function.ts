@@ -1,7 +1,7 @@
 interface Storage {
   name: string
   body: string
-  constructor: string
+  proto: string
 }
 
 /**
@@ -22,7 +22,7 @@ export default {
     return {
       name: func.name,
       body,
-      constructor: Object.getPrototypeOf(func).constructor.name
+      proto: Object.getPrototypeOf(func).constructor.name
     } as Storage
   },
   fromSerializable(data: Storage) {
@@ -38,7 +38,7 @@ export default {
       })
       // @ts-ignore
       tempFunc.constructor = {
-        name: data.constructor
+        name: data.proto
       }
       return tempFunc
     } catch (e) {
