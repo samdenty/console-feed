@@ -64,6 +64,14 @@ class App extends React.Component {
 
 An array consisting of Log objects. Required
 
+### `filter?: Methods[]`
+
+Filter the logs, only displaying messages of certain methods.
+
+```ts
+type Methods = 'log' | 'warn' | 'error' | 'info' | 'debug' | 'command' | 'result'
+```
+
 ### `variant?: 'light' | 'dark'`
 
 Sets the font color for the component. Default - `light`
@@ -81,7 +89,7 @@ type Logs = Log[]
 
 interface Log {
   // The log method
-  method: 'log' | 'warn' | 'error' | 'info' | 'debug' | 'command' | 'result'
+  method: Methods
   // The arguments passed to console API
   data: any[]
 }

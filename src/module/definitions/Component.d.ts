@@ -1,5 +1,6 @@
 import { Payload } from './Payload'
 import { Styles } from './Styles'
+import { Methods } from './Methods'
 
 export type Variants = 'light' | 'dark'
 
@@ -16,6 +17,7 @@ export interface Props {
   logs: Message[]
   variant?: Variants
   styles?: Styles
+  filter?: Methods[]
 }
 
 export interface NodeProps {

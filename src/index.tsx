@@ -18,7 +18,8 @@ class App extends React.Component {
         method: 'command',
         data: ['Command']
       }
-    ] as any[]
+    ] as any[],
+    filter: []
   }
 
   componentDidMount() {
@@ -28,10 +29,22 @@ class App extends React.Component {
     })
   }
 
+  switch = () => {
+    const filter = this.state.filter.length === 0 ? ['log'] : []
+    this.setState({
+      filter
+    })
+  }
+
   render() {
     return (
       <div style={{ backgroundColor: '#242424' }}>
-        <Console logs={this.state.logs} variant="dark" />
+        <button onClick={this.switch.bind(this)}>Show only logs</button>
+        <Console
+          logs={this.state.logs}
+          variant="dark"
+          filter={this.state.filter}
+        />
       </div>
     )
   }
