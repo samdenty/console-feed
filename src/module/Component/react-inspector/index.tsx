@@ -28,6 +28,8 @@ interface Props {
 const styles = (theme: Theme) =>
   ({
     root: {
+      display: 'inline-block',
+      verticalAlign: 'top',
       paddingRight: 10,
       '& li': {
         backgroundColor: 'transparent !important'

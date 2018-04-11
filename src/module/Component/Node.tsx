@@ -98,7 +98,6 @@ const styles = (theme: Theme) =>
       marginLeft: 15,
       minHeight: 18,
       flex: 'auto',
-      display: 'flex',
       width: 'calc(100% - 15px)'
     }
   } as Styles)
@@ -110,7 +109,7 @@ class Node extends React.PureComponent<NodeProps, any> {
       <div
         className={classNames({
           [classes.row]: true,
-          [classes[log.method]]: true,
+          [classes[log.method]]: !!classes[log.method],
           [log.method]: true
         })}>
         <div

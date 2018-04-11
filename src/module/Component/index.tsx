@@ -15,7 +15,7 @@ class Console extends React.PureComponent<Props, any> {
 
     return (
       <ThemeProvider theme={theme}>
-        <div>
+        <div style={{ wordBreak: 'break-word' }}>
           {logs.map((log, i) => {
             // If the filter is defined and doesn't include the method
             if (
