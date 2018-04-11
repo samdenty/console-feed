@@ -107,25 +107,18 @@ class Node extends React.PureComponent<NodeProps, any> {
     const { log, classes } = this.props
     return (
       <div
+        data-method={log.method}
         className={classNames({
           [classes.row]: true,
-          [classes[log.method]]: !!classes[log.method],
-          [log.method]: true
+          [classes[log.method]]: !!classes[log.method]
         })}>
-        <div
+        <span
           className={classNames({
             [classes.icon]: true,
-            [classes[`${log.method}Icon`]]: true,
-            icon: true
+            [classes[`${log.method}Icon`]]: classes[`${log.method}Icon`]
           })}
         />
-        <div
-          className={classNames({
-            [classes.message]: true,
-            message: true
-          })}>
-          {this.getNode()}
-        </div>
+        <section className={classes.message}>{this.getNode()}</section>
       </div>
     )
   }

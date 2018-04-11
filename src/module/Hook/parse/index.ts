@@ -25,7 +25,7 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     case 'count': {
-      const label = data ? (typeof data[0] === 'string' ? data[0] : null) : null
+      const label = typeof data[0] === 'string' ? data[0] : null
       if (!label) return false
 
       return {
@@ -36,7 +36,7 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
 
     case 'time':
     case 'timeEnd': {
-      const label = data && typeof data[0] === 'string' ? data[0] : null
+      const label = typeof data[0] === 'string' ? data[0] : null
       if (!label) return false
 
       if (method === 'time') {
@@ -51,7 +51,7 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
     }
 
     case 'assert': {
-      const valid = data && data.length !== 0 ? true : false
+      const valid = data.length !== 0 ? true : false
 
       if (valid) {
         const assertion = Assert.test(data[0], ...data.slice(1))

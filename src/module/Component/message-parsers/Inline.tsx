@@ -16,7 +16,7 @@ class InlineMessage extends React.PureComponent<Props, any> {
     }
 
     // Don't show quotes
-    return <span>{log.data.join(' ')}</span>
+    return <span data-type="inline">{log.data.join(' ')}</span>
   }
 }
 

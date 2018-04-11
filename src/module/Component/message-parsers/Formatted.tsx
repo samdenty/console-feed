@@ -8,7 +8,8 @@ interface Props {
 class Formatted extends React.PureComponent<Props, any> {
   render() {
     return (
-      <div
+      <span
+        data-type="formatted"
         dangerouslySetInnerHTML={{
           __html: Format(this.props.data || [])
         }}

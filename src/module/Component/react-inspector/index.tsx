@@ -71,6 +71,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
 
     return (
       <span
+        data-type={table ? 'table' : dom ? 'html' : 'object'}
         className={classNames({
           [classes.root]: true,
           [classes.dom]: dom
