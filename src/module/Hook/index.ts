@@ -1,4 +1,3 @@
-const { version } = require('../../../package.json')
 import {
   HookedConsole,
   Callback,
@@ -19,8 +18,7 @@ import { Encode } from '../Transform'
 export default function Hook(console: Console, callback: Callback) {
   let TargetConsole = console as HookedConsole
   const Storage = {
-    _backup: {},
-    version
+    _backup: {}
   } as Storage
 
   // Override console methods
