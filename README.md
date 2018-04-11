@@ -68,10 +68,6 @@ An array consisting of Log objects. Required
 
 Filter the logs, only displaying messages of certain methods.
 
-```ts
-type Methods = 'log' | 'warn' | 'error' | 'info' | 'debug' | 'command' | 'result'
-```
-
 ### `variant?: 'light' | 'dark'`
 
 Sets the font color for the component. Default - `light`
@@ -79,6 +75,14 @@ Sets the font color for the component. Default - `light`
 ### `style?: Styles`
 
 Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/module/definitions/Styles.d.ts)
+
+## Log methods
+
+Each log has a method assigned to it. The method is used to determine the style of the message and for the `filter` prop.
+
+```ts
+type Methods = 'log' | 'warn' | 'error' | 'info' | 'debug' | 'command' | 'result'
+```
 
 ## `Log` object
 
