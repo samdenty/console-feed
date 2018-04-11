@@ -41,8 +41,11 @@ export default function Hook(console: Console, callback: Callback) {
 
       // setTimeout to prevent lag
       setTimeout(() => {
-        const parsed = Encode(Parse(method as ConsoleMethods, args)) as Message
-        if (parsed) callback(parsed, TargetConsole)
+        const parsed = Parse(method as ConsoleMethods, args)
+        if (parsed) {
+          const encoded = Encode(parsed) as Message
+          callback(encoded, parsed)
+        }
       })
     }
 

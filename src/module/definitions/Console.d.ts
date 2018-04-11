@@ -18,4 +18,4 @@ export interface Message {
   data?: any[]
 }
 
-export type Callback = (message: Message, console: HookedConsole) => void
+export type Callback = (encoded: any, message: Message) => void

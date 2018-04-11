@@ -6,8 +6,8 @@ const methods = [
   'error',
   'table',
   'clear',
-  // 'time',
-  // 'timeEnd'
+  'time',
+  'timeEnd'
 ]
 
 export default methods
@@ -20,5 +20,5 @@ export type Methods =
   | 'error'
   | 'table'
   | 'clear'
-  // | 'time'
-  // | 'timeEnd'
+  | 'time'
+  | 'timeEnd'

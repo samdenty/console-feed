@@ -134,6 +134,10 @@ class Node extends React.PureComponent<NodeProps, any> {
   getNode() {
     let { log, classes } = this.props
 
+    // Error handling
+    const error = this.typeCheck(log)
+    if (error) return error
+
     // Chrome formatting
     if (
       log.data.length > 0 &&
@@ -150,6 +154,33 @@ class Node extends React.PureComponent<NodeProps, any> {
 
     // Normal inspector
     return <ObjectTree log={log} />
+  }
+
+  typeCheck(log: any) {
+    if (!log) {
+      return (
+        <Formatted
+          data={[
+            `%c[console-feed] %cFailed to parse message! %clog was typeof ${typeof log}, but it should've been a log object`,
+            'color: red',
+            'color: orange',
+            'color: cyan'
+          ]}
+        />
+      )
+    } else if (!(log.data instanceof Array)) {
+      return (
+        <Formatted
+          data={[
+            '%c[console-feed] %cFailed to parse message! %clog.data was not an array!',
+            'color: red',
+            'color: orange',
+            'color: cyan'
+          ]}
+        />
+      )
+    }
+    return false
   }
 }
 

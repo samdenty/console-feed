@@ -7,6 +7,8 @@
       this.circular = this;
     }
     setTimeout(() => {
+      console.time('test')
+      console.timeEnd('test')
       console.log(`Console %c formatting`, 'color: red')
       console.table('Table', [1, 2, 3])
       console.log('Window', window)
