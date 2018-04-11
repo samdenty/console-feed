@@ -1,3 +1,4 @@
+const { version } = require('../../../package.json')
 import {
   HookedConsole,
   Callback,
@@ -17,15 +18,10 @@ import { Encode } from '../Transform'
  */
 export default function Hook(console: Console, callback: Callback) {
   let TargetConsole = console as HookedConsole
-  const Storage: Storage = {
-    NativeMethods: {}
-  }
-
-  // Unhook any previous listeners
-  Unhook(TargetConsole)
-
-  // Add a debug log function
-  TargetConsole._log = TargetConsole.log
+  const Storage = {
+    _backup: {},
+    version
+  } as Storage
 
   // Override console methods
   for (let method of Methods) {
@@ -50,10 +46,10 @@ export default function Hook(console: Console, callback: Callback) {
     }
 
     // Store native methods
-    Storage.NativeMethods[method] = NativeMethod
+    Storage._backup[method] = NativeMethod
   }
 
-  TargetConsole.__react_console__ = Storage
+  TargetConsole.feed = Storage
 
   return TargetConsole
 }

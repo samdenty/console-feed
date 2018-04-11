@@ -1,13 +1,13 @@
 import { Methods } from './Methods'
 
 export interface Storage {
-  NativeMethods: {
+  _backup: {
     [name: string]: Function
   }
 }
 
 export interface HookedConsole extends Console {
-  __react_console__: Storage
+  feed: Storage
   _log: Function
 }
 
