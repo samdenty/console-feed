@@ -7,7 +7,9 @@ const methods = [
   'table',
   'clear',
   'time',
-  'timeEnd'
+  'timeEnd',
+  'count',
+  'assert'
 ]
 
 export default methods
@@ -22,3 +24,5 @@ export type Methods =
   | 'clear'
   | 'time'
   | 'timeEnd'
+  | 'count'
+  | 'assert'

@@ -1,14 +1,13 @@
 import { Methods } from './Methods'
 
 export interface Storage {
-  _backup: {
+  pointers: {
     [name: string]: Function
   }
 }
 
 export interface HookedConsole extends Console {
   feed: Storage
-  _log: Function
 }
 
 export type Methods = Methods

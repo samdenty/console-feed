@@ -18,7 +18,7 @@ import { Encode } from '../Transform'
 export default function Hook(console: Console, callback: Callback) {
   let TargetConsole = console as HookedConsole
   const Storage = {
-    _backup: {}
+    pointers: {}
   } as Storage
 
   // Override console methods
@@ -44,7 +44,7 @@ export default function Hook(console: Console, callback: Callback) {
     }
 
     // Store native methods
-    Storage._backup[method] = NativeMethod
+    Storage.pointers[method] = NativeMethod
   }
 
   TargetConsole.feed = Storage

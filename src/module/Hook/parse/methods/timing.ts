@@ -2,23 +2,23 @@ import { state } from '../../store/state'
 import dispatch from '../../store/dispatch'
 import { timeStart, timeEnd } from '../../store/actions'
 
-export function start(name: string) {
-  dispatch(timeStart(name))
+export function start(label: string) {
+  dispatch(timeStart(label))
 }
 
-export function stop(name: string): any {
-  const timing = state.timings[name]
+export function stop(label: string): any {
+  const timing = state.timings[label]
   if (timing && !timing.end) {
-    dispatch(timeEnd(name))
-    const { time } = state.timings[name]
+    dispatch(timeEnd(label))
+    const { time } = state.timings[label]
 
     return {
       method: 'log',
-      data: [`${name}: ${time}ms`]
+      data: [`${label}: ${time}ms`]
     }
   }
   return {
     method: 'warn',
-    data: [`Timer '${name}' does not exist`]
+    data: [`Timer '${label}' does not exist`]
   }
 }

@@ -3,6 +3,8 @@ import { Payload } from '../../definitions/Payload'
 import GUID from './GUID'
 
 import * as Timing from './methods/timing'
+import * as Count from './methods/count'
+import * as Assert from './methods/assert'
 
 /**
  * Parses a console log and converts it to a special Log object
@@ -22,20 +24,46 @@ export default function Parse(method: Methods, data: any[]): Payload | false {
       }
     }
 
+    case 'count': {
+      const label = data ? (typeof data[0] === 'string' ? data[0] : null) : null
+      if (!label) return false
+
+      return {
+        ...Count.increment(label),
+        id
+      }
+    }
+
     case 'time':
     case 'timeEnd': {
-      const name = data ? (typeof data[0] === 'string' ? data[0] : null) : null
-      if (!name) return false
+      const label = data && typeof data[0] === 'string' ? data[0] : null
+      if (!label) return false
 
       if (method === 'time') {
-        Timing.start(name)
+        Timing.start(label)
         return false
       }
 
       return {
-        ...Timing.stop(name),
+        ...Timing.stop(label),
         id
       }
+    }
+
+    case 'assert': {
+      const valid = data && data.length !== 0 ? true : false
+
+      if (valid) {
+        const assertion = Assert.test(data[0], ...data.slice(1))
+        if (assertion) {
+          return {
+            ...assertion,
+            id
+          }
+        }
+      }
+
+      return false
     }
 
     case 'error': {

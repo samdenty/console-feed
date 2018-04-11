@@ -6,8 +6,8 @@ import { HookedConsole } from '../definitions/Console'
  */
 function Unhook(console: HookedConsole): boolean {
   if (console.feed) {
-    for (const method of Object.keys(console.feed._backup)) {
-      console[method] = console.feed._backup[method]
+    for (const method of Object.keys(console.feed.pointers)) {
+      console[method] = console.feed.pointers[method]
     }
     return delete console.feed
   } else {

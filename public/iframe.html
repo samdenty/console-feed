@@ -7,8 +7,8 @@
       this.circular = this;
     }
     setTimeout(() => {
-      console.time('test')
-      console.timeEnd('test')
+      console.count('Counting numbers')
+      console.time('render')
       console.log(`Console %c formatting`, 'color: red')
       console.table('Table', [1, 2, 3])
       console.log('Window', window)
@@ -37,6 +37,7 @@
       } catch (e) {
         console.error(e)
       }
+      console.timeEnd('render')
     }, 1500)
   </script>
   <input onkeydown="if(event.keyCode == 13){eval(this.value)}"></input>
