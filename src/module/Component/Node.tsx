@@ -18,13 +18,14 @@ const styles = (theme: Theme) =>
       color: theme.styles.LOG_COLOR || 'rgba(255,255,255,0.9)',
       backgroundColor: theme.styles.LOG_BACKGROUND || 'transparent',
       borderTop: `1px solid ${theme.styles.LOG_BORDER ||
-        'rgba(255, 255, 255, 0.07)'}`,
+        'rgba(255, 255, 255, 0.03)'}`,
       borderBottom: `1px solid ${theme.styles.LOG_BORDER ||
-        'rgba(255, 255, 255, 0.07)'}`,
+        'rgba(255, 255, 255, 0.03)'}`,
       marginTop: -1,
       paddingLeft: 10,
       boxSizing: 'border-box',
       '& *': {
+        verticalAlign: 'top',
         boxSizing: 'border-box',
         fontFamily:
           theme.styles.BASE_FONT_FAMILY ||
@@ -145,7 +146,8 @@ class Node extends React.PureComponent<NodeProps, any> {
     }
 
     // Normal inspector
-    return <ObjectTree log={log} />
+    const quoted = typeof log.data[0] !== 'string'
+    return <ObjectTree log={log} quoted={quoted} />
   }
 
   typeCheck(log: any) {

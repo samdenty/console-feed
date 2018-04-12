@@ -29,10 +29,16 @@ const styles = (theme: Theme) =>
   ({
     root: {
       display: 'inline-block',
-      verticalAlign: 'top',
-      paddingRight: 10,
-      '& li': {
-        backgroundColor: 'transparent !important'
+      '&::after': {
+        content: `' '`,
+        display: 'inline-block'
+      },
+      '&> li': {
+        backgroundColor: 'transparent !important',
+        display: 'inline-block'
+      },
+      '& ol:empty': {
+        paddingLeft: '0 !important'
       }
     },
     dom: {
