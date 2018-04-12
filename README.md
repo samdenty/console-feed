@@ -9,7 +9,7 @@ A React component that displays console logs from the current page, an iframe or
 
 ## Features
 
-- **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and making links clickable
+- **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and makes links clickable
 - **DOM nodes** - easily inspect & expand HTML elements, with syntax highlighting
 - **`console.table`** - view your logs in a table format
 - **Other console methods**:
