@@ -106,7 +106,7 @@ class Node extends React.PureComponent<NodeProps, any> {
   render() {
     const { log, classes } = this.props
     return (
-      <div
+      <article
         data-method={log.method}
         className={classNames({
           [classes.row]: true,
@@ -119,7 +119,7 @@ class Node extends React.PureComponent<NodeProps, any> {
           })}
         />
         <section className={classes.message}>{this.getNode()}</section>
-      </div>
+      </article>
     )
   }
 
