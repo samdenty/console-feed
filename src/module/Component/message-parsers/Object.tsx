@@ -27,7 +27,7 @@ class ObjectTree extends React.PureComponent<Props, any> {
           )
 
         return (
-          <span data-type="string">
+          <span data-type="string" key={i}>
             <Linkify>{string}</Linkify>
           </span>
         )

@@ -33,7 +33,7 @@ const styles = (theme: Theme) =>
         content: `' '`,
         display: 'inline-block'
       },
-      '&> li': {
+      '& > li': {
         backgroundColor: 'transparent !important',
         display: 'inline-block'
       },
@@ -41,15 +41,10 @@ const styles = (theme: Theme) =>
         paddingLeft: '0 !important'
       }
     },
-    dom: {
+    hoverable: {
       '& div:hover': {
         backgroundColor: 'rgba(255, 220, 158, .05) !important',
         borderRadius: '2px'
-      }
-    },
-    inlineHTML: {
-      '& > li': {
-        display: 'inline-block'
       }
     },
     proto: {
@@ -80,7 +75,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
         data-type={table ? 'table' : dom ? 'html' : 'object'}
         className={classNames({
           [classes.root]: true,
-          [classes.dom]: dom
+          [classes.hoverable]: dom
         })}>
         {table ? (
           <span>
@@ -149,7 +144,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
     // Subobject
     if (name === 'constructor') proto = true
     return data instanceof HTMLElement ? (
-      <span className={classNames(classes.inlineHTML, classes.dom)}>
+      <span className={classNames(classes.root, classes.hoverable)}>
         <ObjectName name={name} />
         <span>: </span>
         <DOMInspector data={data} theme={this.state.theme} />
