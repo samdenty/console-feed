@@ -4099,6 +4099,10 @@ jest@22.1.4:
   dependencies:
     jest-cli "^22.1.4"
 
+jquery@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
 js-base64@^2.1.9:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
@@ -4360,6 +4364,14 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+linkifyjs@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-2.1.6.tgz#f1cc88a86ff8863196615857fd47eb193c0a26cb"
+  optionalDependencies:
+    jquery "^3.3.1"
+    react "^16.2.0"
+    react-dom "^16.2.0"
 
 load-json-file@^1.0.0:
   version "1.1.0"

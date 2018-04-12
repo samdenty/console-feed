@@ -1,4 +1,6 @@
 import * as React from 'react'
+// @ts-ignore
+import * as Linkify from 'linkifyjs/react'
 import { Message } from '../../definitions/Component'
 import Inspector from '../react-inspector'
 
@@ -12,10 +14,21 @@ class ObjectTree extends React.PureComponent<Props, any> {
     const { quoted, log } = this.props
 
     return log.data.map((message: any, i: number) => {
-      if (!quoted && typeof message === 'string' && message.length) {
+      if (typeof message === 'string') {
+        const string =
+          !quoted && message.length ? (
+            `${message} `
+          ) : (
+            <span>
+              <span>"</span>
+              <span style={{ color: 'rgb(233, 63, 59)' }}>{message}</span>
+              <span>" </span>
+            </span>
+          )
+
         return (
           <span data-type="string">
-            {`${message} `}
+            <Linkify>{string}</Linkify>
           </span>
         )
       }

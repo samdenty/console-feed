@@ -8,19 +8,18 @@
     }
     setTimeout(() => {
       console.count('Counting numbers')
-      console.time('render')
-      console.log(`Console %c formatting`, 'color: red')
-      console.table('Table', [1, 2, 3])
+      console.time('Render time')
+      console.log(`Console %cformatting https://example.com/linkified`, 'color: red')
+
       console.log('Window', window)
-      console.log('Function with body', function a() { console.log(1) })
-      console.log('Mixed types', 1, 2)
-      console.log('inline', 'text')
-      console.log('Basic object', { an: 'object' })
+      console.log('Functions', function a() { console.log(1) }, [function myFunc() { }])
+
+      console.table([1, 2, 3])
+
+      console.log(1, 2, 'Mixed types', { an: 'object' }, [[[['Recursive types', new Promise(() => { })]]]], 'https://t.com')
       console.log('Promise object', new Promise(() => { }))
-      console.log('Recursive object with promise', [[[['recursive', new Promise(() => { })]]]])
 
       console.log('HTML element', document.body)
-      console.log('Named functions', [function myFunc() { }])
 
       console.log('Nested', {
         promise: new Promise(() => { }),
@@ -28,16 +27,16 @@
       })
 
       console.log('Falsey types', false, '', 0, null, undefined)
-      console.warn('Warning', 'message')
-      console.info('Info', 'message')
-      console.debug('Debug', 'message')
+      console.warn('This is a warning', 'message')
+      console.info('This is an info', 'message')
+      console.debug('This is a debug', 'message')
 
       try {
         nonExistentFunc()
       } catch (e) {
         console.error(e)
       }
-      console.timeEnd('render')
+      console.timeEnd('Render time')
     }, 1500)
   </script>
   <input onkeydown="if(event.keyCode == 13){eval(this.value)}"></input>

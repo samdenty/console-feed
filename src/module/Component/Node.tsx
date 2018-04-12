@@ -7,8 +7,8 @@ import withStyles from 'react-jss'
 import { Styles } from 'jss'
 
 import Formatted from './message-parsers/Formatted'
-import InlineMessage from './message-parsers/Inline'
 import ObjectTree from './message-parsers/Object'
+import ErrorPanel from './message-parsers/Error'
 
 const styles = (theme: Theme) =>
   ({
@@ -32,6 +32,9 @@ const styles = (theme: Theme) =>
           'Consolas, Lucida Console, Courier New, monospace',
         whiteSpace: 'pre-wrap',
         fontSize: theme.styles.BASE_FONT_SIZE || '12px'
+      },
+      '& a': {
+        color: 'rgb(177, 177, 177)'
       }
     },
     warn: {
@@ -140,9 +143,12 @@ class Node extends React.PureComponent<NodeProps, any> {
       return <Formatted data={log.data} />
     }
 
-    // If every message is a string
-    if (log.data.every((message) => typeof message === 'string')) {
-      return <InlineMessage log={log} />
+    // Error panel
+    if (
+      log.data.every((message) => typeof message === 'string') &&
+      log.method === 'error'
+    ) {
+      return <ErrorPanel log={log} />
     }
 
     // Normal inspector

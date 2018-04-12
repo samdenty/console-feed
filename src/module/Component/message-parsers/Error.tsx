@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Message } from '../../definitions/Component'
+// @ts-ignore
+import * as Linkify from 'linkifyjs/react'
 
 interface Props {
   log: Message
@@ -29,7 +31,7 @@ class ErrorPanel extends React.PureComponent<Props, any> {
     }
 
     if (!otherErrorLines) {
-      return <span>{log.data.join(' ')}</span>
+      return <Linkify>{log.data.join(' ')}</Linkify>
     }
 
     return (
@@ -37,7 +39,7 @@ class ErrorPanel extends React.PureComponent<Props, any> {
         <summary style={{ outline: 'none', cursor: 'pointer' }}>
           {firstLine}
         </summary>
-        {otherErrorLines.join('\n\r')}
+        <Linkify>{otherErrorLines.join('\n\r')}</Linkify>
       </details>
     )
   }

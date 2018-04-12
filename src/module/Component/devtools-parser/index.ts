@@ -1,3 +1,5 @@
+// @ts-ignore
+import * as Linkify from 'linkifyjs/html'
 import formatMessageString from './format-message'
 
 /**
@@ -9,7 +11,7 @@ function formatMessage(args: any[]): string {
 
   formatMessageString(args[0], args.slice(1), formattedResult)
 
-  return formattedResult.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br />')
+  return Linkify(formattedResult.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br />'))
 }
 
 export default formatMessage
