@@ -1,4 +1,8 @@
 import * as React from 'react'
+import { Theme } from '../../definitions/Component'
+// @ts-ignore
+import { withTheme } from 'react-jss'
+
 // @ts-ignore
 import * as Linkify from 'linkifyjs/react'
 import { Message } from '../../definitions/Component'
@@ -7,11 +11,12 @@ import Inspector from '../react-inspector'
 interface Props {
   log: Message
   quoted: boolean
+  theme: Theme
 }
 
 class ObjectTree extends React.PureComponent<Props, any> {
   render() {
-    const { quoted, log } = this.props
+    const { theme, quoted, log } = this.props
 
     return log.data.map((message: any, i: number) => {
       if (typeof message === 'string') {
@@ -21,7 +26,12 @@ class ObjectTree extends React.PureComponent<Props, any> {
           ) : (
             <span>
               <span>"</span>
-              <span style={{ color: 'rgb(233, 63, 59)' }}>{message}</span>
+              <span
+                style={{
+                  color: theme.styles.OBJECT_VALUE_STRING_COLOR
+                }}>
+                {message}
+              </span>
               <span>" </span>
             </span>
           )
@@ -38,4 +48,4 @@ class ObjectTree extends React.PureComponent<Props, any> {
   }
 }
 
-export default ObjectTree
+export default withTheme(ObjectTree)

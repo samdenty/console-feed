@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Props, Theme } from '../definitions/Component'
+import defaultStyles from './DefaultStyles'
+
 // @ts-ignore
 import { ThemeProvider } from 'react-jss'
 import Node from './Node'
@@ -10,7 +12,10 @@ class Console extends React.PureComponent<Props, any> {
     const logs = this.props.logs || []
     const theme: Theme = {
       variant: this.props.variant || 'light',
-      styles: this.props.styles || { ARROW_FONT_SIZE: 9 }
+      styles: {
+        ...defaultStyles,
+        ...this.props.styles
+      }
     }
 
     return (

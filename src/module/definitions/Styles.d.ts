@@ -1,7 +1,7 @@
 export interface Styles {
   // Log icons
-  LOG_ICON_WIDTH?: string
-  LOG_ICON_HEIGHT?: string
+  LOG_ICON_WIDTH?: string | number
+  LOG_ICON_HEIGHT?: string | number
 
   // Log colors
   // LOG_ICON => CSS background-image property
