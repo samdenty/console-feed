@@ -9,10 +9,13 @@ A React component that displays console logs from the current page, an iframe or
 
 ## Features
 
-- **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages)
+- **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages) as making links clickable
 - **DOM nodes** - easily inspect & expand HTML elements, with syntax highlighting
 - **`console.table`** - view your logs in a table format
-- **`console.time`** - view the time in milliseconds it takes to complete events
+- **Other console methods**:
+  - `console.time` - view the time in milliseconds it takes to complete events
+  - `console.assert` - assert that a statement is truthy
+  - `console.count` - count how many times  something occurs
 - **Inbuilt JSON serialization** - Objects, Functions & DOM elements can be encoded / decoded to and from JSON
 
 ## Install
