@@ -17,9 +17,16 @@ import { Encode } from '../Transform'
  */
 export default function Hook(console: Console, callback: Callback) {
   let TargetConsole = console as HookedConsole
-  const Storage = {
-    pointers: {}
-  } as Storage
+  class ConsoleFeed implements Storage {
+    pointers = new class Pointers {}() as any
+
+    source = new class Source {
+      npm = 'https://npmjs.com/package/console-feed'
+      github = 'https://github.com/samdenty99/console-feed'
+    }()
+  }
+
+  const Storage = new ConsoleFeed()
 
   // Override console methods
   for (let method of Methods) {
