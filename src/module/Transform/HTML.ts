@@ -1,3 +1,6 @@
+// Sandbox HTML elements
+const sandbox = document.implementation.createHTMLDocument('sandbox')
+
 interface Storage {
   tagName: string
   attributes: {
@@ -36,7 +39,7 @@ export default {
   },
   fromSerializable(data: Storage) {
     try {
-      const element = document.createElement(data.tagName) as HTMLElement
+      const element = sandbox.createElement(data.tagName) as HTMLElement
       element.innerHTML = data.innerHTML
       for (let attribute of Object.keys(data.attributes)) {
         try {
