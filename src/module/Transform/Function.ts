@@ -28,18 +28,28 @@ export default {
   fromSerializable(data: Storage) {
     try {
       const tempFunc = function() {}
-      Object.defineProperty(tempFunc, 'name', {
-        value: data.name,
-        writable: false
-      })
-      Object.defineProperty(tempFunc, 'body', {
-        value: data.body,
-        writable: false
-      })
-      // @ts-ignore
-      tempFunc.constructor = {
-        name: data.proto
+
+      if (typeof data.name === 'string') {
+        Object.defineProperty(tempFunc, 'name', {
+          value: data.name,
+          writable: false
+        })
       }
+
+      if (typeof data.body === 'string') {
+        Object.defineProperty(tempFunc, 'body', {
+          value: data.body,
+          writable: false
+        })
+      }
+
+      if (typeof data.proto === 'string') {
+        // @ts-ignore
+        tempFunc.constructor = {
+          name: data.proto
+        }
+      }
+
       return tempFunc
     } catch (e) {
       return data
