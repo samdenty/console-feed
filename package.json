@@ -1,6 +1,6 @@
 {
   "name": "console-feed",
-  "version": "2.7.4",
+  "version": "2.7.5",
   "private": false,
   "main": "dist/index.js",
   "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
