@@ -46,7 +46,6 @@
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/jss": "^9.5.2",
-    "@types/node": "^9.4.6",
     "@types/react": "16.0.38",
     "@types/react-dom": "16.0.4",
     "immutability-helper": "^2.6.6",
