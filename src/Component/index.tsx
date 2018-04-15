@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Props, Theme } from '../definitions/Component'
 import defaultStyles from './DefaultStyles'
 
-// @ts-ignore
 import { ThemeProvider } from 'react-jss'
 import Node from './Node'
 

@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { Theme } from '../../definitions/Component'
-// @ts-ignore
 import { withTheme } from 'react-jss'
 
-// @ts-ignore
 import * as Linkify from 'linkifyjs/react'
 import { Message } from '../../definitions/Component'
 import Inspector from '../react-inspector'

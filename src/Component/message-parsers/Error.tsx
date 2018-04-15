@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Message } from '../../definitions/Component'
-// @ts-ignore
 import * as Linkify from 'linkifyjs/react'
 
 interface Props {

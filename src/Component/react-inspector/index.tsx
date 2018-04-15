@@ -1,5 +1,4 @@
 import * as React from 'react'
-// @ts-ignore
 import withStyles from 'react-jss'
 import { Styles } from 'jss'
 import {
@@ -10,9 +9,7 @@ import {
   DOMInspector,
   chromeDark,
   chromeLight
-  // @ts-ignore
 } from 'react-inspector'
-// @ts-ignore
 import ObjectPreview from 'react-inspector/lib/object-inspector/ObjectPreview'
 import { Theme, Variants } from '../../definitions/Component'
 import { Methods } from '../../definitions/Methods'

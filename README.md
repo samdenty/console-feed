@@ -1,7 +1,8 @@
 # console-feed
 
 [![npm version](https://img.shields.io/npm/v/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
-[![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)[![Demo](https://img.shields.io/badge/CodeSandbox-Demo-yellow.svg)](https://codesandbox.io/s/rl7pk9w2ym)
+[![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
+[![Demo](https://img.shields.io/badge/CodeSandbox-Demo-yellow.svg?style=flat-square)](https://codesandbox.io/s/rl7pk9w2ym)
 
 A React component that displays console logs from the current page, an iframe or transported across a server.
 
@@ -9,14 +10,14 @@ A React component that displays console logs from the current page, an iframe or
 
 ## Features
 
-- **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and makes links clickable
-- **DOM nodes** - easily inspect & expand HTML elements, with syntax highlighting
-- **`console.table`** - view your logs in a table format
-- **Other console methods**:
-  - `console.time` - view the time in milliseconds it takes to complete events
-  - `console.assert` - assert that a statement is truthy
-  - `console.count` - count how many times  something occurs
-- **Inbuilt JSON serialization** - Objects, Functions & DOM elements can be encoded / decoded to and from JSON
+* **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and makes links clickable
+* **DOM nodes** - easily inspect & expand HTML elements, with syntax highlighting
+* **`console.table`** - view your logs in a table format
+* **Other console methods**:
+  * `console.time` - view the time in milliseconds it takes to complete events
+  * `console.assert` - assert that a statement is truthy
+  * `console.count` - count how many times something occurs
+* **Inbuilt JSON serialization** - Objects, Functions & DOM elements can be encoded / decoded to and from JSON
 
 ## Install
 
@@ -84,7 +85,14 @@ Defines the custom styles to use on the component - see [`Styles.d.ts`](https://
 Each log has a method assigned to it. The method is used to determine the style of the message and for the `filter` prop.
 
 ```ts
-type Methods = 'log' | 'warn' | 'error' | 'info' | 'debug' | 'command' | 'result'
+type Methods =
+  | 'log'
+  | 'warn'
+  | 'error'
+  | 'info'
+  | 'debug'
+  | 'command'
+  | 'result'
 ```
 
 ## `Log` object

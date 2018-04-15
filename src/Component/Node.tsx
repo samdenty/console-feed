@@ -2,23 +2,14 @@ import * as React from 'react'
 import { NodeProps, Theme } from '../definitions/Component'
 
 import * as classNames from 'classnames'
-// @ts-ignore
 import withStyles from 'react-jss'
 import { Styles } from 'jss'
+
+import { Message, Icon, Content } from './elements'
 
 import Formatted from './message-parsers/Formatted'
 import ObjectTree from './message-parsers/Object'
 import ErrorPanel from './message-parsers/Error'
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'console-message': any
-      'message-icon': any
-      'message-content': any
-    }
-  }
-}
 
 const styles = (theme: Theme) =>
   ({
@@ -104,20 +95,10 @@ class Node extends React.PureComponent<NodeProps, any> {
   render() {
     const { log, classes } = this.props
     return (
-      <console-message
-        data-method={log.method}
-        class={classNames({
-          [classes.row]: true,
-          [classes[log.method]]: !!classes[log.method]
-        })}>
-        <message-icon
-          class={classNames({
-            [classes.icon]: true,
-            [classes[`${log.method}Icon`]]: classes[`${log.method}Icon`]
-          })}
-        />
-        <message-content class={classes.message}>{this.getNode()}</message-content>
-      </console-message>
+      <Message data-method={log.method}>
+        <Icon />
+        <Content>{this.getNode()}</Content>
+      </Message>
     )
   }
 

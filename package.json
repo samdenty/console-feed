@@ -2,15 +2,13 @@
   "name": "console-feed",
   "version": "2.7.6",
   "main": "lib/index.js",
-  "description":
-    "A React component that displays console logs from the current page, an iframe or transported across a server",
+  "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "_build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
-    "release":
-      "yarn test && yarn clean && yarn build && yarn publish && yarn clean",
+    "release": "yarn test && yarn clean && yarn build && yarn publish && yarn clean",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
@@ -42,16 +40,28 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./scripts/test.js",
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testMatch": ["**/__tests__/*.spec.(ts|tsx|js)"]
+    "testMatch": [
+      "**/__tests__/*.spec.(ts|tsx|js)"
+    ]
   },
   "peerDependencies": {
-    "react": "^15.x || ^16.x"
+    "emotion": "^9.1.1",
+    "react": "^15.x || ^16.x",
+    "react-emotion": "^9.1.1"
   },
-  "files": ["es", "lib", "umd"],
+  "files": [
+    "es",
+    "lib",
+    "umd"
+  ],
   "keywords": [
     "devtools",
     "inspector",
