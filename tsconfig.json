@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "lib",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -8,13 +8,8 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src/module",
+    "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true
-  },
-  "exclude": ["node_modules", "build", "dist", "src/index.tsx"]
+    "types": ["jest"]
+  }
 }

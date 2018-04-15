@@ -1,9 +1,57 @@
 {
   "name": "console-feed",
-  "version": "2.7.5",
-  "private": false,
-  "main": "dist/index.js",
-  "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
+  "version": "2.7.6",
+  "main": "lib/index.js",
+  "description":
+    "A React component that displays console logs from the current page, an iframe or transported across a server",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "_build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "release":
+      "yarn test && yarn clean && yarn build && yarn publish && yarn clean",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "linkifyjs": "^2.1.6",
+    "react-inspector": "^2.2.2",
+    "react-jss": "^8.4.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/enzyme": "^3.1.9",
+    "@types/jest": "^22.2.3",
+    "@types/jss": "^9.5.2",
+    "@types/react": "16.0.38",
+    "@types/react-dom": "16.0.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "immutability-helper": "^2.6.6",
+    "jest": "^22.4.3",
+    "lodash": "^4.17.5",
+    "nwb": "0.21.x",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "ts-jest": "^22.4.2",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.8.1"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./scripts/test.js",
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": ["**/__tests__/*.spec.(ts|tsx|js)"]
+  },
+  "peerDependencies": {
+    "react": "^15.x || ^16.x"
+  },
+  "files": ["es", "lib", "umd"],
   "keywords": [
     "devtools",
     "inspector",
@@ -23,38 +71,13 @@
     "view"
   ],
   "homepage": "https://github.com/samdenty99/console-feed",
-  "bugs": {
-    "url": "https://github.com/samdenty99/console-feed/issues"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/samdenty99/console-feed.git"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samdenty99/console-feed/issues"
+  },
   "author": "Sam Denty <samddenty@gmail.com> (http://github.com/samdenty99)",
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "linkifyjs": "^2.1.6",
-    "react-inspector": "^2.2.2",
-    "react-jss": "^8.4.0"
-  },
-  "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "prepublish": "tsc"
-  },
-  "devDependencies": {
-    "@types/classnames": "^2.2.3",
-    "@types/jss": "^9.5.2",
-    "@types/react": "16.0.38",
-    "@types/react-dom": "16.0.4",
-    "immutability-helper": "^2.6.6",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts-ts": "^2.13.0",
-    "typescript": "^2.7.2"
-  },
-  "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
-  }
+  "license": "MIT"
 }

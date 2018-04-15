@@ -1,6 +1,0 @@
-/build
-/public
-/src
-/tsconfig.json
-/tslint.json
-!/dist

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`correctly encodes Functions 1`] = `
+Array [
+  [Function],
+]
+`;
+
+exports[`correctly encodes a HTMLElement 1`] = `
+Array [
+  <html>
+    <head />
+    <body />
+  </html>,
+]
+`;
+
+exports[`correctly encodes nested values 1`] = `
+Array [
+  Object {
+    "document": <html>
+      <head />
+      <body />
+    </html>,
+    "function": [Function],
+    "nested": Array [
+      Array [
+        Array [
+          Object {
+            "constructor": Object {
+              "name": "Promise",
+            },
+          },
+        ],
+      ],
+    ],
+    "recursive": [Circular],
+  },
+]
+`;
+
+exports[`decodes messages 1`] = `
+Array [
+  "test",
+]
+`;
