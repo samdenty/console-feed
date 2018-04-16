@@ -1,7 +1,7 @@
 # console-feed
 
 [![npm version](https://img.shields.io/npm/v/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
-[![CircleCI](https://img.shields.io/circleci/project/github/samdenty99/console-feed.svg)](https://circleci.com/gh/samdenty99/console-feed)
+[![CircleCI](https://img.shields.io/circleci/project/github/samdenty99/console-feed.svg?style=flat-square)](https://circleci.com/gh/samdenty99/console-feed)
 [![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
 [![Demo](https://img.shields.io/badge/CodeSandbox-Demo-yellow.svg?style=flat-square)](https://codesandbox.io/s/rl7pk9w2ym)
 
@@ -131,3 +131,17 @@ Hook(window.console, (log) => {
   // parsed === original
 })
 ```
+
+---
+
+## Developing
+
+To run `console-feed` locally, simply run:
+
+```bash
+yarn
+yarn start
+yarn test:watch
+```
+
+Head over to `http://localhost:3000` in your browser, and you'll see the demo page come up. After you make changes you'll need to reload, but the jest tests will automatically restart.
