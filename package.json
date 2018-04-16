@@ -14,16 +14,15 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
+    "emotion": "^9.1.1",
+    "emotion-theming": "^9.0.0",
     "linkifyjs": "^2.1.6",
-    "react-inspector": "^2.2.2",
-    "react-jss": "^8.4.0"
+    "react-emotion": "^9.1.1",
+    "react-inspector": "^2.2.2"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.3",
     "@types/enzyme": "^3.1.9",
     "@types/jest": "^22.2.3",
-    "@types/jss": "^9.5.2",
     "@types/react": "16.0.38",
     "@types/react-dom": "16.0.4",
     "enzyme": "^3.3.0",
@@ -53,9 +52,7 @@
     ]
   },
   "peerDependencies": {
-    "emotion": "^9.1.1",
-    "react": "^15.x || ^16.x",
-    "react-emotion": "^9.1.1"
+    "react": "^15.x || ^16.x"
   },
   "files": [
     "es",

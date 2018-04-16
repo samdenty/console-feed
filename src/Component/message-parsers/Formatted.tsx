@@ -1,13 +1,7 @@
 import * as React from 'react'
-import Format from '../devtools-parser'
+import { Root } from '../react-inspector/elements'
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'message-section': any
-    }
-  }
-}
+import Format from '../devtools-parser'
 
 interface Props {
   data: any[]
@@ -16,7 +10,7 @@ interface Props {
 class Formatted extends React.PureComponent<Props, any> {
   render() {
     return (
-      <message-section
+      <Root
         data-type="formatted"
         dangerouslySetInnerHTML={{
           __html: Format(this.props.data || [])

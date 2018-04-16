@@ -1,23 +1,16 @@
 import * as React from 'react'
 import { Theme } from '../../definitions/Component'
-import { withTheme } from 'react-jss'
+import { withTheme } from 'emotion-theming'
+import { Root } from '../react-inspector/elements'
 
 import * as Linkify from 'linkifyjs/react'
 import { Message } from '../../definitions/Component'
 import Inspector from '../react-inspector'
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'message-section': any
-    }
-  }
-}
-
 interface Props {
   log: Message
   quoted: boolean
-  theme: Theme
+  theme?: Theme
 }
 
 class ObjectTree extends React.PureComponent<Props, any> {
@@ -43,13 +36,13 @@ class ObjectTree extends React.PureComponent<Props, any> {
           )
 
         return (
-          <message-section data-type="string" key={i}>
+          <Root data-type="string" key={i}>
             <Linkify>{string}</Linkify>
-          </message-section>
+          </Root>
         )
       }
 
-      return <Inspector data={message} key={i} method={log.method} />
+      return <Inspector data={message} key={i} />
     })
   }
 }

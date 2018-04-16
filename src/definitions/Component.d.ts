@@ -9,6 +9,10 @@ export interface Theme {
   styles: Styles
 }
 
+export interface Context extends Theme {
+  method: Methods
+}
+
 export interface Message extends Payload {
   data: any[]
 }
@@ -20,7 +24,6 @@ export interface Props {
   filter?: Methods[]
 }
 
-export interface NodeProps {
+export interface MessageProps {
   log: Message
-  classes: any
 }

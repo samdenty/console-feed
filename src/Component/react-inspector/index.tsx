@@ -1,124 +1,52 @@
 import * as React from 'react'
-import withStyles from 'react-jss'
-import { Styles } from 'jss'
+import { withTheme } from 'emotion-theming'
+import { Context } from '../../definitions/Component'
+import { Root, Table, Constructor } from './elements'
+
 import {
   ObjectRootLabel,
   ObjectLabel,
   ObjectName,
   Inspector,
-  DOMInspector,
-  chromeDark,
-  chromeLight
+  DOMInspector
 } from 'react-inspector'
 import ObjectPreview from 'react-inspector/lib/object-inspector/ObjectPreview'
-import { Theme, Variants } from '../../definitions/Component'
-import { Methods } from '../../definitions/Methods'
-import * as classNames from 'classnames'
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'message-section': any
-    }
-  }
-}
 
 interface Props {
-  theme: Theme
+  theme?: Context
   data: any
-  method: Methods
-  classes: any
 }
 
-const styles = (theme: Theme) =>
-  ({
-    root: {
-      display: 'inline-block',
-      '&::after': {
-        content: `' '`,
-        display: 'inline-block'
-      },
-      '& > li': {
-        backgroundColor: 'transparent !important',
-        display: 'inline-block'
-      },
-      '& ol:empty': {
-        paddingLeft: '0 !important'
-      }
-    },
-    hoverable: {
-      '& div:hover': {
-        backgroundColor: 'rgba(255, 220, 158, .05) !important',
-        borderRadius: '2px'
-      }
-    },
-    proto: {
-      '& > span > span:nth-child(1)': {
-        opacity: 0.6
-      }
-    },
-    table: {
-      '& > li': {
-        display: 'inline-block'
-      }
-    }
-  } as Styles)
-
 class CustomInspector extends React.PureComponent<Props, any> {
-  state = {
-    theme: null
-  }
-
   render() {
-    const { classes, data, method } = this.props
+    const { data, theme } = this.props
+    const { styles, method } = theme
+
     const dom = data instanceof HTMLElement
     const table = method === 'table'
 
     return (
-      <message-section
-        data-type={table ? 'table' : dom ? 'html' : 'object'}
-        class={classNames({
-          [classes.root]: true,
-          [classes.hoverable]: dom
-        })}>
+      <Root data-type={table ? 'table' : dom ? 'html' : 'object'}>
         {table ? (
-          <span className={classes.table}>
-            <Inspector {...this.props} theme={this.state.theme} table />
-            <Inspector {...this.props} theme={this.state.theme} />
-          </span>
+          <Table>
+            <Inspector {...this.props} theme={styles} table />
+            <Inspector {...this.props} theme={styles} />
+          </Table>
         ) : dom ? (
-          <DOMInspector {...this.props} theme={this.state.theme} />
+          <DOMInspector {...this.props} theme={styles} />
         ) : (
           <Inspector
             {...this.props}
+            theme={styles}
             nodeRenderer={this.nodeRenderer.bind(this)}
-            theme={this.state.theme}
           />
         )}
-      </message-section>
+      </Root>
     )
   }
 
-  componentWillMount() {
-    this.setTheme(this.props.theme)
-  }
-
-  setTheme = (theme: Theme) => {
-    const styles = theme.variant === 'dark' ? chromeDark : chromeLight
-    this.setState({
-      theme: { ...styles, ...theme.styles }
-    })
-  }
-
-  componentWillReceiveProps(nextProps: Props) {
-    // Add proper check
-    if (nextProps.theme !== this.props.theme) {
-      this.setTheme(nextProps.theme)
-    }
-  }
-
   nodeRenderer(props: any) {
-    const { classes } = this.props
+    const { styles } = this.props.theme
     let proto = false
     let { depth, name, data, isNonenumerable } = props
 
@@ -148,21 +76,23 @@ class CustomInspector extends React.PureComponent<Props, any> {
     // Subobject
     if (name === 'constructor') proto = true
     return data instanceof HTMLElement ? (
-      <span className={classNames(classes.root, classes.hoverable)}>
+      <Root>
         <ObjectName name={name} />
         <span>: </span>
-        <DOMInspector data={data} theme={this.state.theme} />
-      </span>
-    ) : (
-      <span className={proto ? classes.proto : ''}>
+        <DOMInspector data={data} theme={styles} />
+      </Root>
+    ) : proto ? (
+      <Constructor>
         <ObjectLabel
-          name={proto ? '<constructor>' : name}
-          data={proto ? data.name : data}
+          name="<constructor>"
+          data={data.name}
           isNonenumerable={isNonenumerable}
         />
-      </span>
+      </Constructor>
+    ) : (
+      <ObjectLabel name={name} data={data} isNonenumerable={isNonenumerable} />
     )
   }
 }
 
-export default withStyles(styles)(CustomInspector)
+export default withTheme(CustomInspector)
