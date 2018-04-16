@@ -9,7 +9,12 @@ Array [
 exports[`correctly encodes a HTMLElement 1`] = `
 Array [
   <html>
-    <head />
+    <head>
+      <style
+        data-emotion=""
+        type="text/css"
+      />
+    </head>
     <body />
   </html>,
 ]
@@ -19,7 +24,12 @@ exports[`correctly encodes nested values 1`] = `
 Array [
   Object {
     "document": <html>
-      <head />
+      <head>
+        <style
+          data-emotion=""
+          type="text/css"
+        />
+      </head>
       <body />
     </html>,
     "function": [Function],

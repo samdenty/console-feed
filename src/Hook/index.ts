@@ -6,9 +6,11 @@ import {
   Message
 } from '../definitions/Console'
 import Methods from '../definitions/Methods'
+
 import Parse from './parse'
 import Unhook from '../Unhook'
 import { Encode } from '../Transform'
+import Construct from './construct'
 
 /**
  * Hook a console constructor and forward messages to a callback
@@ -16,17 +18,18 @@ import { Encode } from '../Transform'
  * @argument callback The callback to be called once a message is logged
  */
 export default function Hook(console: Console, callback: Callback) {
-  let TargetConsole = console as HookedConsole
-  class ConsoleFeed implements Storage {
-    pointers = new class Pointers {}() as any
-
-    source = new class Source {
-      npm = 'https://npmjs.com/package/console-feed'
-      github = 'https://github.com/samdenty99/console-feed'
-    }()
+  const TargetConsole = console as HookedConsole
+  const Storage: Storage = {
+    pointers: {
+      ...Construct('NativeMethods')
+    },
+    src: {
+      npm: 'https://npmjs.com/package/console-feed',
+      github: 'https://github.com/samdenty99/console-feed',
+      ...Construct('URLs')
+    },
+    ...Construct('ConsoleFeed')
   }
-
-  const Storage = new ConsoleFeed()
 
   // Override console methods
   for (let method of Methods) {

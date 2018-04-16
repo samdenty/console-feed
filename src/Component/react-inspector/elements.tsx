@@ -23,11 +23,6 @@ export const Root = styled('div')({
     content: `' '`,
     display: 'inline-block'
   },
-  // HTML Elements
-  '& div:hover': {
-    backgroundColor: 'rgba(255, 220, 158, .05) !important',
-    borderRadius: '2px'
-  },
   '& > li': {
     backgroundColor: 'transparent !important',
     display: 'inline-block'
@@ -42,7 +37,19 @@ export const Root = styled('div')({
  */
 export const Table = styled('span')({
   '& > li': {
-    display: 'inline-block'
+    display: 'inline-block',
+    marginTop: 5
+  }
+})
+
+/**
+ * HTML
+ */
+export const HTML = styled('span')({
+  display: 'inline-block',
+  '& div:hover': {
+    backgroundColor: 'rgba(255, 220, 158, .05) !important',
+    borderRadius: '2px'
   }
 })
 

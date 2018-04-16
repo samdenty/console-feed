@@ -4,6 +4,7 @@ export interface Storage {
   pointers: {
     [name: string]: Function
   }
+  src: any
 }
 
 export interface HookedConsole extends Console {

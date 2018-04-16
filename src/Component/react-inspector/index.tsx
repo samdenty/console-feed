@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { withTheme } from 'emotion-theming'
 import { Context } from '../../definitions/Component'
-import { Root, Table, Constructor } from './elements'
+import { Root, Table, Constructor, HTML } from './elements'
 
 import {
   ObjectRootLabel,
@@ -33,7 +33,9 @@ class CustomInspector extends React.PureComponent<Props, any> {
             <Inspector {...this.props} theme={styles} />
           </Table>
         ) : dom ? (
-          <DOMInspector {...this.props} theme={styles} />
+          <HTML>
+            <DOMInspector {...this.props} theme={styles} />
+          </HTML>
         ) : (
           <Inspector
             {...this.props}
@@ -79,7 +81,9 @@ class CustomInspector extends React.PureComponent<Props, any> {
       <Root>
         <ObjectName name={name} />
         <span>: </span>
-        <DOMInspector data={data} theme={styles} />
+        <HTML>
+          <DOMInspector data={data} theme={styles} />
+        </HTML>
       </Root>
     ) : proto ? (
       <Constructor>
