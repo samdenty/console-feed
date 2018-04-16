@@ -9,7 +9,7 @@
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "release": "yarn test && yarn clean && yarn build && yarn publish && yarn clean",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
