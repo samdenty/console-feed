@@ -1,15 +1,6 @@
 import styled from '../theme'
 import { Context } from '../../definitions/Component'
 
-/**
- * Return themed log-method style
- * @param style The style
- * @param type The method
- */
-const Themed = (style: string, method: string, styles) =>
-  styles[`LOG_${method.toUpperCase()}_${style.toUpperCase()}`] ||
-  styles[`LOG_${style.toUpperCase()}`]
-
 interface Props {
   theme: Context
 }
