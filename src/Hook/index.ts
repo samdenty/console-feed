@@ -10,7 +10,7 @@ import Methods from '../definitions/Methods'
 import Parse from './parse'
 import Unhook from '../Unhook'
 import { Encode } from '../Transform'
-import Construct from './construct'
+// import Construct from './construct'
 
 /**
  * Hook a console constructor and forward messages to a callback
@@ -21,14 +21,11 @@ export default function Hook(console: Console, callback: Callback) {
   const TargetConsole = console as HookedConsole
   const Storage: Storage = {
     pointers: {
-      ...Construct('NativeMethods')
     },
     src: {
       npm: 'https://npmjs.com/package/console-feed',
       github: 'https://github.com/samdenty99/console-feed',
-      ...Construct('URLs')
-    },
-    ...Construct('ConsoleFeed')
+    }
   }
 
   // Override console methods
@@ -36,7 +33,7 @@ export default function Hook(console: Console, callback: Callback) {
     const NativeMethod = TargetConsole[method]
 
     // Override
-    TargetConsole[method] = function() {
+    TargetConsole[method] = function () {
       // Pass back to native method
       NativeMethod.apply(this, arguments)
 
