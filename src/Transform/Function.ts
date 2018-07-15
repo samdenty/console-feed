@@ -12,18 +12,19 @@ export default {
   shouldTransform(type: any, obj: any) {
     return typeof obj === 'function'
   },
-  toSerializable(func: Function) {
+  toSerializable(func: Function): Storage {
     let body = ''
     try {
-      body = func.toString()
-      body = body.substring(body.indexOf('{') + 1, body.lastIndexOf('}'))
+      body = func
+        .toString()
+        .substring(body.indexOf('{') + 1, body.lastIndexOf('}'))
     } catch (e) {}
 
     return {
       name: func.name,
       body,
       proto: Object.getPrototypeOf(func).constructor.name
-    } as Storage
+    }
   },
   fromSerializable(data: Storage) {
     try {
