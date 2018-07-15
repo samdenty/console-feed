@@ -5,7 +5,6 @@
     "target": "es3",
     "lib": ["es6", "dom"],
     "inlineSourceMap": true,
-    "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": ".",
