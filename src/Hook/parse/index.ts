@@ -29,7 +29,7 @@ function Parse(
     }
 
     case 'count': {
-      const label = typeof data[0] === 'string' ? data[0] : null
+      const label = typeof data[0] === 'string' ? data[0] : 'default'
       if (!label) return false
 
       return {
@@ -40,7 +40,7 @@ function Parse(
 
     case 'time':
     case 'timeEnd': {
-      const label = typeof data[0] === 'string' ? data[0] : null
+      const label = typeof data[0] === 'string' ? data[0] : 'default'
       if (!label) return false
 
       if (method === 'time') {
@@ -55,7 +55,7 @@ function Parse(
     }
 
     case 'assert': {
-      const valid = data.length !== 0 ? true : false
+      const valid = data.length !== 0
 
       if (valid) {
         const assertion = Assert.test(data[0], ...data.slice(1))
@@ -71,7 +71,7 @@ function Parse(
     }
 
     case 'error': {
-      const errors = data.map((error) => {
+      const errors = data.map(error => {
         try {
           return error.stack || error
         } catch (e) {
