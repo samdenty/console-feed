@@ -11,10 +11,10 @@ Object {
 }
 `;
 
-exports[`profiles time: non existant timer 1`] = `
+exports[`time non existent label: non existent timer 1`] = `
 Object {
   "data": Array [
-    "Timer 'nonExistant' does not exist",
+    "Timer 'nonExistent' does not exist",
   ],
   "id": "timer-fail",
   "method": "warn",

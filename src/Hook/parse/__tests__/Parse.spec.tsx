@@ -8,25 +8,53 @@ it('asserts values', () => {
   )
 })
 
-it('counts numbers', () => {
-  let final
-  _.times(10, () => {
-    final = Parse('count', ['count-10'])
+describe('count', () => {
+  it('counts with label', () => {
+    let final
+
+    _.times(10, () => {
+      final = Parse('count', ['count-10'])
+    })
+
+    expect(final && final.data[0]).toBe('count-10: 10')
   })
 
-  expect(final && final.data[0]).toBe('count-10: 10')
+  it('counts with default label', () => {
+    let final
+
+    _.times(10, () => {
+      final = Parse('count', [])
+    })
+
+    expect(final && final.data[0]).toBe('default: 10')
+  })
 })
 
-it('profiles time', () => {
-  Parse('time', ['timer-test'])
+describe('time', () => {
+  it('profile time with label', () => {
+    Parse('time', ['timer-test'])
 
-  setTimeout(() => {
-    const result = Parse('timeEnd', ['timer-test'], 'timer-result')
-    expect(result && +result.data[0].replace(/[^0-9]/g, '') > 100).toBeTruthy()
-  }, 100)
+    setTimeout(() => {
+      const result = Parse('timeEnd', ['timer-test'], 'timer-result')
+      expect(
+        result && +result.data[0].replace(/[^0-9]/g, '') > 100
+      ).toBeTruthy()
+    }, 100)
+  })
 
-  const failure = Parse('timeEnd', ['nonExistant'], 'timer-fail')
-  expect(failure).toMatchSnapshot('non existant timer')
+  it('non existent label', () => {
+    Parse('time', ['timer-test'])
+
+    const failure = Parse('timeEnd', ['nonExistent'], 'timer-fail')
+    expect(failure).toMatchSnapshot('non existent timer')
+  })
+
+  it('profile time with default label', () => {
+    Parse('time', [])
+
+    const result = Parse('timeEnd', [], 'timer-result')
+    expect(result && result.data[0].match(/^default: \d+\.\d+ms$/)).toBeTruthy()
+  })
 })
 
 it('records errors', () => {
