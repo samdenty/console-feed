@@ -79,7 +79,7 @@ Sets the font color for the component. Default - `light`
 
 ### `style?: Styles`
 
-Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/module/definitions/Styles.d.ts)
+Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/definitions/Styles.d.ts)
 
 ## Log methods
 
