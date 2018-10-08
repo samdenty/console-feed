@@ -10,6 +10,7 @@ interface Props {
  */
 export const Root = styled('div')({
   display: 'inline-block',
+  wordBreak: 'break-all',
   '&::after': {
     content: `' '`,
     display: 'inline-block'
