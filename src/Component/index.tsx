@@ -29,7 +29,9 @@ class Console extends React.PureComponent<Props, any> {
               log.method &&
               filter.indexOf(log.method) === -1
 
-            return filtered ? null : <Message log={log} key={i} />
+            return filtered ? null : (
+              <Message log={log} key={`${log.method}-${i}`} />
+            )
           })}
         </Root>
       </ThemeProvider>
