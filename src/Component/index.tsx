@@ -6,6 +6,22 @@ import Styles from './theme/default'
 import { Root } from './elements'
 import Message from './Message'
 
+// https://stackoverflow.com/a/48254637/4089357
+const customStringify = function(v) {
+  const cache = new Set()
+  return JSON.stringify(v, function(key, value) {
+    if (typeof value === 'object' && value !== null) {
+      if (cache.has(value)) {
+        // Circular reference found, discard key
+        return
+      }
+      // Store value in our set
+      cache.add(value)
+    }
+    return value
+  })
+}
+
 class Console extends React.PureComponent<Props, any> {
   theme = () => ({
     variant: this.props.variant || 'light',
@@ -16,8 +32,16 @@ class Console extends React.PureComponent<Props, any> {
   })
 
   render() {
-    const filter = this.props.filter || []
-    const logs = this.props.logs || []
+    let { filter = [], logs = [], searchKeywords, logFilter } = this.props
+
+    const regex = new RegExp(searchKeywords)
+
+    const filterFun = logFilter
+      ? logFilter
+      : log => regex.test(customStringify(log))
+
+    // @ts-ignore
+    logs = logs.filter(filterFun)
 
     return (
       <ThemeProvider theme={this.theme}>

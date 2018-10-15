@@ -22,6 +22,8 @@ export interface Props {
   variant?: Variants
   styles?: Styles
   filter?: Methods[]
+  searchKeywords?: string
+  logFilter?: Function
 }
 
 export interface MessageProps {
