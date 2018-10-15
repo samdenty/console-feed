@@ -26,6 +26,16 @@ export default {
     }
   },
   fromSerializable(data: Storage) {
-    return data
+    const { body } = data
+    let obj = { ...body }
+
+    if (typeof data.proto === 'string') {
+      // @ts-ignore
+      obj.constructor = {
+        name: data.proto
+      }
+    }
+
+    return obj
   }
 }
