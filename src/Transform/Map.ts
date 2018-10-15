@@ -16,7 +16,8 @@ export default {
     let body = {}
 
     map.forEach(function(value, key) {
-      body[key] = value
+      const k = typeof key == 'object' ? JSON.stringify(key) : key
+      body[k] = value
     })
 
     return {
