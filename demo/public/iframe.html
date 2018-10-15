@@ -5,6 +5,14 @@
       console.log({
         constructor: undefined
       })
+
+      var map = new Map();
+      map.set({}, "value associated with obj")
+      map.set(function() {console.log("hello world")}, "a function")
+      map.set('hello', "world")
+
+      console.log(map)
+
       console.count('Counting numbers')
       console.time('Render time')
       console.log(`Console %cformatting https://example.com/linkified`, 'color: red')
