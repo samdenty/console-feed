@@ -10,7 +10,7 @@ interface Storage {
 export default {
   type: 'Map',
   shouldTransform(type: any, obj: any) {
-    return obj.constructor.name === 'Map'
+    return obj && obj.constructor && obj.constructor.name === 'Map'
   },
   toSerializable(map: any): Storage {
     let body = {}
