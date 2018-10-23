@@ -11,14 +11,14 @@ A React component that displays console logs from the current page, an iframe or
 
 ## Features
 
-* **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and makes links clickable
-* **DOM nodes** - easily inspect & expand HTML elements, with syntax highlighting
-* **`console.table`** - view your logs in a table format
-* **Other console methods**:
-  * `console.time` - view the time in milliseconds it takes to complete events
-  * `console.assert` - assert that a statement is truthy
-  * `console.count` - count how many times something occurs
-* **Inbuilt JSON serialization** - Objects, Functions & DOM elements can be encoded / decoded to and from JSON
+- **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and makes links clickable
+- **DOM nodes** - easily inspect & expand HTML elements, with syntax highlighting
+- **`console.table`** - view your logs in a table format
+- **Other console methods**:
+  - `console.time` - view the time in milliseconds it takes to complete events
+  - `console.assert` - assert that a statement is truthy
+  - `console.count` - count how many times something occurs
+- **Inbuilt JSON serialization** - Objects, Functions & DOM elements can be encoded / decoded to and from JSON
 
 ## Install
 
@@ -44,10 +44,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    Hook(window.console, (log) => {
-      this.setState((state) =>
-        update(state, { logs: { $push: [Decode(log)] } })
-      )
+    Hook(window.console, log => {
+      this.setState(state => update(state, { logs: { $push: [Decode(log)] } }))
     })
 
     console.log(`Hello world!`)
@@ -80,6 +78,14 @@ Sets the font color for the component. Default - `light`
 ### `style?: Styles`
 
 Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/definitions/Styles.d.ts)
+
+### `searchKeywords?: string`
+
+A string value to filter logs
+
+### `logFilter?: Function`
+
+If you want to use a custom log filter function, you can provide your own implementation
 
 ## Log methods
 
@@ -122,7 +128,7 @@ In order to restore a log back to format compatible with the `<Console>` compone
 ```js
 import { Hook, Decode } from 'console-feed'
 
-Hook(window.console, (log) => {
+Hook(window.console, log => {
   const parsed = Decode(log)
   const json = JSON.stringify(log)
 

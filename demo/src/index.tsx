@@ -19,13 +19,14 @@ class App extends React.Component {
         data: ['Command']
       }
     ] as any[],
-    filter: []
+    filter: [],
+    searchKeywords: ''
   }
 
   componentDidMount() {
-    Hook(iframe.contentWindow.console, (log) => {
+    Hook(iframe.contentWindow.console, log => {
       const decoded = Decode(log)
-      this.setState((state) => update(state, { logs: { $push: [decoded] } }))
+      this.setState(state => update(state, { logs: { $push: [decoded] } }))
     })
   }
 
@@ -36,14 +37,23 @@ class App extends React.Component {
     })
   }
 
+  handleKeywordsChange = ({ target: { value: searchKeywords } }) => {
+    this.setState({ searchKeywords })
+  }
+
   render() {
     return (
       <div style={{ backgroundColor: '#242424' }}>
-        <button onClick={this.switch.bind(this)}>Show only logs</button>
+        <div>
+          <button onClick={this.switch.bind(this)}>Show only logs</button>
+          <input placeholder="search" onChange={this.handleKeywordsChange} />
+        </div>
+
         <Console
           logs={this.state.logs}
           variant="dark"
           filter={this.state.filter}
+          searchKeywords={this.state.searchKeywords}
         />
       </div>
     )
