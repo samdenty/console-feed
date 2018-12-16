@@ -39,8 +39,6 @@ npm install console-feed
 
 ```js
 import React from 'react'
-import { render } from 'react-dom'
-import update from 'immutability-helper'
 import { Hook, Console, Decode } from 'console-feed'
 
 class App extends React.Component {
@@ -50,7 +48,7 @@ class App extends React.Component {
 
   componentDidMount() {
     Hook(window.console, log => {
-      this.setState(state => update(state, { logs: { $push: [Decode(log)] } }))
+      this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }))
     })
 
     console.log(`Hello world!`)
