@@ -9,6 +9,11 @@ A React component that displays console logs from the current page, an iframe or
 
 ![Demo](https://user-images.githubusercontent.com/13242392/38513414-1bc32870-3c26-11e8-9a8f-0989d2142b1c.png)
 
+## Who's using it
+- [CodeSandbox.io](https://codesandbox.io)
+- [Plunker](https://plnkr.co)
+- [P5.js Editor](https://editor.p5js.org)
+
 ## Features
 
 - **Console formatting** - [style and give your logs color](https://stackoverflow.com/questions/22155879/how-do-i-create-formatted-javascript-console-log-messages), and makes links clickable
