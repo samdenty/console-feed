@@ -137,20 +137,24 @@ class EncodingTransformer {
     const type = typeof val
     const isObject = type === 'object' && val !== null
 
-    if (isObject) {
-      const refMark = this._ensureCircularReference(val)
+    try {
+      if (isObject) {
+        const refMark = this._ensureCircularReference(val)
 
-      if (refMark) return refMark
+        if (refMark) return refMark
+      }
+
+      for (const transform of this.transforms) {
+        if (transform.shouldTransform(type, val))
+          return this._applyTransform(val, parent, key, transform)
+      }
+
+      if (isObject) return this._handleObject(val, parent, key)
+
+      return val
+    } catch (e) {
+      return null
     }
-
-    for (const transform of this.transforms) {
-      if (transform.shouldTransform(type, val))
-        return this._applyTransform(val, parent, key, transform)
-    }
-
-    if (isObject) return this._handleObject(val, parent, key)
-
-    return val
   }
 
   transform() {
