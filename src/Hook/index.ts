@@ -17,14 +17,17 @@ import { Encode } from '../Transform'
  * @argument console The Console constructor to Hook
  * @argument callback The callback to be called once a message is logged
  */
-export default function Hook(console: Console, callback: Callback) {
+export default function Hook(
+  console: Console,
+  callback: Callback,
+  encode = true
+) {
   const TargetConsole = console as HookedConsole
   const Storage: Storage = {
-    pointers: {
-    },
+    pointers: {},
     src: {
       npm: 'https://npmjs.com/package/console-feed',
-      github: 'https://github.com/samdenty99/console-feed',
+      github: 'https://github.com/samdenty99/console-feed'
     }
   }
 
@@ -33,7 +36,7 @@ export default function Hook(console: Console, callback: Callback) {
     const NativeMethod = TargetConsole[method]
 
     // Override
-    TargetConsole[method] = function () {
+    TargetConsole[method] = function() {
       // Pass back to native method
       NativeMethod.apply(this, arguments)
 
@@ -44,7 +47,10 @@ export default function Hook(console: Console, callback: Callback) {
       setTimeout(() => {
         const parsed = Parse(method as ConsoleMethods, args)
         if (parsed) {
-          const encoded = Encode(parsed) as Message
+          let encoded: Message = parsed as Message
+          if (encode) {
+            encoded = Encode(parsed) as Message
+          }
           callback(encoded, parsed)
         }
       })
