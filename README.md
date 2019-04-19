@@ -130,9 +130,13 @@ By default when you use the `Hook()` API, logs are serialized so that they will 
 If the `Hook` function and the `<Console />` component are on the same origin, you can disable serialiation to increase performance.
 
 ```js
-Hook(window.console, log => {
-  this.setState(({ logs }) => ({ logs: [...logs, log] }))
-})
+Hook(
+  window.console,
+  log => {
+    this.setState(({ logs }) => ({ logs: [...logs, log] }))
+  },
+  false
+)
 ```
 
 ---
