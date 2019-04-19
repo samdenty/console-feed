@@ -73,5 +73,5 @@ it('disables encoding with a flag', async () => {
 
   const result = await Log('debug', input)
 
-  expect(result).toMatchSnapshot()
+  expect(result.data).toMatchSnapshot()
 })

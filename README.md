@@ -10,6 +10,7 @@ A React component that displays console logs from the current page, an iframe or
 ![Demo](https://user-images.githubusercontent.com/13242392/38513414-1bc32870-3c26-11e8-9a8f-0989d2142b1c.png)
 
 ## Who's using it
+
 - [CodeSandbox.io](https://codesandbox.io)
 - [Plunker](https://plnkr.co)
 - [P5.js Editor](https://editor.p5js.org)
@@ -122,22 +123,15 @@ interface Log {
 
 ## Serialization
 
-When using the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. All the Circular references have already been handled for you.
+By default when you use the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. In order to restore a log back to format compatible with the `<Console>` component, you need to call the `Decode()` method.
 
-In order to restore a log back to format compatible with the `<Console>` component, you need to use the `Decode()` method.
+### Disabling serialization
 
-### For example:
+If the `Hook` function and the `<Console />` component are on the same origin, you can disable serialiation to increase performance.
 
 ```js
-import { Hook, Decode } from 'console-feed'
-
 Hook(window.console, log => {
-  const parsed = Decode(log)
-  const json = JSON.stringify(log)
-
-  const original = Decode(JSON.parse(json))
-
-  // parsed === original
+  this.setState(({ logs }) => ({ logs: [...logs, log] }))
 })
 ```
 

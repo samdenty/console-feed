@@ -56,32 +56,28 @@ Array [
 `;
 
 exports[`disables encoding with a flag 1`] = `
-Object {
-  "data": Array [
-    Object {
-      "document": <html>
-        <head>
-          <style
-            data-emotion=""
-            type="text/css"
-          >
-            
-          </style>
-        </head>
-        <body />
-      </html>,
-      "function": [Function],
-      "nested": Array [
+Array [
+  Object {
+    "document": <html>
+      <head>
+        <style
+          data-emotion=""
+          type="text/css"
+        >
+          
+        </style>
+      </head>
+      <body />
+    </html>,
+    "function": [Function],
+    "nested": Array [
+      Array [
         Array [
-          Array [
-            Promise {},
-          ],
+          Promise {},
         ],
       ],
-      "recursive": [Circular],
-    },
-  ],
-  "id": "877b8da6-e1d6-fc09-9ec5-3d51-1555666038411",
-  "method": "debug",
-}
+    ],
+    "recursive": [Circular],
+  },
+]
 `;
