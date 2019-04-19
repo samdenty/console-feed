@@ -4,7 +4,7 @@ import Log from './Log'
 import { Decode } from '../..'
 
 it('hooks the console', () => {
-  Hook(console, (log) => {
+  Hook(console, log => {
     console.logs.push(log)
   })
   expect(console.feed).toBeTruthy()
@@ -53,4 +53,25 @@ it('correctly encodes nested values', async () => {
   const decoded = Decode(result)
   expect(decoded.method).toEqual('debug')
   expect(decoded.data).toMatchSnapshot()
+})
+
+it('disables encoding with a flag', async () => {
+  Hook(
+    console,
+    log => {
+      console.logs.push(log)
+    },
+    false
+  )
+  const input = {
+    function: function myFunc() {},
+    document: document.documentElement,
+    nested: [[[new Promise(() => {})]]],
+    recursive: null
+  }
+  input.recursive = input
+
+  const result = await Log('debug', input)
+
+  expect(result).toMatchSnapshot()
 })
