@@ -8,6 +8,7 @@ export interface Styles {
   LOG_COLOR?: string
   LOG_ICON?: string
   LOG_BACKGROUND?: string
+  LOG_ICON_BACKGROUND_SIZE?: string
   LOG_BORDER?: string
 
   LOG_INFO_COLOR?: string

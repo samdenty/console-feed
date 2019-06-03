@@ -58,6 +58,7 @@ export const Icon = styled<Props, any>('div')(
     height: styles.LOG_ICON_HEIGHT,
     backgroundImage: Themed('icon', method, styles),
     backgroundRepeat: 'no-repeat',
+    backgroundSize: styles.LOG_ICON_BACKGROUND_SIZE,
     backgroundPosition: '50% 50%'
   })
 )
