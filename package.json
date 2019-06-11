@@ -14,10 +14,10 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "emotion": "^9.1.1",
-    "emotion-theming": "^9.0.0",
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.12",
+    "emotion-theming": "^10.0.10",
     "linkifyjs": "^2.1.6",
-    "react-emotion": "^9.1.1",
     "react-inspector": "^2.2.2"
   },
   "devDependencies": {
@@ -38,7 +38,7 @@
     "react-dom": "^16.3.1",
     "ts-jest": "^22.4.2",
     "ts-loader": "^3.5.0",
-    "typescript": "^2.8.1"
+    "typescript": "^3.5.1"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./scripts/test.js",

@@ -9,12 +9,7 @@ Array [
 exports[`correctly encodes a HTMLElement 1`] = `
 Array [
   <html>
-    <head>
-      <style
-        data-emotion=""
-        type="text/css"
-      />
-    </head>
+    <head />
     <body />
   </html>,
 ]
@@ -24,12 +19,7 @@ exports[`correctly encodes nested values 1`] = `
 Array [
   Object {
     "document": <html>
-      <head>
-        <style
-          data-emotion=""
-          type="text/css"
-        />
-      </head>
+      <head />
       <body />
     </html>,
     "function": [Function],
@@ -59,14 +49,7 @@ exports[`disables encoding with a flag 1`] = `
 Array [
   Object {
     "document": <html>
-      <head>
-        <style
-          data-emotion=""
-          type="text/css"
-        >
-          
-        </style>
-      </head>
+      <head />
       <body />
     </html>,
     "function": [Function],

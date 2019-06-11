@@ -1,14 +1,14 @@
-import { HookedConsole } from '../../definitions/Console'
+import { HookedConsole, Message } from '../../definitions/Console'
 
 interface Console extends HookedConsole {
-  logs: any[]
+  logs: Message[]
   $log: Function
 }
 
 declare const console: Console
 console.logs = []
 ;['log', 'warn', 'info', 'error', 'debug', 'assert', 'time', 'timeEnd'].forEach(
-  (method) => {
+  method => {
     console[`$${method}`] = console[method]
     console[method] = () => {}
   }

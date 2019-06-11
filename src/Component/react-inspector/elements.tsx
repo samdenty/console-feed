@@ -1,9 +1,4 @@
 import styled from '../theme'
-import { Context } from '../../definitions/Component'
-
-interface Props {
-  theme: Context
-}
 
 /**
  * Object root

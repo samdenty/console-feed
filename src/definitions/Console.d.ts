@@ -1,4 +1,5 @@
 import { Methods } from './Methods'
+import { Payload } from './Payload'
 
 export interface Storage {
   pointers: {
@@ -18,4 +19,4 @@ export interface Message {
   data?: any[]
 }
 
-export type Callback = (encoded: any, message: Message) => void
+export type Callback = (encoded: Message, message: Payload) => void
