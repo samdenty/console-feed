@@ -71,7 +71,7 @@ it('disables encoding with a flag', async () => {
   }
   input.recursive = input
 
-  const result = await Log('debug', input)
+  const result: any = await Log('debug', input)
 
   expect(result.data).toMatchSnapshot()
 })

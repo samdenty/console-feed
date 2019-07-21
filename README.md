@@ -12,6 +12,7 @@ A React component that displays console logs from the current page, an iframe or
 ## Who's using it
 
 - [CodeSandbox.io](https://codesandbox.io)
+- [Framer](https://www.framer.com)
 - [Plunker](https://plnkr.co)
 - [P5.js Editor](https://editor.p5js.org)
 

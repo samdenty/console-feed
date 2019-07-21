@@ -33,10 +33,6 @@ export default function formatWithSubstitutionString(
     return Math.floor(obj)
   }
 
-  function bypassFormatter(obj: any) {
-    return obj instanceof Node ? obj : ''
-  }
-
   let currentStyle: any = null
   function styleFormatter(obj: any) {
     currentStyle = {}
@@ -81,8 +77,6 @@ export default function formatWithSubstitutionString(
   // Firebug uses %c for styling the message.
   formatters.c = styleFormatter
 
-  formatters._ = bypassFormatter
-
   function append(a: any, b: any) {
     if (b instanceof Node) {
       a.appendChild(b)
@@ -110,5 +104,11 @@ export default function formatWithSubstitutionString(
   }
 
   // String.format does treat formattedResult like a Builder, result is an object.
-  return StringUtils.format(format, parameters, formatters, formattedResult, append)
+  return StringUtils.format(
+    format,
+    parameters,
+    formatters,
+    formattedResult,
+    append
+  )
 }
