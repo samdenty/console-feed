@@ -20,7 +20,7 @@ export default function formatWithSubstitutionString(
   const formatters: any = {}
 
   function stringFormatter(obj: any) {
-    return obj
+    return String(obj)
   }
 
   function floatFormatter(obj: any) {

@@ -1,6 +1,6 @@
 {
   "name": "console-feed",
-  "version": "2.8.9",
+  "version": "2.8.10",
   "main": "lib/index.js",
   "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
   "scripts": {
