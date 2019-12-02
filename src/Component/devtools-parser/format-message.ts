@@ -20,6 +20,10 @@ export default function formatWithSubstitutionString(
   const formatters: any = {}
 
   function stringFormatter(obj: any) {
+    if (typeof obj !== 'string') {
+      return ''
+    }
+
     return String(obj)
   }
 
