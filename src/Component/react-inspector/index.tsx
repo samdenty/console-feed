@@ -79,6 +79,26 @@ class CustomInspector extends React.PureComponent<Props, any> {
     return null
   }
 
+  getCustomName(name: any) {
+    if (typeof name === 'object') {
+      let customName: string
+
+      try {
+        customName = JSON.stringify(name)
+      } catch (e) {
+        customName = String(name)
+      }
+
+      return customName
+    }
+
+    if (typeof name === 'function') {
+      return '' + name
+    }
+
+    return name
+  }
+
   nodeRenderer(props: any) {
     let { depth, name, data, isNonenumerable } = props
 
@@ -99,15 +119,21 @@ class CustomInspector extends React.PureComponent<Props, any> {
         </Constructor>
       )
 
+    const customName = this.getCustomName(name)
     const customNode = this.getCustomNode(data)
+
     return customNode ? (
       <Root>
-        <ObjectName name={name} />
+        <ObjectName name={customName} />
         <span>: </span>
         {customNode}
       </Root>
     ) : (
-      <ObjectLabel name={name} data={data} isNonenumerable={isNonenumerable} />
+      <ObjectLabel
+        name={customName}
+        data={data}
+        isNonenumerable={isNonenumerable}
+      />
     )
   }
 }
