@@ -5,7 +5,8 @@ import {
   Inspector,
   ObjectLabel,
   ObjectName,
-  ObjectRootLabel
+  ObjectRootLabel,
+  ObjectValue
 } from 'react-inspector'
 import ObjectPreview from 'react-inspector/lib/object-inspector/ObjectPreview'
 
@@ -16,6 +17,18 @@ interface Props {
   theme?: Context
   data: any
 }
+
+const CustomObjectLabel = ({ name, data, isNonenumerable = false }) => (
+  <span>
+    {typeof name === 'string' ? (
+      <ObjectName name={name} dimmed={isNonenumerable} />
+    ) : (
+      <ObjectPreview data={name} />
+    )}
+    <span>: </span>
+    <ObjectValue object={data} />
+  </span>
+)
 
 class CustomInspector extends React.PureComponent<Props, any> {
   render() {
@@ -79,26 +92,6 @@ class CustomInspector extends React.PureComponent<Props, any> {
     return null
   }
 
-  getCustomName(name: any) {
-    if (typeof name === 'object') {
-      let customName: string
-
-      try {
-        customName = JSON.stringify(name)
-      } catch (e) {
-        customName = String(name)
-      }
-
-      return customName
-    }
-
-    if (typeof name === 'function') {
-      return '' + name
-    }
-
-    return name
-  }
-
   nodeRenderer(props: any) {
     let { depth, name, data, isNonenumerable } = props
 
@@ -119,18 +112,17 @@ class CustomInspector extends React.PureComponent<Props, any> {
         </Constructor>
       )
 
-    const customName = this.getCustomName(name)
     const customNode = this.getCustomNode(data)
 
     return customNode ? (
       <Root>
-        <ObjectName name={customName} />
+        <ObjectName name={name} />
         <span>: </span>
         {customNode}
       </Root>
     ) : (
-      <ObjectLabel
-        name={customName}
+      <CustomObjectLabel
+        name={name}
         data={data}
         isNonenumerable={isNonenumerable}
       />
