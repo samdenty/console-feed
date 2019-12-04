@@ -66,7 +66,7 @@ class App extends React.Component {
 }
 ```
 
-## Props
+## Props for `<Console />` component
 
 ### `logs: Log[]`
 
@@ -124,11 +124,11 @@ interface Log {
 
 ## Serialization
 
-By default when you use the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. In order to restore a log back to format compatible with the `<Console>` component, you need to call the `Decode()` method.
+By default when you use the `Hook()` API, logs are serialized so that they will safely work with `JSON.stringify`. In order to restore a log back to format compatible with the `<Console />` component, you need to call the `Decode()` method.
 
 ### Disabling serialization
 
-If the `Hook` function and the `<Console />` component are on the same origin, you can disable serialiation to increase performance.
+If the `Hook` function and the `<Console />` component are on the same origin, you can disable serialization to increase performance.
 
 ```js
 Hook(
