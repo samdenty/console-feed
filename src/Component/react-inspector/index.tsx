@@ -5,7 +5,8 @@ import {
   Inspector,
   ObjectLabel,
   ObjectName,
-  ObjectRootLabel
+  ObjectRootLabel,
+  ObjectValue
 } from 'react-inspector'
 import ObjectPreview from 'react-inspector/lib/object-inspector/ObjectPreview'
 
@@ -16,6 +17,18 @@ interface Props {
   theme?: Context
   data: any
 }
+
+const CustomObjectLabel = ({ name, data, isNonenumerable = false }) => (
+  <span>
+    {typeof name === 'string' ? (
+      <ObjectName name={name} dimmed={isNonenumerable} />
+    ) : (
+      <ObjectPreview data={name} />
+    )}
+    <span>: </span>
+    <ObjectValue object={data} />
+  </span>
+)
 
 class CustomInspector extends React.PureComponent<Props, any> {
   render() {
@@ -100,6 +113,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
       )
 
     const customNode = this.getCustomNode(data)
+
     return customNode ? (
       <Root>
         <ObjectName name={name} />
@@ -107,7 +121,11 @@ class CustomInspector extends React.PureComponent<Props, any> {
         {customNode}
       </Root>
     ) : (
-      <ObjectLabel name={name} data={data} isNonenumerable={isNonenumerable} />
+      <CustomObjectLabel
+        name={name}
+        data={data}
+        isNonenumerable={isNonenumerable}
+      />
     )
   }
 }
