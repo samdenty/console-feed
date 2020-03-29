@@ -15,6 +15,7 @@ A React component that displays console logs from the current page, an iframe or
 - [Framer](https://www.framer.com)
 - [Plunker](https://plnkr.co)
 - [P5.js Editor](https://editor.p5js.org)
+- [Builder.io](https://builder.io)
 
 ## Features
 
