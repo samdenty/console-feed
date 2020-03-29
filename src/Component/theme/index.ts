@@ -1,4 +1,4 @@
-import styled, { ThemedReactEmotionInterface } from 'react-emotion'
-import { Theme } from '../../definitions/Component'
+import styled, { CreateStyled } from '@emotion/styled'
+import { Context } from '../../definitions/Component'
 
-export default styled as ThemedReactEmotionInterface<Theme>
+export default styled as CreateStyled<Context>

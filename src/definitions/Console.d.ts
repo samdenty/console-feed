@@ -1,4 +1,5 @@
-import { Methods } from './Methods'
+import { Methods as _Methods } from './Methods'
+import { Payload } from './Payload'
 
 export interface Storage {
   pointers: {
@@ -11,11 +12,11 @@ export interface HookedConsole extends Console {
   feed: Storage
 }
 
-export type Methods = Methods
+export type Methods = _Methods
 
 export interface Message {
   method: Methods
   data?: any[]
 }
 
-export type Callback = (encoded: any, message: Message) => void
+export type Callback = (encoded: Message, message: Payload) => void

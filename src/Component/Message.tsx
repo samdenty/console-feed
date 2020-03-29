@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { MessageProps } from '../definitions/Component'
+import { MessageProps, Theme } from '../definitions/Component'
 import { ThemeProvider } from 'emotion-theming'
 
 import { Message, Icon, Content } from './elements'
@@ -9,7 +9,7 @@ import ObjectTree from './message-parsers/Object'
 import ErrorPanel from './message-parsers/Error'
 
 class ConsoleMessage extends React.PureComponent<MessageProps, any> {
-  theme = (theme) => ({
+  theme = (theme: Theme) => ({
     ...theme,
     method: this.props.log.method
   })
@@ -44,7 +44,7 @@ class ConsoleMessage extends React.PureComponent<MessageProps, any> {
 
     // Error panel
     if (
-      log.data.every((message) => typeof message === 'string') &&
+      log.data.every(message => typeof message === 'string') &&
       log.method === 'error'
     ) {
       return <ErrorPanel log={log} />

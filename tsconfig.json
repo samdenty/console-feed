@@ -5,6 +5,8 @@
     "target": "es3",
     "lib": ["es6", "dom"],
     "inlineSourceMap": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": ".",
