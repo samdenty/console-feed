@@ -12,14 +12,17 @@
     "precommit": "pretty-quick --staged",
     "test": "jest --verbose",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
     "emotion-theming": "^10.0.10",
     "linkifyjs": "^2.1.6",
-    "react-inspector": "^2.2.2"
+    "react-inspector": "^2.2.2",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.9",
@@ -90,5 +93,6 @@
     "url": "https://github.com/samdenty99/console-feed/issues"
   },
   "author": "Sam Denty <samddenty@gmail.com> (http://github.com/samdenty99)",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
