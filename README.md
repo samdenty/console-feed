@@ -81,7 +81,7 @@ Filter the logs, only displaying messages of certain methods.
 
 Sets the font color for the component. Default - `light`
 
-### `style?: Styles`
+### `styles?: Styles`
 
 Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/definitions/Styles.d.ts)
 
