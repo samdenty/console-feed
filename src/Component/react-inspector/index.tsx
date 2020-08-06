@@ -6,9 +6,9 @@ import {
   ObjectLabel,
   ObjectName,
   ObjectRootLabel,
-  ObjectValue
+  ObjectValue,
+  ObjectPreview
 } from 'react-inspector'
-import { ObjectPreview } from 'react-inspector/dist/cjs/react-inspector'
 
 import { Context } from '../../definitions/Component'
 import { Constructor, HTML, Root, Table } from './elements'
