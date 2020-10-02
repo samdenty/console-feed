@@ -43,6 +43,26 @@ class Console extends React.PureComponent<Props, any> {
     // @ts-ignore
     logs = logs.filter(filterFun)
 
+    // @ts-ignore
+    logs = logs.reduce((acc, log) => {
+      const prevLog = acc[acc.length - 1]
+
+      if (
+        prevLog &&
+        prevLog.amount &&
+        prevLog.method === log.method &&
+        prevLog.data.every((value, i) => log.data[i] === value)
+      ) {
+        prevLog.amount += 1
+
+        return acc
+      }
+
+      acc.push({ ...log, amount: 1 })
+
+      return acc
+    }, [])
+
     return (
       <ThemeProvider theme={this.theme}>
         <Root>

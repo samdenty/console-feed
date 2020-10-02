@@ -59,6 +59,23 @@ export const Icon = styled('div')(({ theme: { styles, method } }) => ({
 }))
 
 /**
+ * message-amount
+ */
+export const AmountIcon = styled('div')(({ theme: { styles, method } }) => ({
+  height: '16px',
+  margin: '1px 0',
+  whiteSpace: 'nowrap',
+  fontSize: '10px',
+  lineHeight: '17px',
+  padding: '0px 3px',
+  background: Themed('amount_background', method, styles),
+  color: Themed('amount_color', method, styles),
+  borderRadius: '8px',
+  minWidth: '18px',
+  textAlign: 'center'
+}))
+
+/**
  * console-content
  */
 export const Content = styled('div')(({ theme: { styles } }) => ({
