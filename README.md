@@ -16,6 +16,9 @@ A React component that displays console logs from the current page, an iframe or
 - [Plunker](https://plnkr.co)
 - [P5.js Editor](https://editor.p5js.org)
 - [Builder.io](https://builder.io)
+- [Utopia](https://utopia.app/project)
+- [facebook/flipper](https://github.com/facebook/flipper)
+- [Effector playground](https://share.effector.dev/)
 
 ## Features
 
@@ -70,26 +73,22 @@ class App extends React.Component {
 OR with hooks:
 
 ```js
-import React, { useState, useEffect } from 'react';
-import { Console, Hook, Unhook } from 'console-feed';
+import React, { useState, useEffect } from 'react'
+import { Console, Hook, Unhook } from 'console-feed'
 
 const LogsContainer = () => {
-  const [logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState([])
 
   // run once!
   useEffect(() => {
-    Hook(
-      window.console,
-      (log) => setLogs((currLogs) => [...currLogs, log]),
-      false
-    );
-    return () => Unhook(window.console);
-  }, []);
+    Hook(window.console, log => setLogs(currLogs => [...currLogs, log]), false)
+    return () => Unhook(window.console)
+  }, [])
 
-  return <Console logs={logs} variant="dark" />;
-};
+  return <Console logs={logs} variant="dark" />
+}
 
-export { LogsContainer };
+export { LogsContainer }
 ```
 
 ## Props for `<Console />` component
