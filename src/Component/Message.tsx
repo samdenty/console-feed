@@ -2,7 +2,7 @@ import * as React from 'react'
 import { MessageProps, Theme } from '../definitions/Component'
 import { ThemeProvider } from 'emotion-theming'
 
-import { Message, Icon, Content } from './elements'
+import { Message, Icon, Content, AmountIcon } from './elements'
 
 import Formatted from './message-parsers/Formatted'
 import ObjectTree from './message-parsers/Object'
@@ -19,7 +19,7 @@ class ConsoleMessage extends React.PureComponent<MessageProps, any> {
     return (
       <ThemeProvider theme={this.theme}>
         <Message data-method={log.method}>
-          <Icon />
+          {log.amount > 1 ? <AmountIcon>{log.amount}</AmountIcon> : <Icon />}
           <Content>{this.getNode()}</Content>
         </Message>
       </ThemeProvider>
