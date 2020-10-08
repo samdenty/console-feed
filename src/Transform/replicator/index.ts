@@ -23,7 +23,7 @@ const TYPED_ARRAY_CTORS = [
   'Int32Array',
   'Uint32Array',
   'Float32Array',
-  'Float64Array'
+  'Float64Array',
 ]
 
 // Saved proto functions
@@ -37,7 +37,7 @@ const JSONSerializer = {
 
   deserialize(val: any) {
     return JSON.parse(val)
-  }
+  },
 }
 
 // EncodingTransformer
@@ -77,7 +77,7 @@ class EncodingTransformer {
       this._createCircularCandidate(val, parent, key)
 
     result[TRANSFORMED_TYPE_KEY] = transform.type
-    result.data = this._handleValue(serializableVal, parent, key)
+    result.data = this._handleValue(() => serializableVal, parent, key)
 
     return result
   }
@@ -86,7 +86,7 @@ class EncodingTransformer {
     const result = [] as any
 
     for (let i = 0; i < arr.length; i++)
-      result[i] = this._handleValue(arr[i], result, i)
+      result[i] = this._handleValue(() => arr[i], result, i)
 
     return result
   }
@@ -95,14 +95,14 @@ class EncodingTransformer {
     const result = Object.create(null)
 
     for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (Reflect.has(obj, key)) {
         const resultKey = KEY_REQUIRE_ESCAPING_RE.test(key) ? `#${key}` : key
 
-        result[resultKey] = this._handleValue(obj[key], result, resultKey)
+        result[resultKey] = this._handleValue(() => obj[key], result, resultKey)
       }
     }
 
-    const { name } = obj.__proto__.constructor
+    const { name } = obj?.__proto__?.constructor
     if (name !== 'Object') {
       result.constructor = { name }
     }
@@ -133,11 +133,12 @@ class EncodingTransformer {
     return null
   }
 
-  _handleValue(val: any, parent: any, key: any) {
-    const type = typeof val
-    const isObject = type === 'object' && val !== null
-
+  _handleValue(getVal: () => any, parent: any, key: any) {
     try {
+      const val = getVal()
+      const type = typeof val
+      const isObject = type === 'object' && val !== null
+
       if (isObject) {
         const refMark = this._ensureCircularReference(val)
 
@@ -153,12 +154,20 @@ class EncodingTransformer {
 
       return val
     } catch (e) {
-      return null
+      try {
+        return this._handleValue(
+          () => (e instanceof Error ? e : new Error(e)),
+          parent,
+          key
+        )
+      } catch {
+        return null
+      }
     }
   }
 
   transform() {
-    const references = [this._handleValue(this.references, null, null)]
+    const references = [this._handleValue(() => this.references, null, null)]
 
     for (const descr of this.circularCandidatesDescrs) {
       if (descr.refIdx > 0) {
@@ -191,7 +200,7 @@ class DecodingTransformer {
     if ('constructor' in obj) {
       if (!obj.constructor || typeof obj.constructor.name !== 'string') {
         obj.constructor = {
-          name: 'Object'
+          name: 'Object',
         }
       }
     }
@@ -250,7 +259,7 @@ class DecodingTransformer {
 
       set(value) {
         this.val = value
-      }
+      },
     })
   }
 
@@ -303,7 +312,7 @@ const builtInTransforms = [
 
     fromSerializable() {
       return NaN
-    }
+    },
   },
 
   {
@@ -319,7 +328,7 @@ const builtInTransforms = [
 
     fromSerializable() {
       return void 0
-    }
+    },
   },
   {
     type: '[[Date]]',
@@ -337,7 +346,7 @@ const builtInTransforms = [
 
       date.setTime(val)
       return date
-    }
+    },
   },
   {
     type: '[[RegExp]]',
@@ -349,7 +358,7 @@ const builtInTransforms = [
     toSerializable(re: any) {
       const result = {
         src: re.source,
-        flags: ''
+        flags: '',
       }
 
       if (re.global) result.flags += 'g'
@@ -363,7 +372,7 @@ const builtInTransforms = [
 
     fromSerializable(val: any) {
       return new RegExp(val.src, val.flags)
-    }
+    },
   },
 
   {
@@ -377,7 +386,7 @@ const builtInTransforms = [
       return {
         name: err.name,
         message: err.message,
-        stack: err.stack
+        stack: err.stack,
       }
     },
 
@@ -387,7 +396,7 @@ const builtInTransforms = [
 
       err.stack = val.stack
       return err
-    }
+    },
   },
 
   {
@@ -414,7 +423,7 @@ const builtInTransforms = [
       }
 
       return val
-    }
+    },
   },
 
   {
@@ -435,7 +444,7 @@ const builtInTransforms = [
     toSerializable(arr: any) {
       return {
         ctorName: arr.constructor.name,
-        arr: arrSlice.call(arr)
+        arr: arrSlice.call(arr),
       }
     },
 
@@ -443,7 +452,7 @@ const builtInTransforms = [
       return typeof GLOBAL[val.ctorName] === 'function'
         ? new GLOBAL[val.ctorName](val.arr)
         : val.arr
-    }
+    },
   },
 
   {
@@ -480,7 +489,7 @@ const builtInTransforms = [
       for (let j = 0; j < val.length; j += 2) kvArr.push([val[i], val[i + 1]])
 
       return kvArr
-    }
+    },
   },
 
   {
@@ -511,8 +520,8 @@ const builtInTransforms = [
       }
 
       return val
-    }
-  }
+    },
+  },
 ]
 
 // Replicator

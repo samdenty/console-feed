@@ -11,7 +11,7 @@ import ErrorPanel from './message-parsers/Error'
 class ConsoleMessage extends React.PureComponent<MessageProps, any> {
   theme = (theme: Theme) => ({
     ...theme,
-    method: this.props.log.method
+    method: this.props.log.method,
   })
 
   render() {
@@ -44,10 +44,10 @@ class ConsoleMessage extends React.PureComponent<MessageProps, any> {
 
     // Error panel
     if (
-      log.data.every(message => typeof message === 'string') &&
+      log.data.every((message) => typeof message === 'string') &&
       log.method === 'error'
     ) {
-      return <ErrorPanel log={log} />
+      return <ErrorPanel error={log.data.join(' ')} />
     }
 
     // Normal inspector
@@ -63,7 +63,7 @@ class ConsoleMessage extends React.PureComponent<MessageProps, any> {
             `%c[console-feed] %cFailed to parse message! %clog was typeof ${typeof log}, but it should've been a log object`,
             'color: red',
             'color: orange',
-            'color: cyan'
+            'color: cyan',
           ]}
         />
       )
@@ -74,7 +74,7 @@ class ConsoleMessage extends React.PureComponent<MessageProps, any> {
             '%c[console-feed] %cFailed to parse message! %clog.data was not an array!',
             'color: red',
             'color: orange',
-            'color: cyan'
+            'color: cyan',
           ]}
         />
       )

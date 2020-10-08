@@ -7,9 +7,9 @@ import { Root } from './elements'
 import Message from './Message'
 
 // https://stackoverflow.com/a/48254637/4089357
-const customStringify = function(v) {
+const customStringify = function (v) {
   const cache = new Set()
-  return JSON.stringify(v, function(key, value) {
+  return JSON.stringify(v, function (key, value) {
     if (typeof value === 'object' && value !== null) {
       if (cache.has(value)) {
         // Circular reference found, discard key
@@ -27,21 +27,29 @@ class Console extends React.PureComponent<Props, any> {
     variant: this.props.variant || 'light',
     styles: {
       ...Styles(this.props),
-      ...this.props.styles
-    }
+      ...this.props.styles,
+    },
   })
 
   render() {
     let { filter = [], logs = [], searchKeywords, logFilter } = this.props
 
-    const regex = new RegExp(searchKeywords)
+    if (searchKeywords) {
+      const regex = new RegExp(searchKeywords)
 
-    const filterFun = logFilter
-      ? logFilter
-      : log => regex.test(customStringify(log))
+      const filterFun = logFilter
+        ? logFilter
+        : (log) => {
+            try {
+              return regex.test(customStringify(log))
+            } catch (e) {
+              return true
+            }
+          }
 
-    // @ts-ignore
-    logs = logs.filter(filterFun)
+      // @ts-ignore
+      logs = logs.filter(filterFun)
+    }
 
     // @ts-ignore
     logs = logs.reduce((acc, log) => {

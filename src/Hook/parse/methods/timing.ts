@@ -7,18 +7,18 @@ export function start(label: string) {
 }
 
 export function stop(label: string): any {
-  const timing = state.timings[label]
+  const timing = state?.timings[label]
   if (timing && !timing.end) {
     dispatch(timeEnd(label))
     const { time } = state.timings[label]
 
     return {
       method: 'log',
-      data: [`${label}: ${time}ms`]
+      data: [`${label}: ${time}ms`],
     }
   }
   return {
     method: 'warn',
-    data: [`Timer '${label}' does not exist`]
+    data: [`Timer '${label}' does not exist`],
   }
 }

@@ -7,10 +7,11 @@ import {
   ObjectName,
   ObjectRootLabel,
   ObjectValue,
-  ObjectPreview
+  ObjectPreview,
 } from 'react-inspector'
 
 import { Context } from '../../definitions/Component'
+import ErrorPanel from '../message-parsers/Error'
 import { Constructor, HTML, Root, Table } from './elements'
 
 interface Props {
@@ -62,7 +63,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
 
   getCustomNode(data: any) {
     const { styles } = this.props.theme
-    const constructor = data && data.constructor ? data.constructor.name : null
+    const constructor = data?.constructor?.name
 
     if (constructor === 'Function')
       return (
@@ -73,6 +74,8 @@ class CustomInspector extends React.PureComponent<Props, any> {
           {`}`}
         </span>
       )
+
+    if (data instanceof Error) return <ErrorPanel error={data.stack} />
 
     if (constructor === 'Promise')
       return (

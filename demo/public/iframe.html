@@ -3,35 +3,61 @@
   <script>
     setTimeout(() => {
       console.log({
-        constructor: undefined
+        constructor: undefined,
       })
 
-      var map = new Map();
-      map.set({ name: 'something' }, "value associated with obj")
-      map.set(function() {console.log("hello world")}, "a function")
-      map.set('hello', "world")
+      var map = new Map()
+      map.set({ name: 'something' }, 'value associated with obj')
+      map.set(function () {
+        console.log('hello world')
+      }, 'a function')
+      map.set('hello', 'world')
       map.set('nested', { val1: 'val1', val2: 'val2' })
 
       console.log(map)
 
       console.count('Counting numbers')
       console.time('Render time')
-      console.log(`Console %cformatting https://example.com/linkified`, 'color: red')
+      console.log(
+        `Console %cformatting https://example.com/linkified`,
+        'color: red'
+      )
 
       console.log('Window', window)
-      console.log('Functions', function a() { console.log(1) }, [function myFunc() { }])
+      console.log(
+        'Functions',
+        function a() {
+          console.log(1)
+        },
+        [function myFunc() {}]
+      )
 
       console.table([1, 2, 3])
 
-      console.log(1, 2, 'Mixed types', { an: 'object' }, [[[['Recursive types', new Promise(() => { })]]]], 'https://t.com')
-      console.log('Promise object', new Promise(() => { }))
-      console.log('Funky numbers', 2.998e88, Infinity, -Infinity, NaN, -0, { a: -0 })
+      console.log(
+        1,
+        2,
+        'Mixed types',
+        { an: 'object' },
+        [[[['Recursive types', new Promise(() => {})]]]],
+        'https://t.com'
+      )
+      console.log('Promise object', new Promise(() => {}))
+      console.log('Funky numbers', 2.998e88, Infinity, -Infinity, NaN, -0, {
+        a: -0,
+      })
+
+      console.log('Properties that throw errors', {
+        get prop() {
+          throw new Error('hmm')
+        },
+      })
 
       console.log('HTML element', document.body)
 
       console.log('Nested', {
-        promise: new Promise(() => { }),
-        html: document.body
+        promise: new Promise(() => {}),
+        html: document.body,
       })
 
       console.log('Falsey types', false, '', 0, null, undefined)
@@ -45,7 +71,6 @@
         console.error(e)
       }
       console.timeEnd('Render time')
-    }, 1500)//*/
+    }, 1500)
   </script>
-  <input onkeydown="if(event.keyCode == 13){eval(this.value)}"></input>
 </body>
