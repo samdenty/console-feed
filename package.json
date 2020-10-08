@@ -19,13 +19,13 @@
     "@emotion/styled": "^10.0.12",
     "emotion-theming": "^10.0.10",
     "linkifyjs": "^2.1.6",
-    "react-inspector": "^3.0.2"
+    "react-inspector": "^5.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.9",
     "@types/jest": "^22.2.3",
-    "@types/react": "16.0.38",
-    "@types/react-dom": "16.0.4",
+    "@types/react": "^16.9.50",
+    "@types/react-dom": "^16.9.8",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "husky": "^0.14.3",
@@ -35,8 +35,8 @@
     "nwb": "0.21.x",
     "prettier": "^1.13.7",
     "pretty-quick": "^1.6.0",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "ts-jest": "^22.4.2",
     "ts-loader": "^3.5.0",
     "typescript": "3.7"
