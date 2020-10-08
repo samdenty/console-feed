@@ -8,7 +8,11 @@ import Formatted from './message-parsers/Formatted'
 import ObjectTree from './message-parsers/Object'
 import ErrorPanel from './message-parsers/Error'
 
-class ConsoleMessage extends React.PureComponent<MessageProps, any> {
+class ConsoleMessage extends React.Component<MessageProps, any> {
+  shouldComponentUpdate(nextProps) {
+    return this.props.log.amount !== nextProps.log.amount
+  }
+
   theme = (theme: Theme) => ({
     ...theme,
     method: this.props.log.method,
