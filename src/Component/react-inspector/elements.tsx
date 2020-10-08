@@ -6,17 +6,16 @@ import styled from '../theme'
 export const Root = styled('div')({
   display: 'inline-block',
   wordBreak: 'break-all',
-  '&::after': {
-    content: `' '`,
-    display: 'inline-block'
+  '& details': {
+    display: 'inline',
   },
   '& > li': {
     backgroundColor: 'transparent !important',
-    display: 'inline-block'
+    display: 'inline-block',
   },
   '& ol:empty': {
-    paddingLeft: '0 !important'
-  }
+    paddingLeft: '0 !important',
+  },
 })
 
 /**
@@ -25,8 +24,8 @@ export const Root = styled('div')({
 export const Table = styled('span')({
   '& > li': {
     display: 'inline-block',
-    marginTop: 5
-  }
+    marginTop: 5,
+  },
 })
 
 /**
@@ -36,8 +35,8 @@ export const HTML = styled('span')({
   display: 'inline-block',
   '& div:hover': {
     backgroundColor: 'rgba(255, 220, 158, .05) !important',
-    borderRadius: '2px'
-  }
+    borderRadius: '2px',
+  },
 })
 
 /**
@@ -45,6 +44,6 @@ export const HTML = styled('span')({
  */
 export const Constructor = styled('span')({
   '& > span > span:nth-child(1)': {
-    opacity: 0.6
-  }
+    opacity: 0.6,
+  },
 })

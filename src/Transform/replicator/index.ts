@@ -77,7 +77,7 @@ class EncodingTransformer {
       this._createCircularCandidate(val, parent, key)
 
     result[TRANSFORMED_TYPE_KEY] = transform.type
-    result.data = this._handleValue(serializableVal, parent, key)
+    result.data = this._handleValue(() => serializableVal, parent, key)
 
     return result
   }
@@ -86,7 +86,7 @@ class EncodingTransformer {
     const result = [] as any
 
     for (let i = 0; i < arr.length; i++)
-      result[i] = this._handleValue(arr[i], result, i)
+      result[i] = this._handleValue(() => arr[i], result, i)
 
     return result
   }
@@ -98,7 +98,7 @@ class EncodingTransformer {
       if (Reflect.has(obj, key)) {
         const resultKey = KEY_REQUIRE_ESCAPING_RE.test(key) ? `#${key}` : key
 
-        result[resultKey] = this._handleValue(obj[key], result, resultKey)
+        result[resultKey] = this._handleValue(() => obj[key], result, resultKey)
       }
     }
 
@@ -133,11 +133,12 @@ class EncodingTransformer {
     return null
   }
 
-  _handleValue(val: any, parent: any, key: any) {
-    const type = typeof val
-    const isObject = type === 'object' && val !== null
-
+  _handleValue(getVal: () => any, parent: any, key: any) {
     try {
+      const val = getVal()
+      const type = typeof val
+      const isObject = type === 'object' && val !== null
+
       if (isObject) {
         const refMark = this._ensureCircularReference(val)
 
@@ -153,12 +154,20 @@ class EncodingTransformer {
 
       return val
     } catch (e) {
-      return null
+      try {
+        return this._handleValue(
+          () => (e instanceof Error ? e : new Error(e)),
+          parent,
+          key
+        )
+      } catch {
+        return null
+      }
     }
   }
 
   transform() {
-    const references = [this._handleValue(this.references, null, null)]
+    const references = [this._handleValue(() => this.references, null, null)]
 
     for (const descr of this.circularCandidatesDescrs) {
       if (descr.refIdx > 0) {
