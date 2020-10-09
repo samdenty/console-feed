@@ -102,8 +102,8 @@ class EncodingTransformer {
       }
     }
 
-    const { name } = obj?.__proto__?.constructor
-    if (name !== 'Object') {
+    const name = obj?.__proto__?.constructor?.name
+    if (name && name !== 'Object') {
       result.constructor = { name }
     }
 
