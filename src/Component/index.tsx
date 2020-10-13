@@ -37,7 +37,7 @@ class Console extends React.PureComponent<Props, any> {
       logs = [],
       searchKeywords,
       logFilter,
-      logGrouping,
+      logGrouping = true,
     } = this.props
 
     if (searchKeywords) {
