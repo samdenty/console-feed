@@ -75,7 +75,9 @@ class CustomInspector extends React.PureComponent<Props, any> {
         </span>
       )
 
-    if (data instanceof Error) return <ErrorPanel error={data.stack} />
+    if (data instanceof Error && typeof data.stack === 'string') {
+      return <ErrorPanel error={data.stack} />
+    }
 
     if (constructor === 'Promise')
       return (
