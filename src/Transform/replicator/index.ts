@@ -383,6 +383,10 @@ const builtInTransforms = [
     },
 
     toSerializable(err: any) {
+      if (!err.stack) {
+        ;(Error as any).captureStackTrace?.(err)
+      }
+
       return {
         name: err.name,
         message: err.message,
