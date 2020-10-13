@@ -32,7 +32,13 @@ class Console extends React.PureComponent<Props, any> {
   })
 
   render() {
-    let { filter = [], logs = [], searchKeywords, logFilter } = this.props
+    let {
+      filter = [],
+      logs = [],
+      searchKeywords,
+      logFilter,
+      logGrouping = true,
+    } = this.props
 
     if (searchKeywords) {
       const regex = new RegExp(searchKeywords)
@@ -51,25 +57,28 @@ class Console extends React.PureComponent<Props, any> {
       logs = logs.filter(filterFun)
     }
 
-    // @ts-ignore
-    logs = logs.reduce((acc, log) => {
-      const prevLog = acc[acc.length - 1]
+    if (logGrouping) {
+      // @ts-ignore
+      logs = logs.reduce((acc, log) => {
+        const prevLog = acc[acc.length - 1]
 
-      if (
-        prevLog &&
-        prevLog.amount &&
-        prevLog.method === log.method &&
-        prevLog.data.every((value, i) => log.data[i] === value)
-      ) {
-        prevLog.amount += 1
+        if (
+          prevLog &&
+          prevLog.amount &&
+          prevLog.method === log.method &&
+          prevLog.data.length === log.data.length &&
+          prevLog.data.every((value, i) => log.data[i] === value)
+        ) {
+          prevLog.amount += 1
+
+          return acc
+        }
+
+        acc.push({ ...log, amount: 1 })
 
         return acc
-      }
-
-      acc.push({ ...log, amount: 1 })
-
-      return acc
-    }, [])
+      }, [])
+    }
 
     return (
       <ThemeProvider theme={this.theme}>

@@ -25,6 +25,7 @@ export interface Props {
   filter?: Methods[]
   searchKeywords?: string
   logFilter?: Function
+  logGrouping?: Boolean
 }
 
 export interface MessageProps {
