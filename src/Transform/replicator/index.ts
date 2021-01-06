@@ -95,11 +95,11 @@ class EncodingTransformer {
     const result = Object.create(null)
 
     for (const key in obj) {
-      if (Reflect.has(obj, key)) {
+      //if (Reflect.has(obj, key)) {
         const resultKey = KEY_REQUIRE_ESCAPING_RE.test(key) ? `#${key}` : key
 
         result[resultKey] = this._handleValue(() => obj[key], result, resultKey)
-      }
+      //}
     }
 
     const name = obj?.__proto__?.constructor?.name
