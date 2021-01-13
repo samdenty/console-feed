@@ -1,6 +1,7 @@
 import { Payload } from './Payload'
 import { Styles } from './Styles'
 import { Methods } from './Methods'
+import type { Options } from 'linkifyjs'
 
 export type Variants = 'light' | 'dark'
 
@@ -26,8 +27,10 @@ export interface Props {
   searchKeywords?: string
   logFilter?: Function
   logGrouping?: Boolean
+  linkifyOptions?: Options
 }
 
 export interface MessageProps {
   log: Message
+  linkifyOptions?: Options
 }

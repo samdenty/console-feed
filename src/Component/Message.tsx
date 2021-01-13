@@ -56,7 +56,13 @@ class ConsoleMessage extends React.Component<MessageProps, any> {
 
     // Normal inspector
     const quoted = typeof log.data[0] !== 'string'
-    return <ObjectTree log={log} quoted={quoted} />
+    return (
+      <ObjectTree
+        log={log}
+        quoted={quoted}
+        linkifyOptions={this.props.linkifyOptions}
+      />
+    )
   }
 
   typeCheck(log: any) {
