@@ -1,6 +1,6 @@
 {
   "name": "console-feed",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
@@ -24,7 +24,6 @@
   "devDependencies": {
     "@types/enzyme": "^3.1.9",
     "@types/jest": "^22.2.3",
-    "@types/linkifyjs": "2.1.3",
     "@types/react": "^16.9.50",
     "@types/react-dom": "^16.9.8",
     "enzyme": "^3.3.0",
