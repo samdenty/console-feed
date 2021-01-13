@@ -4,6 +4,7 @@ import { withTheme } from 'emotion-theming'
 import { Root } from '../react-inspector/elements'
 
 import * as Linkify from 'linkifyjs/react'
+import type { Options } from 'linkifyjs'
 import { Message } from '../../definitions/Component'
 import Inspector from '../react-inspector'
 
@@ -11,6 +12,7 @@ interface Props {
   log: Message
   quoted: boolean
   theme?: Theme
+  linkifyOptions?: Options
 }
 
 class ObjectTree extends React.PureComponent<Props, any> {
@@ -27,8 +29,9 @@ class ObjectTree extends React.PureComponent<Props, any> {
               <span>"</span>
               <span
                 style={{
-                  color: theme.styles.OBJECT_VALUE_STRING_COLOR
-                }}>
+                  color: theme.styles.OBJECT_VALUE_STRING_COLOR,
+                }}
+              >
                 {message}
               </span>
               <span>" </span>
@@ -37,7 +40,7 @@ class ObjectTree extends React.PureComponent<Props, any> {
 
         return (
           <Root data-type="string" key={i}>
-            <Linkify>{string}</Linkify>
+            <Linkify options={this.props.linkifyOptions}>{string}</Linkify>
           </Root>
         )
       }

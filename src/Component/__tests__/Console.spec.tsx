@@ -10,8 +10,8 @@ it('renders', () => {
         {
           method: 'log',
           id: 'id',
-          data: ['my-log']
-        }
+          data: ['my-log'],
+        },
       ]}
     />
   )
@@ -26,8 +26,8 @@ it('formats messages', () => {
         {
           method: 'log',
           id: 'id',
-          data: ['%ctest', 'color: red']
-        }
+          data: ['%ctest', 'color: red'],
+        },
       ]}
     />
   )
@@ -42,11 +42,50 @@ it('displays object names', () => {
         {
           method: 'log',
           id: 'id',
-          data: [new class MyObject {}()]
-        }
+          data: [new (class MyObject {})()],
+        },
       ]}
     />
   )
 
   expect(result.html()).toContain('MyObject {}')
+})
+
+it('linkify object', () => {
+  const result = shallow(
+    <Console
+      logs={[
+        {
+          method: 'log',
+          id: 'id',
+          data: ['hello https://example.com'],
+        },
+      ]}
+    />
+  )
+
+  expect(result.html()).toContain(
+    '<a href="https://example.com" class="linkified" target="_blank">https://example.com</a>'
+  )
+})
+
+it('linkify object and pass options', () => {
+  const result = shallow(
+    <Console
+      logs={[
+        {
+          method: 'log',
+          id: 'id',
+          data: ['hello https://example.com'],
+        },
+      ]}
+      linkifyOptions={{
+        attributes: (href, type) => (type === 'url' ? { rel: 'nofollow' } : {}),
+      }}
+    />
+  )
+
+  expect(result.html()).toContain(
+    '<a href="https://example.com" class="linkified" target="_blank" rel="nofollow">https://example.com</a>'
+  )
 })
