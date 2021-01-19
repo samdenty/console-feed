@@ -26,13 +26,34 @@ it('formats messages', () => {
         {
           method: 'log',
           id: 'id',
-          data: ['%ctest', 'color: red'],
+          data: ['%ctest', 'color: red', 'foo', [2]],
         },
       ]}
     />
   )
 
-  expect(result.html()).toContain('<span style="color: red;">test</span>')
+  const html = result.html()
+  expect(html).toContain('<span style="color: red;">test</span>')
+  expect(html).toContain('foo')
+  expect(html).toContain('[<span style="color:rgb(28, 0, 207)">2</span>]')
+})
+
+it('skips non-existent substitution', () => {
+  const result = shallow(
+    <Console
+      logs={[
+        {
+          method: 'log',
+          id: 'id',
+          data: ['%u', 'foo'],
+        },
+      ]}
+    />
+  )
+
+  const html = result.html()
+  expect(html).toContain('%u')
+  expect(html).toContain('foo')
 })
 
 it('displays object names', () => {
@@ -48,7 +69,9 @@ it('displays object names', () => {
     />
   )
 
-  expect(result.html()).toContain('MyObject {}')
+  expect(result.html()).toContain(
+    '<span style="font-style:italic">MyObject </span><span style="font-style:italic">{}</span>'
+  )
 })
 
 it('linkify object', () => {
