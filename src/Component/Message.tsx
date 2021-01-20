@@ -8,6 +8,9 @@ import Formatted from './message-parsers/Formatted'
 import ObjectTree from './message-parsers/Object'
 import ErrorPanel from './message-parsers/Error'
 
+// https://developer.mozilla.org/en-US/docs/Web/API/console#Using_string_substitutions
+const reSubstitutions = /(%[coOs])|(%(([0-9]*[.])?[0-9]+)?[dif])/g
+
 class ConsoleMessage extends React.Component<MessageProps, any> {
   shouldComponentUpdate(nextProps) {
     return this.props.log.amount !== nextProps.log.amount
@@ -38,12 +41,23 @@ class ConsoleMessage extends React.Component<MessageProps, any> {
     if (error) return error
 
     // Chrome formatting
-    if (
-      log.data.length > 0 &&
-      typeof log.data[0] === 'string' &&
-      log.data[0].indexOf('%') > -1
-    ) {
-      return <Formatted data={log.data} />
+    if (log.data.length > 0 && typeof log.data[0] === 'string') {
+      const matchLength = log.data[0].match(reSubstitutions)?.length
+      if (matchLength) {
+        const restData = log.data.slice(1 + matchLength)
+        return (
+          <>
+            <Formatted data={log.data} />
+            {restData.length > 0 && (
+              <ObjectTree
+                quoted={false}
+                log={{ ...log, data: restData }}
+                linkifyOptions={this.props.linkifyOptions}
+              />
+            )}
+          </>
+        )
+      }
     }
 
     // Error panel
