@@ -3,7 +3,7 @@ import { Theme } from '../../definitions/Component'
 import { withTheme } from 'emotion-theming'
 import { Root } from '../react-inspector/elements'
 
-import * as Linkify from 'linkifyjs/react'
+import Linkify from 'linkifyjs/react'
 import type { Options } from 'linkifyjs'
 import { Message } from '../../definitions/Component'
 import Inspector from '../react-inspector'
