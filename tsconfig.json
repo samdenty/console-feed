@@ -12,6 +12,7 @@
     "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "types": ["jest"],
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }
