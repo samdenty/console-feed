@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as Linkify from 'linkifyjs/react'
+import Linkify from 'linkifyjs/react'
 
 function splitMessage(message: string): string {
   const breakIndex = message.indexOf('\n')

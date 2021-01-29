@@ -11,6 +11,8 @@
     "moduleResolution": "node",
     "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
-    "types": ["jest"]
+    "types": ["jest"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }

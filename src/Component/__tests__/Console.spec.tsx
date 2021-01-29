@@ -112,3 +112,25 @@ it('linkify object and pass options', () => {
     '<a href="https://example.com" class="linkified" target="_blank" rel="nofollow">https://example.com</a>'
   )
 })
+
+it('allows all types methods', () => {
+  return (
+    <Console
+      logs={[
+        { method: 'log', id: 'id', data: [] },
+        { method: 'debug', id: 'id', data: [] },
+        { method: 'info', id: 'id', data: [] },
+        { method: 'warn', id: 'id', data: [] },
+        { method: 'error', id: 'id', data: [] },
+        { method: 'table', id: 'id', data: [] },
+        { method: 'clear', id: 'id', data: [] },
+        { method: 'time', id: 'id', data: [] },
+        { method: 'timeEnd', id: 'id', data: [] },
+        { method: 'count', id: 'id', data: [] },
+        { method: 'assert', id: 'id', data: [] },
+        { method: 'result', id: 'id', data: [] },
+        { method: 'command', id: 'id', data: [] },
+      ]}
+    />
+  )
+})

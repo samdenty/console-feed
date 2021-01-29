@@ -49,11 +49,11 @@ import { Hook, Console, Decode } from 'console-feed'
 
 class App extends React.Component {
   state = {
-    logs: []
+    logs: [],
   }
 
   componentDidMount() {
-    Hook(window.console, log => {
+    Hook(window.console, (log) => {
       this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }))
     })
 
@@ -81,7 +81,11 @@ const LogsContainer = () => {
 
   // run once!
   useEffect(() => {
-    Hook(window.console, log => setLogs(currLogs => [...currLogs, log]), false)
+    Hook(
+      window.console,
+      (log) => setLogs((currLogs) => [...currLogs, log]),
+      false
+    )
     return () => Unhook(window.console)
   }, [])
 
@@ -124,12 +128,16 @@ Each log has a method assigned to it. The method is used to determine the style 
 ```ts
 type Methods =
   | 'log'
+  | 'debug'
+  | 'info'
   | 'warn'
   | 'error'
-  | 'info'
-  | 'debug'
-  | 'command'
-  | 'result'
+  | 'table'
+  | 'clear'
+  | 'time'
+  | 'timeEnd'
+  | 'count'
+  | 'assert'
 ```
 
 ## `Log` object
@@ -158,7 +166,7 @@ If the `Hook` function and the `<Console />` component are on the same origin, y
 ```js
 Hook(
   window.console,
-  log => {
+  (log) => {
     this.setState(({ logs }) => ({ logs: [...logs, log] }))
   },
   false
