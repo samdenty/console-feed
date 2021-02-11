@@ -81,11 +81,9 @@ const LogsContainer = () => {
 
   // run once!
   useEffect(() => {
-    Hook(
-      window.console,
-      (log) => setLogs((currLogs) => [...currLogs, log]),
-      false
-    )
+    Hook(window.console, (log) => setLogs((currLogs) => [...currLogs, log]), {
+      encode: false,
+    })
     return () => Unhook(window.console)
   }, [])
 
@@ -169,7 +167,7 @@ Hook(
   (log) => {
     this.setState(({ logs }) => ({ logs: [...logs, log] }))
   },
-  false
+  { encode: false }
 )
 ```
 

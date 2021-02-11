@@ -45,6 +45,26 @@ Array [
 ]
 `;
 
+exports[`disables encoding with a flag (old-style) 1`] = `
+Array [
+  Object {
+    "document": <html>
+      <head />
+      <body />
+    </html>,
+    "function": [Function],
+    "nested": Array [
+      Array [
+        Array [
+          Promise {},
+        ],
+      ],
+    ],
+    "recursive": [Circular],
+  },
+]
+`;
+
 exports[`disables encoding with a flag 1`] = `
 Array [
   Object {
