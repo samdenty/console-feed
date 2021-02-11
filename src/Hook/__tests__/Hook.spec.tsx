@@ -4,7 +4,7 @@ import Log from './Log'
 import { Decode } from '../..'
 
 it('hooks the console', () => {
-  Hook(console, log => {
+  Hook(console, (log) => {
     console.logs.push(log)
   })
   expect(console.feed).toBeTruthy()
@@ -44,7 +44,7 @@ it('correctly encodes nested values', async () => {
     function: function myFunc() {},
     document: document.documentElement,
     nested: [[[new Promise(() => {})]]],
-    recursive: null
+    recursive: null,
   }
   input.recursive = input
 
@@ -58,7 +58,28 @@ it('correctly encodes nested values', async () => {
 it('disables encoding with a flag', async () => {
   Hook(
     console,
-    log => {
+    (log) => {
+      console.logs.push(log)
+    },
+    { encode: false }
+  )
+  const input = {
+    function: function myFunc() {},
+    document: document.documentElement,
+    nested: [[[new Promise(() => {})]]],
+    recursive: null,
+  }
+  input.recursive = input
+
+  const result: any = await Log('debug', input)
+
+  expect(result.data).toMatchSnapshot()
+})
+
+it('disables encoding with a flag (old-style)', async () => {
+  Hook(
+    console,
+    (log) => {
       console.logs.push(log)
     },
     false
@@ -67,11 +88,33 @@ it('disables encoding with a flag', async () => {
     function: function myFunc() {},
     document: document.documentElement,
     nested: [[[new Promise(() => {})]]],
-    recursive: null
+    recursive: null,
   }
   input.recursive = input
 
   const result: any = await Log('debug', input)
 
   expect(result.data).toMatchSnapshot()
+})
+
+it('disables async with a flag', async () => {
+  Hook(
+    console,
+    (log) => {
+      console.logs.push(log)
+    },
+    { async: false }
+  )
+
+  let arr = []
+  console.log(arr)
+  arr.push(100)
+  console.log(arr)
+
+  const decoded1 = Decode(console.logs[console.logs.length - 2])
+  const decoded2 = Decode(console.logs[console.logs.length - 1])
+  expect(decoded1.method).toEqual('log')
+  expect(decoded1.data).toEqual([[]])
+  expect(decoded2.method).toEqual('log')
+  expect(decoded2.data).toEqual([[100]])
 })
