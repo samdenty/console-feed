@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { MessageProps, Theme } from '../definitions/Component'
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/react'
 
 import { Message, Icon, Content, AmountIcon } from './elements'
 
