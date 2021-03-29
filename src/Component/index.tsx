@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/react'
 import { Props } from '../definitions/Component'
+import Methods from '../definitions/Methods'
 import Styles from './theme/default'
 
 import { Root } from './elements'
@@ -29,6 +30,7 @@ class Console extends React.PureComponent<Props, any> {
       ...Styles(this.props),
       ...this.props.styles,
     },
+    method: null,
   })
 
   render() {

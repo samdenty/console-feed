@@ -15,9 +15,8 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.12",
-    "emotion-theming": "^10.0.10",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "linkifyjs": "^2.1.6",
     "react-inspector": "^5.1.0"
   },

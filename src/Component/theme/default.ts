@@ -58,7 +58,7 @@ const styles = (props: Props) =>
      * Other
      */
     ARROW_FONT_SIZE: 10,
-    OBJECT_VALUE_STRING_COLOR: 'rgb(233,63,59)'
+    OBJECT_VALUE_STRING_COLOR: 'rgb(233,63,59)',
   } as Styles)
 
 export default styles
