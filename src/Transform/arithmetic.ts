@@ -1,7 +1,7 @@
 enum Arithmetic {
   infinity,
   minusInfinity,
-  minusZero
+  minusZero,
 }
 
 function isMinusZero(value) {
@@ -10,6 +10,7 @@ function isMinusZero(value) {
 
 export default {
   type: 'Arithmetic',
+  lookup: Number,
   shouldTransform(type: any, value: any) {
     return (
       type === 'number' &&
@@ -20,8 +21,8 @@ export default {
     return value === Infinity
       ? Arithmetic.infinity
       : value === -Infinity
-        ? Arithmetic.minusInfinity
-        : Arithmetic.minusZero
+      ? Arithmetic.minusInfinity
+      : Arithmetic.minusZero
   },
   fromSerializable(data: Arithmetic) {
     if (data === Arithmetic.infinity) return Infinity
@@ -29,5 +30,5 @@ export default {
     if (data === Arithmetic.minusZero) return -0
 
     return data
-  }
+  },
 }
