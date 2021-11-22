@@ -1,5 +1,8 @@
 // Sandbox HTML elements
-const sandbox = document.implementation.createHTMLDocument('sandbox')
+let sandbox: Document
+function getSandbox() {
+  return (sandbox ||= document.implementation.createHTMLDocument('sandbox'))
+}
 
 interface Storage {
   tagName: string
@@ -34,12 +37,12 @@ export default {
     return {
       tagName: element.tagName.toLowerCase(),
       attributes: objectifyAttributes(element),
-      innerHTML: element.innerHTML
+      innerHTML: element.innerHTML,
     } as Storage
   },
   fromSerializable(data: Storage) {
     try {
-      const element = sandbox.createElement(data.tagName) as HTMLElement
+      const element = getSandbox().createElement(data.tagName)
       element.innerHTML = data.innerHTML
       for (let attribute of Object.keys(data.attributes)) {
         try {
@@ -50,5 +53,5 @@ export default {
     } catch (e) {
       return data
     }
-  }
+  },
 }
