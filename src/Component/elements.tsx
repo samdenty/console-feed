@@ -40,11 +40,11 @@ export const Message = styled('div')(({ theme: { styles, method } }) => ({
     boxSizing: 'border-box',
     fontFamily: styles.BASE_FONT_FAMILY,
     whiteSpace: 'pre-wrap',
-    fontSize: styles.BASE_FONT_SIZE
+    fontSize: styles.BASE_FONT_SIZE,
   },
   '& a': {
-    color: 'rgb(177, 177, 177)'
-  }
+    color: styles.LOG_LINK_COLOR,
+  },
 }))
 
 /**
@@ -56,7 +56,7 @@ export const Icon = styled('div')(({ theme: { styles, method } }) => ({
   backgroundImage: Themed('icon', method, styles),
   backgroundRepeat: 'no-repeat',
   backgroundSize: styles.LOG_ICON_BACKGROUND_SIZE,
-  backgroundPosition: '50% 50%'
+  backgroundPosition: '50% 50%',
 }))
 
 /**
@@ -73,7 +73,7 @@ export const AmountIcon = styled('div')(({ theme: { styles, method } }) => ({
   color: Themed('amount_color', method, styles),
   borderRadius: '8px',
   minWidth: '18px',
-  textAlign: 'center'
+  textAlign: 'center',
 }))
 
 /**
@@ -86,5 +86,5 @@ export const Content = styled('div')(({ theme: { styles } }) => ({
   marginLeft: 15,
   minHeight: 18,
   flex: 'auto',
-  width: 'calc(100% - 15px)'
+  width: 'calc(100% - 15px)',
 }))

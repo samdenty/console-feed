@@ -9,6 +9,7 @@ document.body.appendChild(iframe)
 
 class App extends React.Component {
   state = {
+    isDarkMode: true,
     logs: [
       {
         method: 'result',
@@ -42,16 +43,33 @@ class App extends React.Component {
   }
 
   render() {
+    const { isDarkMode } = this.state
     return (
-      <div style={{ backgroundColor: '#242424' }}>
-        <div>
+      <div
+        style={{
+          margin: '1em 0',
+          color: isDarkMode ? '#fff' : '#242424',
+          backgroundColor: isDarkMode ? '#242424' : '#fff',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', padding: '5px' }}>
           <button onClick={this.switch.bind(this)}>Show only logs</button>
           <input placeholder="search" onChange={this.handleKeywordsChange} />
+          <label>
+            <input
+              type="checkbox"
+              checked={isDarkMode}
+              onChange={(e) => {
+                this.setState({ isDarkMode: e.target.checked })
+              }}
+            />
+            Toggle dark mode
+          </label>
         </div>
 
         <Console
           logs={this.state.logs}
-          variant="dark"
+          variant={isDarkMode ? 'dark' : 'light'}
           filter={this.state.filter}
           searchKeywords={this.state.searchKeywords}
         />
