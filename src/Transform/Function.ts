@@ -9,6 +9,7 @@ interface Storage {
  */
 export default {
   type: 'Function',
+  lookup: Function,
   shouldTransform(type: any, obj: any) {
     return typeof obj === 'function'
   },
@@ -23,31 +24,31 @@ export default {
     return {
       name: func.name,
       body,
-      proto: Object.getPrototypeOf(func).constructor.name
+      proto: Object.getPrototypeOf(func).constructor.name,
     }
   },
   fromSerializable(data: Storage) {
     try {
-      const tempFunc = function() {}
+      const tempFunc = function () {}
 
       if (typeof data.name === 'string') {
         Object.defineProperty(tempFunc, 'name', {
           value: data.name,
-          writable: false
+          writable: false,
         })
       }
 
       if (typeof data.body === 'string') {
         Object.defineProperty(tempFunc, 'body', {
           value: data.body,
-          writable: false
+          writable: false,
         })
       }
 
       if (typeof data.proto === 'string') {
         // @ts-ignore
         tempFunc.constructor = {
-          name: data.proto
+          name: data.proto,
         }
       }
 
@@ -55,5 +56,5 @@ export default {
     } catch (e) {
       return data
     }
-  }
+  },
 }
