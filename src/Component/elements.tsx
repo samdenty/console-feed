@@ -77,6 +77,16 @@ export const AmountIcon = styled('div')(({ theme: { styles, method } }) => ({
 }))
 
 /**
+ * timestamp
+ */
+ export const Timestamp = styled('div')(({ theme: { styles, method } }) => ({
+  padding: '3px 0px 0px 5px',
+  width: '110px',
+  height: styles.LOG_ICON_HEIGHT,
+  color: 'dimgray',
+}))
+
+/**
  * console-content
  */
 export const Content = styled('div')(({ theme: { styles } }) => ({
