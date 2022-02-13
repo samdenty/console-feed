@@ -2,7 +2,13 @@ import { Action } from '../../definitions/Store'
 
 export const initialState = {
   timings: {},
-  count: {}
+  count: {},
+}
+
+const now = () => {
+  return typeof performance !== 'undefined' && performance.now
+    ? performance.now()
+    : Date.now()
 }
 
 export default (state = initialState, action: Action) => {
@@ -14,8 +20,8 @@ export default (state = initialState, action: Action) => {
         ...state,
         count: {
           ...state.count,
-          [action.name]: times + 1
-        }
+          [action.name]: times + 1,
+        },
       }
     }
 
@@ -25,16 +31,16 @@ export default (state = initialState, action: Action) => {
         timings: {
           ...state.timings,
           [action.name]: {
-            start: performance.now() || +new Date()
-          }
-        }
+            start: now(),
+          },
+        },
       }
     }
 
     case 'TIME_END': {
       const timing = state.timings[action.name]
 
-      const end = performance.now() || +new Date()
+      const end = now()
       const { start } = timing
 
       const time = end - start
@@ -46,9 +52,9 @@ export default (state = initialState, action: Action) => {
           [action.name]: {
             ...timing,
             end,
-            time
-          }
-        }
+            time,
+          },
+        },
       }
     }
 
