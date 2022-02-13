@@ -2,9 +2,12 @@ import { chromeDark, chromeLight } from 'react-inspector'
 import { Styles } from '../../definitions/Styles'
 import { Props } from '../../definitions/Component'
 
-const styles = (props: Props) =>
-  ({
-    ...((props.variant || 'light') === 'light' ? chromeLight : chromeDark),
+const styles = (props: Props) => {
+  const isLight = (props.variant || 'light') === 'light'
+  const chrome = isLight ? chromeLight : chromeDark
+
+  return {
+    ...chrome,
     /**
      * General
      */
@@ -13,29 +16,30 @@ const styles = (props: Props) =>
     /**
      * Default log styles
      */
-    LOG_COLOR: 'rgba(255,255,255,0.9)',
+    LOG_COLOR: chrome.BASE_COLOR,
     LOG_BACKGROUND: 'transparent',
-    LOG_BORDER: 'rgba(255,255,255,0.03)',
+    LOG_BORDER: isLight ? 'rgb(236,236,236)' : 'rgb(44,44,44)',
     LOG_ICON_WIDTH: 10,
     LOG_ICON_HEIGHT: 18,
     LOG_ICON: 'none',
     LOG_AMOUNT_BACKGROUND: '#42597f',
     LOG_AMOUNT_COLOR: '#8d8f91',
+    LOG_LINK_COLOR: isLight ? 'rgb(66, 66, 66)' : 'rgb(177, 177, 177)',
 
     /**
      * Log types
      */
     LOG_WARN_ICON: `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACkSURBVChTbY7BCoJQFERn0Q/3BX1JuxQjsSCXiV8gtCgxhCIrKIRIqKDVzXl5w5cNHBjm6eGinXiAXu5inY2xYm/mbpIh+vcFhLA3sx0athNUhymEsP+10lAEEA17x8o/9wFuNGnYuVlWve0SQl7P0sBu3aq2R1Q/1JzSkYGd29eqNv2wjdnUuvNRciC/N+qe+7gidbA8zyHkOINsvA/sumcOkjcabcBmw2+mMgAAAABJRU5ErkJggg==)`,
-    LOG_WARN_BACKGROUND: '#332b00',
-    LOG_WARN_COLOR: '#ffdc9e',
-    LOG_WARN_BORDER: '#650',
+    LOG_WARN_BACKGROUND: isLight ? 'rgb(255,250,220)' : '#332b00',
+    LOG_WARN_COLOR: isLight ? 'rgb(73,45,2)' : '#ffdc9e',
+    LOG_WARN_BORDER: isLight ? 'rgb(255,244,181)' : '#650',
     LOG_WARN_AMOUNT_BACKGROUND: '#ffbb17',
     LOG_WARN_AMOUNT_COLOR: '#8d8f91',
 
     LOG_ERROR_ICON: `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADESURBVChTY4CB7ZI8tmfU5E6e01b+DMIgNkgMKg0BR9Vkux6YWPx/bemIgkFiIDmwogOaqrYPzazAEm8DwuGKYGyQHEgNw0VT05Mwib9v3v7/kJEHxiA2TDFIDcNNU4vPMFPACj58/P/v40cwGyYOUsNwy8IZRSFIEUgxskKQGoZrzp4ErQapYbgYHG371M4dLACTQGaD5EBqwD6/FpzQ9dTBE64IhkFiIDmwIhi4mlJqey8o4eR9r8jPIAxig8QgsgwMAFZz1YtGPXgjAAAAAElFTkSuQmCC)`,
-    LOG_ERROR_BACKGROUND: '#290000',
-    LOG_ERROR_BORDER: '#5b0000',
-    LOG_ERROR_COLOR: '#ff8080',
+    LOG_ERROR_BACKGROUND: isLight ? 'rgb(255,235,235)' : '#290000',
+    LOG_ERROR_BORDER: isLight ? 'rgb(253,204,205)' : '#5b0000',
+    LOG_ERROR_COLOR: isLight ? 'rgb(252,0,5)' : '#ff8080',
     LOG_ERROR_AMOUNT_BACKGROUND: '#dc2727',
     LOG_ERROR_AMOUNT_COLOR: '#8d8f91',
 
@@ -58,7 +62,8 @@ const styles = (props: Props) =>
      * Other
      */
     ARROW_FONT_SIZE: 10,
-    OBJECT_VALUE_STRING_COLOR: 'rgb(233,63,59)'
-  } as Styles)
+    OBJECT_VALUE_STRING_COLOR: 'rgb(233,63,59)',
+  } as Styles
+}
 
 export default styles
