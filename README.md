@@ -1,5 +1,7 @@
 # console-feed [![Sponsors](https://img.shields.io/github/sponsors/samdenty?label=Sponsors)](https://github.com/sponsors/samdenty)
 
+[Sponsor this project](https://github.com/sponsors/samdenty)
+
 [![npm version](https://img.shields.io/npm/v/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
 [![CircleCI](https://img.shields.io/circleci/project/github/samdenty99/console-feed.svg?style=flat-square)](https://circleci.com/gh/samdenty99/console-feed)
 [![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
