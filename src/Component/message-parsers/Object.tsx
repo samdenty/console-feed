@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Theme } from '../../definitions/Component'
-import { withTheme } from 'emotion-theming'
+import { withTheme } from '@emotion/react'
 import { Root } from '../react-inspector/elements'
 
 import Linkify from 'linkifyjs/react'
