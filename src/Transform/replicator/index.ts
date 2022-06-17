@@ -3,6 +3,8 @@ const TRANSFORMED_TYPE_KEY = '@t'
 const CIRCULAR_REF_KEY = '@r'
 const KEY_REQUIRE_ESCAPING_RE = /^#*@(t|r)$/
 
+const REMAINING_KEY = '__console_feed_remaining__'
+
 const GLOBAL = (function getGlobal() {
   // NOTE: see http://www.ecma-international.org/ecma-262/6.0/index.html#sec-performeval step 10
   const savedEval = eval
@@ -48,14 +50,16 @@ class EncodingTransformer {
   circularCandidates: any
   circularCandidatesDescrs: any
   circularRefCount: any
+  limit: number
 
-  constructor(val: any, transforms: any) {
+  constructor(val: any, transforms: any, limit?: number) {
     this.references = val
     this.transforms = transforms
     this.transformsMap = this._makeTransformsMap()
     this.circularCandidates = []
     this.circularCandidatesDescrs = []
     this.circularRefCount = 0
+    this.limit = limit ?? Infinity
   }
 
   static _createRefMark(idx: any) {
@@ -86,27 +90,44 @@ class EncodingTransformer {
 
   _handleArray(arr: any): any {
     const result = [] as any
+    const arrayLimit = Math.min(arr.length, this.limit)
+    const remaining = arr.length - arrayLimit
 
-    for (let i = 0; i < arr.length; i++)
+    for (let i = 0; i < arrayLimit; i++)
       result[i] = this._handleValue(() => arr[i], result, i)
+
+    result[arrayLimit] = REMAINING_KEY + remaining
 
     return result
   }
 
   _handlePlainObject(obj: any) {
     const result = Object.create(null)
-
+    let counter = 0
+    let total = 0
     for (const key in obj) {
       if (Reflect.has(obj, key)) {
+        if (counter >= this.limit) {
+          total++
+          continue
+        }
         const resultKey = KEY_REQUIRE_ESCAPING_RE.test(key) ? `#${key}` : key
 
         result[resultKey] = this._handleValue(() => obj[key], result, resultKey)
+        counter++
+        total++
       }
     }
+
+    const remaining = total - counter
 
     const name = obj?.__proto__?.constructor?.name
     if (name && name !== 'Object') {
       result.constructor = { name }
+    }
+
+    if (remaining) {
+      result[REMAINING_KEY] = remaining
     }
 
     return result
@@ -617,8 +638,8 @@ class Replicator {
     return this
   }
 
-  encode(val: any) {
-    const transformer = new EncodingTransformer(val, this.transforms)
+  encode(val: any, limit?: number) {
+    const transformer = new EncodingTransformer(val, this.transforms, limit)
     const references = transformer.transform()
 
     return this.serializer.serialize(references)

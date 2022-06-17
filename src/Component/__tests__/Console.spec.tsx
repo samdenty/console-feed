@@ -26,7 +26,12 @@ it('formats messages', () => {
         {
           method: 'log',
           id: 'id',
-          data: ['%ctest', 'color: red', 'foo', [2]],
+          data: [
+            '%ctest',
+            'color: red',
+            'foo',
+            [2, '__console_feed_remaining__0'],
+          ],
         },
       ]}
     />
