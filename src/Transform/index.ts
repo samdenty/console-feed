@@ -11,10 +11,13 @@ const transforms = [HTML, Function, Arithmetic, Map]
 const replicator = new Replicator()
 replicator.addTransforms(transforms)
 
-export function Encode<T>(data: any): T {
-  return JSON.parse(replicator.encode(data))
+export function Encode<T>(data: any, limit?: number): T {
+  return JSON.parse(replicator.encode(data, limit))
 }
 
 export function Decode(data: any): Message {
-  return replicator.decode(JSON.stringify(data))
+  const decoded = replicator.decode(JSON.stringify(data))
+  // remove __console_feed_remaining__
+  decoded.data.pop()
+  return decoded
 }
