@@ -9,13 +9,14 @@ interface Storage {
  */
 export default {
   type: 'Map',
+  lookup: Map,
   shouldTransform(type: any, obj: any) {
     return obj && obj.constructor && obj.constructor.name === 'Map'
   },
   toSerializable(map: any): Storage {
     let body = {}
 
-    map.forEach(function(value, key) {
+    map.forEach(function (value, key) {
       const k = typeof key == 'object' ? JSON.stringify(key) : key
       body[k] = value
     })
@@ -23,7 +24,7 @@ export default {
     return {
       name: 'Map',
       body,
-      proto: Object.getPrototypeOf(map).constructor.name
+      proto: Object.getPrototypeOf(map).constructor.name,
     }
   },
   fromSerializable(data: Storage) {
@@ -33,10 +34,10 @@ export default {
     if (typeof data.proto === 'string') {
       // @ts-ignore
       obj.constructor = {
-        name: data.proto
+        name: data.proto,
       }
     }
 
     return obj
-  }
+  },
 }

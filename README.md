@@ -175,6 +175,21 @@ Hook(
 )
 ```
 
+### Limiting serialization
+
+You can limit the number of keys/elements included when serializing objects/arrays.
+
+```js
+Hook(
+  window.console,
+  (log) => {
+    this.setState(({ logs }) => ({ logs: [...logs, log] }))
+  },
+  true,
+  100 // limit to 100 keys/elements
+)
+```
+
 ---
 
 ## Developing

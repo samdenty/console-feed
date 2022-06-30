@@ -26,7 +26,12 @@ it('formats messages', () => {
         {
           method: 'log',
           id: 'id',
-          data: ['%ctest', 'color: red', 'foo', [2]],
+          data: [
+            '%ctest',
+            'color: red',
+            'foo',
+            [2, '__console_feed_remaining__0'],
+          ],
         },
       ]}
     />
@@ -114,23 +119,71 @@ it('linkify object and pass options', () => {
 })
 
 it('allows all types methods', () => {
-  return (
+  expect(() =>
+    shallow(
+      <Console
+        logs={[
+          { method: 'log', id: 'id', data: [] },
+          { method: 'debug', id: 'id', data: [] },
+          { method: 'info', id: 'id', data: [] },
+          { method: 'warn', id: 'id', data: [] },
+          { method: 'error', id: 'id', data: [] },
+          { method: 'table', id: 'id', data: [] },
+          { method: 'clear', id: 'id', data: [] },
+          { method: 'time', id: 'id', data: [] },
+          { method: 'timeEnd', id: 'id', data: [] },
+          { method: 'count', id: 'id', data: [] },
+          { method: 'assert', id: 'id', data: [] },
+          { method: 'result', id: 'id', data: [] },
+          { method: 'command', id: 'id', data: [] },
+        ]}
+      />
+    )
+  ).not.toThrowError()
+})
+
+it('displays limited arrays correctly', () => {
+  const result = shallow(
     <Console
       logs={[
-        { method: 'log', id: 'id', data: [] },
-        { method: 'debug', id: 'id', data: [] },
-        { method: 'info', id: 'id', data: [] },
-        { method: 'warn', id: 'id', data: [] },
-        { method: 'error', id: 'id', data: [] },
-        { method: 'table', id: 'id', data: [] },
-        { method: 'clear', id: 'id', data: [] },
-        { method: 'time', id: 'id', data: [] },
-        { method: 'timeEnd', id: 'id', data: [] },
-        { method: 'count', id: 'id', data: [] },
-        { method: 'assert', id: 'id', data: [] },
-        { method: 'result', id: 'id', data: [] },
-        { method: 'command', id: 'id', data: [] },
+        {
+          method: 'log',
+          id: 'id',
+          data: [
+            [
+              ...Array.from(Array(100).keys()),
+              '__console_feed_remaining__99899',
+            ],
+          ],
+        },
       ]}
     />
   )
+
+  expect(result.html()).toContain('(99999)')
+  expect(result.html()).toContain('<span>…</span>]')
+})
+
+it('displays nested limited arrays correctly', () => {
+  const result = shallow(
+    <Console
+      logs={[
+        {
+          method: 'log',
+          id: 'id',
+          data: [
+            [
+              [
+                ...Array.from(Array(100).keys()),
+                '__console_feed_remaining__99899',
+              ],
+              '__console_feed_remaining__0',
+            ],
+          ],
+        },
+      ]}
+    />
+  )
+
+  expect(result.html()).toContain('<span>Array(99999)</span>')
 })
