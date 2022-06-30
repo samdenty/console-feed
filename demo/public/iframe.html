@@ -70,6 +70,20 @@
       } catch (e) {
         console.error(e)
       }
+
+      const longArr = Array.from(Array(99999).keys())
+      console.log(longArr)
+      console.log([longArr])
+      console.log({ longArr })
+
+      const longObj = { ...longArr }
+      console.log(longObj)
+
+      const longSet = new Set(longArr)
+      console.log(longSet)
+
+      const longMap = new Map(Object.entries(longObj))
+      console.log(longMap)
       console.timeEnd('Render time')
     }, 1500)
   </script>

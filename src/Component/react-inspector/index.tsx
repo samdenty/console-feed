@@ -5,7 +5,6 @@ import {
   Inspector,
   ObjectLabel,
   ObjectName,
-  ObjectRootLabel,
   ObjectValue,
   ObjectPreview,
 } from 'react-inspector'
@@ -19,17 +18,69 @@ interface Props {
   data: any
 }
 
-const CustomObjectLabel = ({ name, data, isNonenumerable = false }) => (
-  <span>
-    {typeof name === 'string' ? (
-      <ObjectName name={name} dimmed={isNonenumerable} />
-    ) : (
-      <ObjectPreview data={name} />
-    )}
-    <span>: </span>
-    <ObjectValue object={data} />
-  </span>
-)
+const REMAINING_KEY = '__console_feed_remaining__'
+
+// copied from react-inspector
+function intersperse(arr, sep) {
+  if (arr.length === 0) {
+    return []
+  }
+
+  return arr.slice(1).reduce((xs, x) => xs.concat([sep, x]), [arr[0]])
+}
+
+const getArrayLength = (array: Array<any>) => {
+  const remaining = parseInt(array[array.length - 1].split(REMAINING_KEY)[1])
+  return array.length - 1 + remaining
+}
+
+const CustomObjectRootLabel = ({ name, data }) => {
+  let rootData = data
+  if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
+    const object = {}
+    for (const propertyName in data) {
+      if (data.hasOwnProperty(propertyName)) {
+        let propertyValue = data[propertyName]
+        if (Array.isArray(propertyValue)) {
+          const arrayLength = getArrayLength(propertyValue)
+          object[propertyName] = new Array(arrayLength)
+        } else {
+          object[propertyName] = propertyValue
+        }
+      }
+    }
+    rootData = Object.assign(Object.create(Object.getPrototypeOf(data)), object)
+  }
+  if (typeof name === 'string') {
+    return (
+      <span>
+        <ObjectName name={name} />
+        <span>: </span>
+        <ObjectPreview data={rootData} />
+      </span>
+    )
+  } else {
+    return <ObjectPreview data={rootData} />
+  }
+}
+
+const CustomObjectLabel = ({ name, data, isNonenumerable = false }) =>
+  name === REMAINING_KEY ? (
+    data > 0 ? (
+      <span>{data} more...</span>
+    ) : null
+  ) : (
+    <span>
+      {typeof name === 'string' ? (
+        <ObjectName name={name} dimmed={isNonenumerable} />
+      ) : (
+        <ObjectPreview data={name} />
+      )}
+      <span>: </span>
+
+      <ObjectValue object={data} />
+    </span>
+  )
 
 class CustomInspector extends React.PureComponent<Props, any> {
   render() {
@@ -44,7 +95,11 @@ class CustomInspector extends React.PureComponent<Props, any> {
         {table ? (
           <Table>
             <Inspector {...this.props} theme={styles} table />
-            <Inspector {...this.props} theme={styles} />
+            <Inspector
+              {...this.props}
+              theme={styles}
+              nodeRenderer={this.nodeRenderer.bind(this)}
+            />
           </Table>
         ) : dom ? (
           <HTML>
@@ -94,6 +149,41 @@ class CustomInspector extends React.PureComponent<Props, any> {
           <DOMInspector data={data} theme={styles} />
         </HTML>
       )
+
+    if (Array.isArray(data)) {
+      const arrayLength = getArrayLength(data)
+      const maxProperties = styles.OBJECT_PREVIEW_ARRAY_MAX_PROPERTIES
+      const previewArray = data
+        .slice(0, -1)
+        .slice(0, maxProperties)
+        .map((element, index) => {
+          if (Array.isArray(element)) {
+            return (
+              <ObjectValue
+                key={index}
+                object={new Array(getArrayLength(element))}
+              />
+            )
+          } else {
+            return <ObjectValue key={index} object={element} />
+          }
+        })
+      if (arrayLength > maxProperties) {
+        previewArray.push(<span key="ellipsis">…</span>)
+      }
+      return (
+        <React.Fragment>
+          <span style={styles.objectDescription}>
+            {arrayLength === 0 ? `` : `(${arrayLength})\xa0`}
+          </span>
+          <span style={styles.preview}>
+            [{intersperse(previewArray, ', ')}
+            {}]
+          </span>
+        </React.Fragment>
+      )
+    }
+
     return null
   }
 
@@ -103,7 +193,12 @@ class CustomInspector extends React.PureComponent<Props, any> {
     // Root
     if (depth === 0) {
       const customNode = this.getCustomNode(data)
-      return customNode || <ObjectRootLabel name={name} data={data} />
+      return customNode || <CustomObjectRootLabel name={name} data={data} />
+    }
+
+    if (typeof data === 'string' && data.includes(REMAINING_KEY)) {
+      name = REMAINING_KEY
+      data = data.split(REMAINING_KEY)[1]
     }
 
     if (name === 'constructor')

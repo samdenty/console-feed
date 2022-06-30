@@ -15,41 +15,44 @@ class App extends React.Component {
       {
         method: 'result',
         data: ['Result'],
-        timestamp: this.getTimestamp()
+        timestamp: this.getTimestamp(),
       },
       {
         method: 'command',
         data: ['Command'],
-        timestamp: this.getTimestamp()
+        timestamp: this.getTimestamp(),
       },
     ] as any[],
     filter: [],
     searchKeywords: '',
   }
 
-  getNumberStringWithWidth(num: Number, width: number)
-  {
-    const str = num.toString();
-    if( width > str.length) return "0".repeat(width - str.length) + str;
-    return str.substr(0, width);
+  getNumberStringWithWidth(num: Number, width: number) {
+    const str = num.toString()
+    if (width > str.length) return '0'.repeat(width - str.length) + str
+    return str.substr(0, width)
   }
 
-  getTimestamp()
-  {
-    const date = new Date();
-    const h = this.getNumberStringWithWidth(date.getHours(), 2);
-    const min = this.getNumberStringWithWidth(date.getMinutes(), 2);
-    const sec = this.getNumberStringWithWidth(date.getSeconds(), 2);
-    const ms = this.getNumberStringWithWidth(date.getMilliseconds(), 3);
+  getTimestamp() {
+    const date = new Date()
+    const h = this.getNumberStringWithWidth(date.getHours(), 2)
+    const min = this.getNumberStringWithWidth(date.getMinutes(), 2)
+    const sec = this.getNumberStringWithWidth(date.getSeconds(), 2)
+    const ms = this.getNumberStringWithWidth(date.getMilliseconds(), 3)
     return `${h}:${min}:${sec}.${ms}`
   }
 
   componentDidMount() {
-    Hook((iframe.contentWindow as any).console, (log) => {
-      const decoded = Decode(log)
-      decoded.timestamp = this.getTimestamp()
-      this.setState((state) => update(state, { logs: { $push: [decoded] } }))
-    })
+    Hook(
+      (iframe.contentWindow as any).console,
+      (log) => {
+        const decoded = Decode(log)
+        decoded.timestamp = this.getTimestamp()
+        this.setState((state) => update(state, { logs: { $push: [decoded] } }))
+      },
+      true,
+      100
+    )
   }
 
   switch = () => {

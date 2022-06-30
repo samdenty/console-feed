@@ -3,7 +3,7 @@ import {
   Callback,
   Storage,
   Methods as ConsoleMethods,
-  Message
+  Message,
 } from '../definitions/Console'
 import Methods from '../definitions/Methods'
 
@@ -20,15 +20,16 @@ import { Encode } from '../Transform'
 export default function Hook(
   console: Console,
   callback: Callback,
-  encode = true
+  encode = true,
+  limit?: number
 ) {
   const TargetConsole = console as HookedConsole
   const Storage: Storage = {
     pointers: {},
     src: {
       npm: 'https://npmjs.com/package/console-feed',
-      github: 'https://github.com/samdenty99/console-feed'
-    }
+      github: 'https://github.com/samdenty99/console-feed',
+    },
   }
 
   // Override console methods
@@ -36,7 +37,7 @@ export default function Hook(
     const NativeMethod = TargetConsole[method]
 
     // Override
-    TargetConsole[method] = function() {
+    TargetConsole[method] = function () {
       // Pass back to native method
       NativeMethod.apply(this, arguments)
 
@@ -49,7 +50,7 @@ export default function Hook(
         if (parsed) {
           let encoded: Message = parsed as Message
           if (encode) {
-            encoded = Encode(parsed) as Message
+            encoded = Encode(parsed, limit) as Message
           }
           callback(encoded, parsed)
         }

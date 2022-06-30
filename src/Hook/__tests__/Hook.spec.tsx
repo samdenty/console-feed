@@ -4,7 +4,7 @@ import Log from './Log'
 import { Decode } from '../..'
 
 it('hooks the console', () => {
-  Hook(console, log => {
+  Hook(console, (log) => {
     console.logs.push(log)
   })
   expect(console.feed).toBeTruthy()
@@ -44,7 +44,7 @@ it('correctly encodes nested values', async () => {
     function: function myFunc() {},
     document: document.documentElement,
     nested: [[[new Promise(() => {})]]],
-    recursive: null
+    recursive: null,
   }
   input.recursive = input
 
@@ -58,7 +58,7 @@ it('correctly encodes nested values', async () => {
 it('disables encoding with a flag', async () => {
   Hook(
     console,
-    log => {
+    (log) => {
       console.logs.push(log)
     },
     false
@@ -67,11 +67,39 @@ it('disables encoding with a flag', async () => {
     function: function myFunc() {},
     document: document.documentElement,
     nested: [[[new Promise(() => {})]]],
-    recursive: null
+    recursive: null,
   }
   input.recursive = input
 
   const result: any = await Log('debug', input)
 
   expect(result.data).toMatchSnapshot()
+})
+
+it('correctly limits a long array', async () => {
+  Hook(
+    console,
+    (log) => {
+      console.logs.push(log)
+    },
+    true,
+    100
+  )
+  const result = await Log('log', Array.from(Array(99999).keys()))
+  expect(result[0].data[0].length).toEqual(101)
+  expect(result[0].data[0].pop()).toEqual('__console_feed_remaining__99899')
+})
+
+it('correctly limits a long object', async () => {
+  Hook(
+    console,
+    (log) => {
+      console.logs.push(log)
+    },
+    true,
+    100
+  )
+  const result = await Log('log', { ...Array.from(Array(99999).keys()) })
+  expect(Object.keys(result[0].data[0]).length).toEqual(101)
+  expect(result[0].data[0]['__console_feed_remaining__']).toEqual(99899)
 })
