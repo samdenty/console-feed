@@ -4,7 +4,7 @@ module.exports = {
     esModules: false,
     umd: false
   },
-  webpack: {
+  webpack: {qsdf
     config(config) {
       config.entry = {
         demo: ['./demo/src/index.tsx']
