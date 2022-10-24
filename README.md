@@ -87,12 +87,12 @@ const LogsContainer = () => {
 
   // run once!
   useEffect(() => {
-    Hook(
+    const hookedConsole = Hook(
       window.console,
       (log) => setLogs((currLogs) => [...currLogs, log]),
       false
     )
-    return () => Unhook(window.console)
+    return () => Unhook(hookedConsole)
   }, [])
 
   return <Console logs={logs} variant="dark" />
