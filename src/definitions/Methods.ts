@@ -12,6 +12,7 @@ const methods = [
   'assert',
   'command',
   'result',
+  'dir',
 ]
 
 export default methods
@@ -30,3 +31,4 @@ export type Methods =
   | 'assert'
   | 'command'
   | 'result'
+  | 'dir'
