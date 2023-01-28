@@ -28,7 +28,7 @@ export default function Hook(
     pointers: {},
     src: {
       npm: 'https://npmjs.com/package/console-feed',
-      github: 'https://github.com/samdenty99/console-feed',
+      github: 'https://github.com/samdenty/console-feed',
     },
   }
 

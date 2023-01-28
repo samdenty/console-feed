@@ -1,6 +1,6 @@
 {
   "name": "console-feed",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
@@ -83,14 +83,14 @@
     "ui",
     "view"
   ],
-  "homepage": "https://github.com/samdenty99/console-feed",
+  "homepage": "https://stackblitz.com/github/samdenty/console-feed?file=demo%2Fpublic%2Fiframe.html",
   "repository": {
     "type": "git",
-    "url": "https://github.com/samdenty99/console-feed.git"
+    "url": "https://github.com/samdenty/console-feed.git"
   },
   "bugs": {
-    "url": "https://github.com/samdenty99/console-feed/issues"
+    "url": "https://github.com/samdenty/console-feed/issues"
   },
-  "author": "Sam Denty <samddenty@gmail.com> (http://github.com/samdenty99)",
+  "author": "Sam Denty <samddenty@gmail.com> (http://github.com/samdenty)",
   "license": "MIT"
 }

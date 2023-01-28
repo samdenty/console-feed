@@ -3,7 +3,6 @@
 [Sponsor this project](https://github.com/sponsors/samdenty)
 
 [![npm version](https://img.shields.io/npm/v/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
-[![CircleCI](https://img.shields.io/circleci/project/github/samdenty99/console-feed.svg?style=flat-square)](https://circleci.com/gh/samdenty99/console-feed)
 [![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
 [![Demo](https://img.shields.io/badge/StackBlitz-Demo-yellow.svg?style=flat-square)](https://stackblitz.com/github/samdenty/console-feed?file=demo%2Fpublic%2Fiframe.html)
 
@@ -117,7 +116,7 @@ Sets the font color for the component. Default - `light`
 
 ### `styles?: Styles`
 
-Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty99/console-feed/blob/master/src/definitions/Styles.d.ts)
+Defines the custom styles to use on the component - see [`Styles.d.ts`](https://github.com/samdenty/console-feed/blob/master/src/definitions/Styles.d.ts)
 
 ### `searchKeywords?: string`
 
