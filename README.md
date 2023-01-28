@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
 [![CircleCI](https://img.shields.io/circleci/project/github/samdenty99/console-feed.svg?style=flat-square)](https://circleci.com/gh/samdenty99/console-feed)
 [![npm downloads](https://img.shields.io/npm/dm/console-feed.svg?style=flat-square)](https://www.npmjs.com/package/console-feed)
-[![Demo](https://img.shields.io/badge/CodeSandbox-Demo-yellow.svg?style=flat-square)](https://codesandbox.io/s/rl7pk9w2ym)
+[![Demo](https://img.shields.io/badge/StackBlitz-Demo-yellow.svg?style=flat-square)](https://stackblitz.com/github/samdenty/console-feed?file=demo%2Fpublic%2Fiframe.html)
 
 A React component that displays console logs from the current page, an iframe or transported across a server.
 
@@ -47,7 +47,7 @@ npm install console-feed
 
 ## Basic usage
 
-[CodeSandbox](https://codesandbox.io/s/rl7pk9w2ym)
+[StackBlitz](https://stackblitz.com/github/samdenty/console-feed?file=demo%2Fpublic%2Fiframe.html)
 
 ```js
 import React from 'react'
