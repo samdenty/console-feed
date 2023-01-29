@@ -14,6 +14,8 @@ A React component that displays console logs from the current page, an iframe or
 
 https://github.com/liriliri/chii supports the embedding the entire Chrome devtools.
 
+https://github.com/tachibana-shin/vue-console-feed is a fork for Vue.JS
+
 ## Who's using it
 
 - [CodeSandbox.io](https://codesandbox.io)
