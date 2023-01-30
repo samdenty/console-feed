@@ -1,4 +1,4 @@
-import { withTheme } from 'emotion-theming'
+import { withTheme } from '@emotion/react'
 import * as React from 'react'
 import {
   DOMInspector,
