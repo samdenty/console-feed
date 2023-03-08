@@ -30,8 +30,19 @@ function intersperse(arr, sep) {
 }
 
 const getArrayLength = (array: Array<any>) => {
-  const remaining = parseInt(array[array.length - 1].split(REMAINING_KEY)[1])
-  return array.length - 1 + remaining
+  const remainingKeyCount = array[array.length - 1]
+    .toString()
+    .split(REMAINING_KEY)
+
+  if (remainingKeyCount[1] === undefined) {
+    return array.length
+  } else {
+    const remaining = parseInt(
+      array[array.length - 1].toString().split(REMAINING_KEY)[1]
+    )
+
+    return array.length - 1 + remaining
+  }
 }
 
 const CustomObjectRootLabel = ({ name, data }) => {

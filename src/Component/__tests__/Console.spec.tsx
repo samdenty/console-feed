@@ -43,6 +43,27 @@ it('formats messages', () => {
   expect(html).toContain('[<span style="color:rgb(28, 0, 207)">2</span>]')
 })
 
+it('various data types', () => {
+  const result = shallow(
+    <Console
+      logs={[
+        {
+          method: 'log',
+          id: 'id',
+          data: [1, 'test', { foo: 'bar' }, [1, 2, 3, 4, 5]],
+        },
+      ]}
+    />
+  )
+
+  const html = result.html()
+  expect(html).toContain('<span style="color:rgb(233,63,59)">test</span>')
+  expect(html).toContain('<span style="color:rgb(136, 19, 145)">foo</span>:')
+  expect(html).toContain(
+    '<span style="color:rgb(233,63,59)">&quot;bar&quot;</span>'
+  )
+})
+
 it('skips non-existent substitution', () => {
   const result = shallow(
     <Console
