@@ -164,8 +164,15 @@ class CustomInspector extends React.PureComponent<Props, any> {
     if (Array.isArray(data)) {
       const arrayLength = getArrayLength(data)
       const maxProperties = styles.OBJECT_PREVIEW_ARRAY_MAX_PROPERTIES
+
+      if (
+        typeof data[data.length - 1] === 'string' &&
+        data[data.length - 1].includes(REMAINING_KEY)
+      ) {
+        data = data.slice(0, -1)
+      }
+
       const previewArray = data
-        .slice(0, -1)
         .slice(0, maxProperties)
         .map((element, index) => {
           if (Array.isArray(element)) {
