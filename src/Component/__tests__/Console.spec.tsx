@@ -50,7 +50,16 @@ it('various data types', () => {
         {
           method: 'log',
           id: 'id',
-          data: [1, 'test', { foo: 'bar' }, [1, 2, 3, 4, 5]],
+          data: [
+            1,
+            'test',
+            { foo: 'bar' },
+            [1, 2, 3, 4, 5],
+            [],
+            [{}],
+            {},
+            null,
+          ],
         },
       ]}
     />

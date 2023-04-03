@@ -30,6 +30,10 @@ function intersperse(arr, sep) {
 }
 
 const getArrayLength = (array: Array<any>) => {
+  if (!array || array.length < 1) {
+    return 0
+  }
+
   const remainingKeyCount = array[array.length - 1]
     .toString()
     .split(REMAINING_KEY)
