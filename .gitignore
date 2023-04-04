@@ -4,6 +4,7 @@
 /lib
 /node_modules
 /umd
+/.idea
 npm-debug.log*
 .DS_Store
 yarn-error.log
