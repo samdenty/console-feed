@@ -21,6 +21,15 @@ it('decodes messages', () => {
   expect(decoded.data).toMatchSnapshot()
 })
 
+it('correctly encodes a `bigint`', async () => {
+  const result = await Log('warn', BigInt(1))
+  expect(result).toBeTruthy()
+
+  const decoded = Decode(result)
+  expect(decoded.method).toEqual('warn')
+  expect(decoded.data).toMatchSnapshot()
+})
+
 it('correctly encodes a HTMLElement', async () => {
   const result = await Log('warn', document.documentElement)
   expect(result).toBeTruthy()
