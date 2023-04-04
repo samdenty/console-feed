@@ -6,6 +6,12 @@ Array [
 ]
 `;
 
+exports[`correctly encodes a \`bigint\` 1`] = `
+Array [
+  BigInt {},
+]
+`;
+
 exports[`correctly encodes a HTMLElement 1`] = `
 Array [
   <html>

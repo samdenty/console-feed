@@ -3,7 +3,7 @@
     "outDir": "lib",
     "module": "commonjs",
     "target": "es3",
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "dom", "ES2020.BigInt"],
     "inlineSourceMap": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,

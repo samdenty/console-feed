@@ -1,12 +1,13 @@
 import { Message } from '../definitions/Console'
 import Arithmetic from './arithmetic'
+import BigInt from './BigInt'
 import Function from './Function'
 import HTML from './HTML'
 import Map from './Map'
 
 import Replicator from './replicator'
 
-const transforms = [HTML, Function, Arithmetic, Map]
+const transforms = [HTML, Function, Arithmetic, Map, BigInt]
 
 const replicator = new Replicator()
 replicator.addTransforms(transforms)
