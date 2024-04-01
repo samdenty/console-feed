@@ -9,6 +9,7 @@ document.body.appendChild(iframe)
 
 export class App extends React.Component {
   state = {
+    baseFontSize: 12,
     isDarkMode: true,
     logs: [
       {
@@ -21,7 +22,7 @@ export class App extends React.Component {
         data: ['Command'],
         timestamp: this.getTimestamp(),
       },
-    ] as any[],
+    ] as Message[],
     filter: [],
     searchKeywords: '',
   }
@@ -75,7 +76,14 @@ export class App extends React.Component {
           backgroundColor: isDarkMode ? '#242424' : '#fff',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', padding: '5px' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: 5,
+            gap: 10,
+          }}
+        >
           <button onClick={this.switch.bind(this)}>Show only logs</button>
           <input placeholder="search" onChange={this.handleKeywordsChange} />
           <label>
@@ -88,10 +96,25 @@ export class App extends React.Component {
             />
             Toggle dark mode
           </label>
+          <label>
+            Font size:
+            <input
+              type="range"
+              min={12}
+              max={28}
+              value={this.state.baseFontSize}
+              onChange={(e) => {
+                this.setState({ baseFontSize: Number(e.target.value) })
+              }}
+            />
+          </label>
         </div>
 
         <Console
           logs={this.state.logs}
+          styles={{
+            BASE_FONT_SIZE: this.state.baseFontSize,
+          }}
           variant={isDarkMode ? 'dark' : 'light'}
           filter={this.state.filter}
           searchKeywords={this.state.searchKeywords}

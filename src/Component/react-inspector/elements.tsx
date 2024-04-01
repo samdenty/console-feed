@@ -27,6 +27,20 @@ export const Table = styled('span')({
     display: 'inline-block',
     marginTop: 5,
   },
+  // override react-inspector/TableInspectorHeaderContainer.base
+  '& div[style*="height: 17px"]': {
+    height: `${17 / 12}em!important`,
+  },
+  // override react-inspector/TableInspectorDataContainer.td
+  '& td[style*="height: 16px"]': {
+    height: `${16 / 12}em!important`,
+    lineHeight: `1!important`,
+    verticalAlign: 'middle!important',
+  },
+  '& table[style*="background-size: 128px 32px"]': {
+    // = td's fontSize * 2
+    backgroundSize: `128px ${(16 / 12) * 2}em!important`,
+  },
 })
 
 /**

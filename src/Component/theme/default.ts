@@ -19,8 +19,9 @@ const styles = (props: Props) => {
     LOG_COLOR: chrome.BASE_COLOR,
     LOG_BACKGROUND: 'transparent',
     LOG_BORDER: isLight ? 'rgb(236,236,236)' : 'rgb(44,44,44)',
-    LOG_ICON_WIDTH: 10,
-    LOG_ICON_HEIGHT: 18,
+    LOG_ICON_WIDTH: `${10 / 12}em`,
+    LOG_ICON_HEIGHT: `${10 / 12}em`,
+    LOG_ICON_BACKGROUND_SIZE: 'contain',
     LOG_ICON: 'none',
     LOG_AMOUNT_BACKGROUND: '#42597f',
     LOG_AMOUNT_COLOR: '#8d8f91',
@@ -61,7 +62,7 @@ const styles = (props: Props) => {
     /**
      * Other
      */
-    ARROW_FONT_SIZE: 10,
+    ARROW_FONT_SIZE: `${10 / 12}em`,
     OBJECT_VALUE_STRING_COLOR: 'rgb(233,63,59)',
   } as Styles
 }
