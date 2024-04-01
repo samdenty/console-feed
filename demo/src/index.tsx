@@ -1,5 +1,4 @@
 import React from 'react'
-import { render } from 'react-dom'
 import update from 'immutability-helper'
 import { Hook, Console, Decode } from '../../src'
 import { Message } from '../../src/definitions/Component'
@@ -8,7 +7,7 @@ const iframe = document.createElement('iframe')
 iframe.src = './iframe.html'
 document.body.appendChild(iframe)
 
-class App extends React.Component {
+export class App extends React.Component {
   state = {
     isDarkMode: true,
     logs: [
@@ -101,5 +100,3 @@ class App extends React.Component {
     )
   }
 }
-
-render(<App />, document.querySelector('#demo'))
