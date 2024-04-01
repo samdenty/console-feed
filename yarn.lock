@@ -4253,6 +4253,11 @@ react-dom@^16.2.0:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
+react-inline-center@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-inline-center/-/react-inline-center-1.0.1.tgz#66703d8489b6d4a90f5d5cae91a2b7b990eef6c6"
+  integrity sha512-nMxG933OWuZET/CkvQTPBVEPNRI2zhfeeeiRqXKKzSdvIPHnHnDXZmh9KkRO2DDCjJFvZQ3KIe50lXaaxvnoNw==
+
 react-inspector@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-5.1.0.tgz#45a325e15f33e595be5356ca2d3ceffb7d6b8c3a"
