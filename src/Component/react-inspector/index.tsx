@@ -167,13 +167,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
     }
 
     if (constructor === 'Promise')
-      return (
-        <span style={{ fontStyle: 'italic' }}>
-          Promise {`{`}
-          <span style={{ opacity: 0.6 }}>{`<pending>`}</span>
-          {`}`}
-        </span>
-      )
+      return <span style={{ fontStyle: 'italic' }}>Promise {`{}`}</span>
 
     if (data instanceof HTMLElement)
       return (
