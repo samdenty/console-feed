@@ -108,14 +108,31 @@ class CustomInspector extends React.PureComponent<Props, any> {
     return (
       <Root data-type={table ? 'table' : dom ? 'html' : 'object'}>
         {table ? (
-          <Table>
-            <Inspector {...this.props} theme={styles} table />
-            <Inspector
-              {...this.props}
-              theme={styles}
-              nodeRenderer={this.nodeRenderer.bind(this)}
-            />
-          </Table>
+          <table
+            style={{ border: '1px solid black', borderCollapse: 'collapse' }}
+          >
+            <thead>
+              <tr>
+                <th>(index)</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(data).map((key) => {
+                if (data[key]?.startsWith?.('__console_feed_')) return null
+                return (
+                  <tr key={key}>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>
+                      {key}
+                    </td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>
+                      {data[key]}
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         ) : dom ? (
           <HTML>
             <DOMInspector {...this.props} theme={styles} />
