@@ -30,10 +30,13 @@ class ConsoleMessage extends React.Component<MessageProps, any> {
   })
 
   render() {
-    const { log } = this.props
+    const { log, components } = this.props
+    const node = this.getNode()
+    const MessageComponent = components?.Message || Message
+
     return (
       <ThemeProvider theme={this.theme}>
-        <Message data-method={log.method}>
+        <MessageComponent log={log} node={node} data-method={log.method}>
           <IconContainer>
             {/* Align icon to adjacent text, and let the icon can be different size than the text */}
             <InlineCenter>
@@ -45,8 +48,8 @@ class ConsoleMessage extends React.Component<MessageProps, any> {
             </InlineCenter>
           </IconContainer>
           {log.timestamp ? <Timestamp>{log.timestamp}</Timestamp> : <span />}
-          <Content>{this.getNode()}</Content>
-        </Message>
+          <Content>{node}</Content>
+        </MessageComponent>
       </ThemeProvider>
     )
   }

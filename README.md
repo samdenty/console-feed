@@ -128,6 +128,11 @@ A string value to filter logs
 
 If you want to use a custom log filter function, you can provide your own implementation
 
+### `components?: ComponentOverrides`
+
+To fully customize layout and rendering of the console feed, you can provide your own React
+components. Currently, only the `Message` component is customizable.
+
 ## Log methods
 
 Each log has a method assigned to it. The method is used to determine the style of the message and for the `filter` prop.

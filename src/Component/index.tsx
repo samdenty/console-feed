@@ -115,6 +115,7 @@ class Console extends React.PureComponent<Props, any> {
                 log={log}
                 key={log.id || `${log.method}-${i}`}
                 linkifyOptions={this.props.linkifyOptions}
+                components={this.props.components}
               />
             )
           })}
