@@ -1,5 +1,5 @@
 import { ComponentType } from 'react'
-import { Message } from './Console'
+import { Message } from './Component'
 
 export interface ComponentOverrides {
   Message?: ComponentType<{
