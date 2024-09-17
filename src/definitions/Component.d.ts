@@ -8,6 +8,7 @@ export type Variants = 'light' | 'dark'
 export interface Theme {
   variant: Variants
   styles: Styles
+  methods: string
 }
 
 export interface Context extends Theme {
@@ -32,5 +33,5 @@ export interface Props {
 
 export interface MessageProps {
   log: Message
-  linkifyOptions?: Options
+  linkifyOptions?: Options & Opts
 }

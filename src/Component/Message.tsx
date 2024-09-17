@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { MessageProps, Theme } from '../definitions/Component'
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/react'
 import InlineCenter from 'react-inline-center'
 
 import {
@@ -33,19 +33,29 @@ class ConsoleMessage extends React.Component<MessageProps, any> {
     const { log } = this.props
     return (
       <ThemeProvider theme={this.theme}>
-        <Message data-method={log.method}>
+        <Message data-method={log.method} theme={undefined} method={''}>
           <IconContainer>
             {/* Align icon to adjacent text, and let the icon can be different size than the text */}
             <InlineCenter>
               {log.amount > 1 ? (
-                <AmountIcon>{log.amount}</AmountIcon>
+                <AmountIcon theme={undefined} method={''}>
+                  {log.amount}
+                </AmountIcon>
               ) : (
-                <Icon />
+                <Icon theme={undefined} method={''} />
               )}
             </InlineCenter>
           </IconContainer>
-          {log.timestamp ? <Timestamp>{log.timestamp}</Timestamp> : <span />}
-          <Content>{this.getNode()}</Content>
+          {log.timestamp ? (
+            <Timestamp theme={undefined} method={''}>
+              {log.timestamp}
+            </Timestamp>
+          ) : (
+            <span />
+          )}
+          <Content theme={undefined} method={''}>
+            {this.getNode()}
+          </Content>
         </Message>
       </ThemeProvider>
     )
