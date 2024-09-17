@@ -3,6 +3,7 @@
   "version": "3.6.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "type": "module",
   "description": "A React component that displays console logs from the current page, an iframe or transported across a server",
   "scripts": {
     "prepack": "yarn build",
