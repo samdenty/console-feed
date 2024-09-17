@@ -1,18 +1,17 @@
 import * as React from 'react'
-import { Theme } from '../../definitions/Component'
-import { withTheme } from 'emotion-theming'
+import { Theme, Message } from '../../definitions/Component'
+import { withTheme } from '@emotion/react'
 import { Root } from '../react-inspector/elements'
 
-import Linkify from 'linkifyjs/react'
-import type { Options } from 'linkifyjs'
-import { Message } from '../../definitions/Component'
+import Linkify from 'linkify-react'
+import type { Options, Opts } from 'linkifyjs'
 import Inspector from '../react-inspector'
 
 interface Props {
   log: Message
   quoted: boolean
   theme?: Theme
-  linkifyOptions?: Options
+  linkifyOptions?: Options & Opts
 }
 
 class ObjectTree extends React.PureComponent<Props, any> {

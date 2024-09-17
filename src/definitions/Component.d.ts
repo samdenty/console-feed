@@ -32,5 +32,5 @@ export interface Props {
 
 export interface MessageProps {
   log: Message
-  linkifyOptions?: Options
+  linkifyOptions?: Options & Opts
 }

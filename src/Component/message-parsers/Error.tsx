@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Linkify from 'linkifyjs/react'
+import Linkify from 'linkify-react'
 
 function splitMessage(message: string): string {
   const breakIndex = message.indexOf('\n')
@@ -7,7 +7,7 @@ function splitMessage(message: string): string {
   if (breakIndex === -1) {
     return message
   }
-  return message.substr(0, breakIndex)
+  return message.substring(0, breakIndex)
 }
 
 function ErrorPanel({ error }: { error: string }) {

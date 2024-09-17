@@ -1,7 +1,6 @@
-import { withTheme } from 'emotion-theming'
+import { withTheme } from '@emotion/react'
 import * as React from 'react'
 import {
-  DOMInspector,
   Inspector,
   ObjectLabel,
   ObjectName,
@@ -12,9 +11,10 @@ import {
 import { Context } from '../../definitions/Component'
 import ErrorPanel from '../message-parsers/Error'
 import { Constructor, HTML, Root, Table } from './elements'
+import { Styles } from '../../definitions/Styles'
 
 interface Props {
-  theme?: Context
+  theme?: Styles
   data: any
 }
 
@@ -42,7 +42,7 @@ const getArrayLength = (array: Array<any>) => {
     return array.length
   } else {
     const remaining = parseInt(
-      array[array.length - 1].toString().split(REMAINING_KEY)[1]
+      array[array.length - 1].toString().split(REMAINING_KEY)[1],
     )
 
     return array.length - 1 + remaining
@@ -109,19 +109,21 @@ class CustomInspector extends React.PureComponent<Props, any> {
       <Root data-type={table ? 'table' : dom ? 'html' : 'object'}>
         {table ? (
           <Table>
-            <Inspector {...this.props} theme={styles} table />
+            <Inspector table={true} {...this.props} theme={styles} />
             <Inspector
+              table={false}
               {...this.props}
               theme={styles}
-              nodeRenderer={this.nodeRenderer.bind(this)}
+              nodeRenderer={this.getCustomNode.bind(this)}
             />
           </Table>
         ) : dom ? (
           <HTML>
-            <DOMInspector {...this.props} theme={styles} />
+            <Inspector table {...this.props} theme={styles} />
           </HTML>
         ) : (
           <Inspector
+            table={false}
             {...this.props}
             theme={styles}
             nodeRenderer={this.nodeRenderer.bind(this)}
@@ -161,7 +163,7 @@ class CustomInspector extends React.PureComponent<Props, any> {
     if (data instanceof HTMLElement)
       return (
         <HTML>
-          <DOMInspector data={data} theme={styles} />
+          <Inspector table={false} data={data} theme={styles} />
         </HTML>
       )
 
