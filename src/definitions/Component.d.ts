@@ -8,7 +8,6 @@ export type Variants = 'light' | 'dark'
 export interface Theme {
   variant: Variants
   styles: Styles
-  methods: string
 }
 
 export interface Context extends Theme {
