@@ -10,7 +10,7 @@ function splitMessage(message: string): string {
   return message.substr(0, breakIndex)
 }
 
-function ErrorPanel({ error }: { error: string }) {
+function ErrorPanel({ error, linkifyOptions }: { error: string, linkifyOptions?: Options }) {
   /* This checks for error logTypes and shortens the message in the console by wrapping
   it a <details /> tag and putting the first line in a <summary /> tag and the other lines
   follow after that. This creates a nice collapsible error message */
@@ -30,7 +30,7 @@ function ErrorPanel({ error }: { error: string }) {
       <summary style={{ outline: 'none', cursor: 'pointer' }}>
         {firstLine}
       </summary>
-      <Linkify>{otherErrorLines.join('\n\r')}</Linkify>
+      <Linkify options={linkifyOptions}>{otherErrorLines.join('\n\r')}</Linkify>
     </details>
   )
 }
