@@ -18,6 +18,7 @@ https://github.com/tachibana-shin/vue-console-feed is a fork for Vue.JS
 
 ## Who's using it
 
+- [Firebase studio](https://studio.firebase.google.com)
 - [CodeSandbox.io](https://codesandbox.io)
 - [Framer](https://www.framer.com)
 - [Plunker](https://plnkr.co)
