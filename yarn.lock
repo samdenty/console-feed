@@ -175,7 +175,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.4.3":
+"@babel/runtime@^7.4.3":
   version "7.11.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
   integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
@@ -2686,14 +2686,6 @@ is-directory@^0.3.1:
   resolved "https://registry.yarnpkg.com/is-directory/-/is-directory-0.3.1.tgz#61339b6f2475fc772fd9c9d83f5c8575dc154ae1"
   integrity sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=
 
-is-dom@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/is-dom/-/is-dom-1.1.0.tgz#af1fced292742443bb59ca3f76ab5e80907b4e8a"
-  integrity sha512-u82f6mvhYxRPKpw8V1N0W8ce1xXwOrQtgGcxl6UCL5zBmZu3is/18K0rR7uFCnMDuAsS/3W54mGL4vsaFUQlEQ==
-  dependencies:
-    is-object "^1.0.1"
-    is-window "^1.0.2"
-
 is-dotfile@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
@@ -2778,11 +2770,6 @@ is-number@^4.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-4.0.0.tgz#0026e37f5454d73e356dfe6564699867c6a7f0ff"
   integrity sha512-rSklcAIlf1OmFdyAqbnWTLVelsQ58uvZ66S/ZyawjWqIviTWCjg2PzVGw8WUA+nNuPTqb4wgA+NszrJ+08LlgQ==
 
-is-object@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-object/-/is-object-1.0.1.tgz#8952688c5ec2ffd6b03ecc85e769e02903083470"
-  integrity sha1-iVJojF7C/9awPsyF52ngKQMINHA=
-
 is-odd@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-odd/-/is-odd-2.0.0.tgz#7646624671fd7ea558ccd9a2795182f2958f1b24"
@@ -2843,11 +2830,6 @@ is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
-
-is-window@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/is-window/-/is-window-1.0.2.tgz#2c896ca53db97de45d3c33133a65d8c9f563480d"
-  integrity sha1-LIlspT25feRdPDMTOmXYyfVjSA0=
 
 is-windows@^1.0.2:
   version "1.0.2"
@@ -4161,7 +4143,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.2:
+prop-types@^15.6.0, prop-types@^15.6.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -4258,14 +4240,10 @@ react-inline-center@1.0.1:
   resolved "https://registry.yarnpkg.com/react-inline-center/-/react-inline-center-1.0.1.tgz#66703d8489b6d4a90f5d5cae91a2b7b990eef6c6"
   integrity sha512-nMxG933OWuZET/CkvQTPBVEPNRI2zhfeeeiRqXKKzSdvIPHnHnDXZmh9KkRO2DDCjJFvZQ3KIe50lXaaxvnoNw==
 
-react-inspector@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-5.1.0.tgz#45a325e15f33e595be5356ca2d3ceffb7d6b8c3a"
-  integrity sha512-JAwswiengIcxi4X/Ssb8nf6suOuQsyit8Fxo04+iPKTnPNY3XIOuagjMZSzpJDDKkYcc/ARlySOYZZv626WUvA==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    is-dom "^1.0.0"
-    prop-types "^15.0.0"
+react-inspector@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-6.0.2.tgz#aa3028803550cb6dbd7344816d5c80bf39d07e9d"
+  integrity sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==
 
 react-is@^16.3.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
