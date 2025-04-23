@@ -86,7 +86,7 @@ class ConsoleMessage extends React.Component<MessageProps, any> {
       log.data.every((message) => typeof message === 'string') &&
       log.method === 'error'
     ) {
-      return <ErrorPanel error={log.data.join(' ')} />
+      return <ErrorPanel linkifyOptions={this.props.linkifyOptions} error={log.data.join(' ')} />
     }
 
     // Normal inspector
